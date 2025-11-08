@@ -1,106 +1,370 @@
 import json
+import os
+from collections import defaultdict, deque
+from typing import Deque, Dict, List, Optional, Set, Tuple
 
-from utils import build_json, call_large_model_llm
-
-SYSTEM_MESSAGE = """
-你是一个经验丰富的医疗诊断助理，熟悉HPP（高血压预测平台）中的各种检查节点（Nodes）。
-现在，我已经得到了一份根据用户病情，血样指标得到的JSON格式的诊断结果。
-你的目标是将要这份JSON结果，以及用户的病情情况，生成一份简单的Therapy Record。
+from utils import build_json
 
 
-## Patient Information
+class Edge:
+    __slots__ = ("edge_id", "src", "dst", "raw")
 
-This JSON will contain the patient’s basic information.
-patient_information: Describes details such as the patient’s age and sex, which can be used as decision factors (for example, cardiovascular or heart disease is more likely in middle-aged and elderly patients).
-chief_complaint: Contains the patient’s description of their current condition.
-review_of_systems: Usually includes only a general_health field, representing the patient’s overall health status.
-
-## Drug Information
-
-Based on professional prescription recommendations provided by physicians and the HPP system, the proposed regimen clearly specifies medication dosages, as well as the impact on various clinical indicators and expected outcomes.
-
-## OUTPUT FORMAT
-
-You need to generate a detailed treatment record based on this information, including:
-
-1.	Basic patient information: name, sex, age.
-2.	Reason for admission and symptom description: including the patient’s chief complaints.
-3.	Physical findings and investigation results: including blood pressure, heart rate, body mass index, laboratory findings, etc.
-4.	Initial impression: provide preliminary diagnostic impressions based on medical history and examination results.
-5.	Treatment course and related events: describe in detail the interventions during treatment, medication adjustments, and changes in the patient’s condition.
-6.	Discharge status and recommendations: including physical signs and test results at discharge, medication regimen at discharge, as well as post-discharge lifestyle and medication recommendations.
-
-A very specific output example will be provided below. Please strictly follow that format when generating the treatment record.
-
-## EXAMPLE OUTPUT
-
-Ayana, female, 79 years old, was admitted for tiredness, breathlessness when walking on level ground, and forgetfulness. 
-Over the last six months family members noticed she misplaces items and repeats questions; 
-she walks more slowly and rests after short distances. 
-Home readings are “often high,” and she prefers salty soups and preserved foods. 
-Past history includes hypertension for more than twenty years and chronic kidney disease.
-No chest pain at rest; no seizures. Examination on admission: blood pressure 156/84 mm Hg, pulse 72 bpm, afebrile. 
-Body mass index 27.5 kg/m². Waist-to-hip ratio 0.90 . 
-Ambulatory monitoring showed daytime systolic BP 155 mm Hg and nighttime systolic BP 142 mm Hg; calculated mean arterial pressure 107 mm Hg. Central hemodynamics recorded central systolic pressure 139 mm Hg and augmentation pressure 13 mm Hg. 
-Vascular tests: pulse-wave velocity 12.4 m/s; brachial flow-mediated dilation 5 %; reactive hyperemia index 1.6 a.u. Echocardiography showed left-ventricular mass index 110 g/m² with preserved ejection fraction 55 %. Blood biomarkers: B-type natriuretic peptide 180 pg/mL; high-sensitivity C-reactive protein 3.0 mg/L. 
-Kidney-mineral profile: eGFR 45 mL/min/1.73 m², phosphate 5.0 mg/dL, parathyroid hormone 85 pg/mL, FGF-23 170 pg/mL. 
-Brain MRI revealed white-matter hyperintensity volume 13 mL. Coronary CT calcium score 480 Agatston. Mood and sleep screens: PHQ-9 = 10, daytime sleepiness score = 11. Diet recall estimated sodium intake 5.0 g/day and potassium intake 2.5 g/day. 
-
-Initial impression: long-standing hypertension with arterial stiffness and concentric remodeling, stage-3 chronic kidney disease with mineral-bone disorder, severe coronary calcification, and cerebral small-vessel disease. 
-Therapeutic course and related events: The team first reinforced sodium restriction with dietitian counseling and adjusted meals to increase potassium-rich foods within renal safety. Targets were dietary sodium 3.0 g/day and dietary potassium ~3.0 g/day. 
-After seven days of inpatient diet control, daytime SBP decreased to 149 mm Hg and MAP to 103 mm Hg. She reported mild morning light-headedness lasting seconds; orthostatic vitals were acceptable, and fluid timing with meals resolved symptoms. 
-Given persistent hypertension, ACE inhibitor was uptitrated (perindopril from 4 mg to 8 mg daily; exposure recorded as ). Two weeks later, daytime SBP was 145 mm Hg with central systolic pressure 134 mm Hg. Cough did not occur. BNP fell modestly to 165 pg/mL and hsCRP to 2.6 mg/L. 
-A transient creatinine rise accompanied by eGFR 43 mL/min/1.73 m² was observed and stabilized on repeat testing without dose change. Because ambulatory pressure and stiffness remained above targets, a low dose thiazide-type diuretic was added (exposure recorded as ). 
-Over the next ten days, daytime SBP reached 138 mm Hg, MAP 100 mm Hg, and pulse-wave velocity 11.8 m/s. The patient developed nocturia and mild leg cramps at night; shifting the dose to the morning and emphasizing hydration reduced symptoms while keeping numbers stable. 
-For renal protection, her SGLT2 inhibitor was continued (exposure ). After four weeks, urinary protein monitoring showed improvement with Proteinuria 0.6 g/day and eGFR returned to 45 mL/min/1.73 m², consistent with a benign functional dip at initiation. 
-A short episode of perineal itching occurred and resolved with topical therapy and hygiene counseling. 
-For vascular risk, the statin was maintained (exposure ). Given the high calcium score and persistent stiffness, mineral-bone measures were addressed with diet and vitamin D per nephrology guidance, aiming to bring phosphate toward 4.5 mg/dL and PTH toward 70 pg/mL while tracking. 
-Three-month inpatient-outpatient transition data recorded PWV 11.5 m/s, LVMI 105 g/m², BNP 155 pg/mL, and stable LVEF 55 %. 
-Mood and sleep guidance reduced PHQ-9 to 8 and daytime sleepiness to 9. No syncope, no acute neurologic events. Discharge summary: symptoms improved; walking distance increased on ward testing. 
-
-Final inpatient measurements were daytime SBP 138 mm Hg, nighttime SBP 135 mm Hg, MAP 100 mm Hg, cSBP 132 mm Hg, PWV 11.5 m/s, FMD 6 %, RHI 1.7 a.u., LVMI 105 g/m², LVEF 55 %, BNP 155 pg/mL, eGFR 45 mL/min/1.73 m², phosphate 4.8 mg/dL, PTH 78 pg/mL, FGF-23 165 pg/mL, WMH volume unchanged at 13 mL, and coronary calcium unchanged on prior baseline. 
-
-Medications on discharge: ACE inhibitor 8 mg daily, thiazide-type diuretic low dose, SGLT2 inhibitor 10 mg daily, statin at prior dose, diet with sodium target 3.0 g/day and potassium ~3.0 g/day as tolerated. 
-Education focused on slow posture change to avoid light-headedness, morning diuretic dosing to reduce nocturia, skin hygiene to prevent genital irritation, and consistent meal timing.
-"""
-
-def build_messages(user_json: dict, node_json: dict) -> list[dict]:
-    """Build chat messages for the LLM based on filtered user_json."""
-    user_json_str = json.dumps(user_json, ensure_ascii=False, indent=2)
-    node_json_str = json.dumps(node_json, ensure_ascii=False, indent=2)
-    user_message = f"""
-This will be the patient information I provide to you, composed of JSON fields.
-
-## Patient Information
-
-{user_json_str}
-
-## Node Information
-
-{node_json_str}
-
-Please strictly follow the instructions I provide.
-""".strip()
-
-    messages = [
-        {"role": "system", "content": SYSTEM_MESSAGE},
-        {"role": "user", "content": user_message},
-    ]
-    return messages
+    def __init__(self, edge_id: str, src: str, dst: str, raw: dict):
+        self.edge_id = edge_id
+        self.src = src
+        self.dst = dst
+        self.raw = raw
 
 
-def run_examination_node_selection(
-    diagnosis_path: str = "example/case1/diagnosis.json",
-    node_path: str = "hpp_data/node.json",
+class Graph:
+    def __init__(self):
+        self.nodes: Dict[str, dict] = {}
+        self.edges: List[Edge] = []
+        self.succ: Dict[str, List[Edge]] = defaultdict(list)
+        self.pred: Dict[str, List[Edge]] = defaultdict(list)
+
+    def add_node(self, node: dict):
+        nid = node.get("node_id")
+        if nid and nid not in self.nodes:
+            self.nodes[nid] = node
+
+    def add_edge(self, e: dict):
+        src = e.get("from")
+        dst = e.get("to")
+        if not src or not dst:
+            return
+        eid = e.get("edge_id") or f"{src}->{dst}#{len(self.edges)}"
+        edge = Edge(eid, src, dst, e)
+        self.edges.append(edge)
+        self.succ[src].append(edge)
+        self.pred[dst].append(edge)
+
+    def has_node(self, nid: str) -> bool:
+        return nid in self.nodes
+
+    def get_label(self, nid: str) -> str:
+        n = self.nodes.get(nid) or {}
+        return n.get("label") or nid
+
+    def reverse_bfs_to_druggable(
+        self,
+        abnormal_node: str,
+        druggable_nodes: Set[str],
+        max_hops: int = 3,
+        prefer_strong_edges: bool = True,
+    ) -> List[Tuple[str, List[Edge]]]:
+        if abnormal_node not in self.nodes:
+            return []
+
+        def is_strong(edge_raw: dict) -> bool:
+            if not prefer_strong_edges:
+                return True
+            eff = (edge_raw or {}).get("effect") or {}
+            ident = (edge_raw or {}).get("ident") or ""
+            return (eff.get("estimate") is not None) or (ident != "plausible_seed")
+
+        visited: Set[str] = {abnormal_node}
+        q: Deque[Tuple[str, List[Edge], int]] = deque()
+        q.append((abnormal_node, [], 0))
+        results: List[Tuple[str, List[Edge]]] = []
+
+        while q:
+            node, path, hop = q.popleft()
+            if hop > max_hops:
+                continue
+
+            if node in druggable_nodes and node != abnormal_node:
+                results.append((node, path))
+
+            if hop == max_hops:
+                continue
+
+            for e in self.pred.get(node, []):
+                if not is_strong(e.raw):
+                    continue
+                prev_node = e.src
+                if prev_node in visited:
+                    continue
+                visited.add(prev_node)
+                new_path = [e] + path
+                q.append((prev_node, new_path, hop + 1))
+        return results
+
+
+def load_graph(node_file: str, edge_file: str) -> Graph:
+    g = Graph()
+
+    node_data = build_json(node_file)
+    if isinstance(node_data, dict):
+        nodes_iter = node_data.get("nodes") or node_data.get("data") or []
+    else:
+        nodes_iter = node_data
+    for n in nodes_iter:
+        g.add_node(n)
+
+    edge_data = build_json(edge_file)
+    if isinstance(edge_data, dict):
+        edges_iter = edge_data.get("edges") or edge_data.get("data") or []
+    else:
+        edges_iter = edge_data
+    for e in edges_iter:
+        g.add_edge(e)
+
+    return g
+
+
+def load_drug_kb(drug_kb_file: str) -> Dict[str, List[dict]]:
+    kb = build_json(drug_kb_file)
+
+    node_to_drugs: Dict[str, List[dict]] = defaultdict(list)
+    indicators = kb.get("indicators") or []
+    for ind in indicators:
+        ind_node = ind.get("indicatorNode") or {}
+        node_id = ind_node.get("nodeId") or ind_node.get("node_id")
+        if not node_id:
+            continue
+        diseases = (ind_node.get("subIndicators") or {}).get("potentialDiseases") or []
+        for dz in diseases:
+            for rec in dz.get("recommendedDrugs", []) or []:
+                entry = normalize_drug_entry(rec)
+                if entry:
+                    node_to_drugs[node_id].append(entry)
+    return node_to_drugs
+
+
+def normalize_drug_entry(rec: dict) -> Optional[dict]:
+    name = rec.get("drugName") or rec.get("name")
+    dcls = rec.get("drugClass") or rec.get("class") or ""
+    eic = rec.get("expectedIndicatorChange") or {}
+    tf = eic.get("timeframe") or eic.get("window") or ""
+    calc = eic.get("calculation") or {}
+    emc = calc.get("expectedMeanChange")
+    tr = calc.get("targetValueRange") or {}
+    lb, ub = tr.get("lowerBound"), tr.get("upperBound")
+    target_range = [lb, ub] if (lb is not None or ub is not None) else None
+    sfx = []
+    for sx in rec.get("sideEffects", []) or []:
+        sfx.append(
+            {
+                "node": sx.get("affectedNodeId") or sx.get("node_id"),
+                "trend": sx.get("expectedTrend") or sx.get("trend"),
+                "mean": sx.get("expectedMeanChange") or sx.get("mean"),
+                "unit": sx.get("unit"),
+            }
+        )
+    if not name:
+        return None
+    return {
+        "name": name,
+        "class": dcls,
+        "timeframe": str(tf) if tf is not None else "",
+        "on_target_mean_delta": emc,
+        "target_range": target_range,
+        "side_effects": sfx,
+        "raw": rec,
+    }
+
+
+def edges_to_path_dict(path_edges: List[Edge]) -> List[dict]:
+    out = []
+    for e in path_edges:
+        eff = (e.raw or {}).get("effect") or {}
+        out.append(
+            {
+                "edge_id": e.edge_id,
+                "from": e.src,
+                "to": e.dst,
+                "effect_scale": eff.get("scale"),
+                "effect_estimate": eff.get("estimate"),
+                "raw_effect": eff,
+            }
+        )
+    print(f"[Debug] Converted path edges to dict: {out}")
+    return out
+
+
+def add_or_update_target(
+    targets_map: Dict[str, dict],
+    node_id: str,
+    t_type: str,
+    distance: int,
+    graph_paths: List[List[dict]],
+    drug_index: Dict[str, List[dict]],
+    abnormal_map: Dict[str, dict],
+    graph: Graph,
 ):
-    user_json = build_json(diagnosis_path)
-    node_json = build_json(node_path)
-    messages = build_messages(user_json=user_json, node_json=node_json)
-    response = call_large_model_llm(messages)
-    return response
+    cur_val, cur_unit = None, None
+    if node_id in abnormal_map:
+        cur_val = abnormal_map[node_id].get("value")
+        cur_unit = abnormal_map[node_id].get("unit")
+    else:
+        cur_unit = (graph.nodes.get(node_id) or {}).get("unit")
+
+    recs = drug_index.get(node_id, [])
+    target_range = None
+    for r in recs:
+        if r.get("target_range") is not None:
+            target_range = r["target_range"]
+            break
+
+    base = (
+        1.0
+        if (t_type == "direct" or distance == 0)
+        else {1: 0.8, 2: 0.6, 3: 0.4}.get(distance, 0.2)
+    )
+    numeric_edges = sum(
+        1
+        for p in graph_paths
+        for e in p
+        if (e.get("raw_effect") or {}).get("estimate") is not None
+    )
+    score = round(base + 0.2 * numeric_edges, 3)
+
+    if node_id not in targets_map:
+        targets_map[node_id] = {
+            "node_id": node_id,
+            "label": graph.get_label(node_id),
+            "type": t_type,
+            "distance_hops": distance,
+            "priority_score": score,
+            "current": cur_val,
+            "unit": cur_unit,
+            "target_range": target_range,
+            "recommended_drugs": recs,
+            "graph_paths": graph_paths,
+            "sources": {
+                "graph_nodes": "hpp_data/node.json",
+                "graph_edges": "hpp_data/edge.json",
+                "drug_kb": "hpp_data/drug.json",
+            },
+        }
+    else:
+        tgt = targets_map[node_id]
+        tgt["type"] = (
+            "direct" if (tgt["type"] == "direct" or t_type == "direct") else "indirect"
+        )
+        tgt["distance_hops"] = min(tgt.get("distance_hops", 99), distance)
+        tgt["priority_score"] = round(
+            max(tgt.get("priority_score", 0.0), score) + 0.1, 3
+        )
+
+        existed = set(
+            (e["edge_id"], e["from"], e["to"])
+            for p in tgt.get("graph_paths", [])
+            for e in p
+        )
+        for p in graph_paths:
+            sig = tuple((e["edge_id"], e["from"], e["to"]) for e in p)
+            if not all(x in existed for x in sig):
+                tgt.setdefault("graph_paths", []).append(p)
+                for x in sig:
+                    existed.add(x)
+
+        seen = {
+            (d["name"], d.get("class", "")) for d in tgt.get("recommended_drugs", [])
+        }
+        for d in recs:
+            key = (d["name"], d.get("class", ""))
+            if key not in seen:
+                tgt["recommended_drugs"].append(d)
+                seen.add(key)
+
+
+def build_targets_from_input(
+    abnormal_input: dict,
+    graph: Graph,
+    drug_index: Dict[str, List[dict]],
+    max_hops: int = 3,
+    prefer_strong_edges: bool = True,
+) -> dict:
+    t_eval = abnormal_input.get("t_eval_weeks")
+    abns = abnormal_input.get("abnormal_points", [])
+    abnormal_map = {a.get("node_id"): a for a in abns if a.get("node_id")}
+
+    druggable_nodes: Set[str] = set(drug_index.keys())
+    targets_map: Dict[str, dict] = {}
+    unmatched: List[str] = []
+
+    for ab in abns:
+        nid = ab.get("node_id")
+        if not nid or not graph.has_node(nid):
+            if nid:
+                unmatched.append(nid)
+            continue
+
+        if nid in druggable_nodes:
+            add_or_update_target(
+                targets_map=targets_map,
+                node_id=nid,
+                t_type="direct",
+                distance=0,
+                graph_paths=[],
+                drug_index=drug_index,
+                abnormal_map=abnormal_map,
+                graph=graph,
+            )
+
+        hits = graph.reverse_bfs_to_druggable(
+            abnormal_node=nid,
+            druggable_nodes=druggable_nodes,
+            max_hops=max_hops,
+            prefer_strong_edges=prefer_strong_edges,
+        )
+        for cand_node, path_edges in hits:
+            add_or_update_target(
+                targets_map=targets_map,
+                node_id=cand_node,
+                t_type="indirect",
+                distance=len(path_edges),
+                graph_paths=[edges_to_path_dict(path_edges)],
+                drug_index=drug_index,
+                abnormal_map=abnormal_map,
+                graph=graph,
+            )
+
+    targets = list(targets_map.values())
+    targets.sort(key=lambda x: (-x.get("priority_score", 0.0), x["node_id"]))
+
+    return {
+        "step": "5B_targets_from_abnormalities",
+        "t_eval_weeks": t_eval,
+        "targets": targets,
+        "unmatched_abnormal_nodes": unmatched,
+    }
+
+
+def main():
+    node_file = "hpp_data/node.json"
+    edge_file = "hpp_data/edge.json"
+    drug_kb_file = "hpp_data/drug.json"
+    abnormal_json_file = "example/case1/abnormal_node.json"
+    out_file = "example/case1/edge_select.json"
+
+    for p in [node_file, edge_file, drug_kb_file, abnormal_json_file]:
+        if not os.path.exists(p):
+            raise FileNotFoundError(f"File not found: {p}")
+
+    graph = load_graph(node_file=node_file, edge_file=edge_file)
+    drug_index = load_drug_kb(drug_kb_file=drug_kb_file)
+    abnormal_input = build_json(abnormal_json_file)
+
+    result = build_targets_from_input(
+        abnormal_input=abnormal_input,
+        graph=graph,
+        drug_index=drug_index,
+        max_hops=3,
+        prefer_strong_edges=True,
+    )
+
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+
+    n_targets = len(result.get("targets", []))
+    n_unmatched = len(result.get("unmatched_abnormal_nodes", []))
+    print(f"[Info] Targets: {n_targets}, Unmatched abnormal nodes: {n_unmatched}")
+    print(f"[Info] Wrote output to: {out_file}")
 
 
 if __name__ == "__main__":
-    response = run_examination_node_selection()
-    print("LLM Output with examination:")
-    print(response)
+    main()

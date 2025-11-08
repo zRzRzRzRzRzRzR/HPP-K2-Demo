@@ -65,7 +65,7 @@ Please strictly follow the instructions I provide. Identify several potentially 
     return messages
 
 
-def run_therapy_record_selection(
+def run_examination_node_selection(
     diagnosis_path: str = "example/case1/diagnosis.json",
     node_path: str = "hpp_data/node.json",
 ):
@@ -77,6 +77,6 @@ def run_therapy_record_selection(
 
 
 if __name__ == "__main__":
-    response = run_therapy_record_selection()
+    response = run_examination_node_selection()
     print("LLM Output with examination:")
     print(response)

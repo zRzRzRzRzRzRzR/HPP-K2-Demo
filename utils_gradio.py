@@ -202,23 +202,6 @@ HTML_TEMPLATE = r"""<!doctype html>
 </html>
 """
 
-PLACEHOLDER_HTML = """
-<div style="
-  width:100%;
-  height:{h}px;
-  border:1px dashed #d1d5db;
-  border-radius:8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#9ca3af;
-  background:#f9fafb;
-  font-size:12px;
-">
-  3D causal network will appear here after Step 3.
-</div>
-""".format(h=VIEW_HEIGHT)
-
 
 def resolve_case_dir(case_dir_raw: Optional[str]) -> str:
     if not case_dir_raw:
@@ -263,6 +246,7 @@ def find_edge_select(case_dir: str) -> Optional[str]:
     if os.path.exists(edge_json):
         return edge_json
     return None
+
 
 def build_diagnosis_preview_html(diagnosis_path: str) -> str:
     if not diagnosis_path or not os.path.exists(diagnosis_path):

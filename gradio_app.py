@@ -8,7 +8,6 @@ from get_exam_node import run_examination_node_selection
 from pdf_converter import convert_pdf_to_json
 from utils_gradio import (
     HTML_TEMPLATE,
-    PLACEHOLDER_HTML,
     VIEW_HEIGHT,
     build_diagnosis_preview_html,
     find_diagnosis_json,
@@ -16,6 +15,19 @@ from utils_gradio import (
     find_exam_source,
     resolve_case_dir,
 )
+
+
+def get_graph_html(step_state: int) -> str:
+    json_path = "hpp_data/causal_graph.json"
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, dict):
+        data["_current_step"] = step_state
+    graph_json = json.dumps(data, ensure_ascii=False)
+    html = HTML_TEMPLATE.replace("{GRAPH_JSON}", graph_json).replace(
+        "{VIEW_HEIGHT}", str(VIEW_HEIGHT)
+    )
+    return html
 
 
 def build_step2_block(abnormal_output, previous_html: str) -> str:
@@ -200,6 +212,11 @@ def build_step3_block(edge_output, previous_html: str) -> str:
     )
 
 
+def render_graph(case_dir, step_state):
+    html = get_graph_html(step_state)
+    return gr.update(value=html, visible=True)
+
+
 def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state):
     if step_state is None:
         step_state = 1
@@ -216,7 +233,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
     pdf_update = gr.update()
     case_dir_input_update = gr.update()
     graph_btn_update = gr.update(visible=False)
-    graph_html_update = gr.update(value=PLACEHOLDER_HTML, visible=False)
+    graph_html_value = None
 
     if step_state == 1:
         case_dir = resolve_case_dir(case_dir_raw) or current_case_dir or ""
@@ -236,6 +253,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 "<div>No valid diagnosis JSON/PDF found. Please upload a valid report or specify the correct case directory.</div>"
                 "</div>"
             )
+            graph_html_value = get_graph_html(1)
             return (
                 pdf_update,
                 case_dir_input_update,
@@ -246,7 +264,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 gr.update(value="Run Step 1"),
                 1,
                 graph_btn_update,
-                graph_html_update,
+                graph_html_value,
             )
 
         node_output = run_examination_node_selection(
@@ -273,6 +291,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
         )
 
         case_dir_input_update = gr.update(value=case_dir)
+        graph_html_value = get_graph_html(2)
 
         return (
             pdf_update,
@@ -284,7 +303,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
             gr.update(value="Run Step 2"),
             2,
             graph_btn_update,
-            graph_html_update,
+            graph_html_value,
         )
 
     if step_state == 2:
@@ -313,6 +332,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 "No valid full examination JSON/PDF found."
                 "</div>"
             )
+            graph_html_value = get_graph_html(2)
             return (
                 pdf_update,
                 case_dir_input_update,
@@ -323,7 +343,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 gr.update(value="Run Step 2"),
                 2,
                 graph_btn_update,
-                graph_html_update,
+                graph_html_value,
             )
 
         abnormal_output = run_abnormal_node_selection(
@@ -333,6 +353,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
 
         html = build_step2_block(abnormal_output, previous_html)
         case_dir_input_update = gr.update(value=resolved_case_dir)
+        graph_html_value = get_graph_html(3)
 
         return (
             pdf_update,
@@ -344,7 +365,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
             gr.update(value="Run Step 3"),
             3,
             graph_btn_update,
-            graph_html_update,
+            graph_html_value,
         )
 
     if step_state == 3:
@@ -359,8 +380,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 "No edge_select.json found."
                 "</div>"
             )
-            graph_btn_update = gr.update(visible=False)
-            graph_html_update = gr.update(value=PLACEHOLDER_HTML, visible=False)
+            graph_html_value = get_graph_html(3)
             return (
                 pdf_update,
                 case_dir_input_update,
@@ -371,7 +391,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 gr.update(value="Run Step 3"),
                 3,
                 graph_btn_update,
-                graph_html_update,
+                graph_html_value,
             )
 
         with open(edge_path, "r", encoding="utf-8") as f:
@@ -381,10 +401,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
 
         pdf_update = gr.update(value=None, visible=False)
         case_dir_input_update = gr.update(value=resolved_case_dir)
-
-        # hide the extra button, auto render graph
-        graph_btn_update = gr.update(visible=False)
-        graph_html_update = render_graph(resolved_case_dir, 3)
+        graph_html_value = get_graph_html(3)
 
         return (
             pdf_update,
@@ -396,9 +413,10 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
             gr.update(value="Run Step 3"),
             3,
             graph_btn_update,
-            graph_html_update,
+            graph_html_value,
         )
 
+    graph_html_value = get_graph_html(1)
     return (
         pdf_update,
         case_dir_input_update,
@@ -409,7 +427,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
         gr.update(value="Run Step 1"),
         1,
         graph_btn_update,
-        graph_html_update,
+        graph_html_value,
     )
 
 
@@ -420,6 +438,7 @@ def reset_all():
         "Waiting for analysis..."
         "</div>"
     )
+    graph_html_value = get_graph_html(1)
     return (
         gr.update(value=None, visible=True),
         "example/case1",
@@ -430,35 +449,15 @@ def reset_all():
         gr.update(value="Run Step 1"),
         1,
         gr.update(visible=False),
-        gr.update(value=PLACEHOLDER_HTML, visible=False),
+        graph_html_value,
     )
-
-
-def render_graph(case_dir, step_state):
-    if step_state != 3:
-        return gr.update(value=PLACEHOLDER_HTML, visible=False)
-    resolved = resolve_case_dir(case_dir) or "example/case1"
-    json_path = os.path.join(resolved, "causal_graph.json")
-    if not os.path.exists(json_path):
-        json_path = "example/case1/causal_graph.json"
-    if not os.path.exists(json_path):
-        html = (
-            "<div style='width:100%;height:{h}px;border:1px solid #fecaca;"
-            "border-radius:8px;display:flex;align-items:center;justify-content:center;"
-            "background:#fef2f2;color:#b91c1c;font-size:12px;'>"
-            "causal_graph.json not found.</div>"
-        ).format(h=VIEW_HEIGHT)
-        return gr.update(value=html, visible=True)
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    graph_json = json.dumps(data, ensure_ascii=False)
-    html = HTML_TEMPLATE.replace("{GRAPH_JSON}", graph_json).replace(
-        "{VIEW_HEIGHT}", str(VIEW_HEIGHT)
-    )
-    return gr.update(value=html, visible=True)
 
 
 def create_interface():
+    initial_case_dir = "example/case1"
+    initial_step = 1
+    initial_graph_html = get_graph_html(initial_step)
+
     with gr.Blocks(
         theme=gr.themes.Soft(),
         css="""
@@ -475,12 +474,23 @@ def create_interface():
             "</h1>"
         )
 
-        case_dir_state = gr.State("example/case1")
+        case_dir_state = gr.State(initial_case_dir)
         step_html_state = gr.State("")
-        step_state = gr.State(1)
+        step_state = gr.State(initial_step)
+        graph_html_state = gr.State(initial_graph_html)
 
         with gr.Row():
             with gr.Column(scale=1):
+                graph_btn = gr.Button(
+                    "Render 3D Graph",
+                    variant="secondary",
+                    elem_classes=["btn-sm"],
+                    visible=False,
+                )
+                graph_html = gr.HTML(
+                    value=initial_graph_html,
+                    visible=True,
+                )
                 step_title = gr.Markdown(
                     "Step 1 · Initial Diagnosis",
                     elem_id="step-title",
@@ -489,10 +499,11 @@ def create_interface():
                     label="PDF",
                     file_types=[".pdf"],
                     type="filepath",
+                    height=110,
                 )
                 case_dir_input = gr.Textbox(
                     label="Case directory",
-                    value="example/case1",
+                    value=initial_case_dir,
                 )
                 with gr.Row():
                     main_btn = gr.Button(
@@ -505,22 +516,8 @@ def create_interface():
                         variant="secondary",
                         elem_classes=["btn-sm"],
                     )
-                gr.Markdown(
-                    "<div style='margin-top:8px; font-size:11px; font-weight:600; color:#111827;'>"
-                    "3D Causal Network</div>"
-                )
-                graph_btn = gr.Button(
-                    "Render 3D Graph",
-                    variant="secondary",
-                    elem_classes=["btn-sm"],
-                    visible=False,
-                )
-                graph_html = gr.HTML(
-                    value=PLACEHOLDER_HTML,
-                    visible=False,
-                )
 
-            with gr.Column(scale=2):
+            with gr.Column(scale=1):
                 render_html = gr.HTML(
                     "<div style='padding:8px 12px; border-radius:12px; background:#f9fafb;"
                     "border:1px solid #e5e7eb; font-size:12px; color:#9ca3af;'>"
@@ -528,7 +525,7 @@ def create_interface():
                     "</div>"
                 )
 
-        main_btn.click(
+        run_event = main_btn.click(
             fn=run_flow,
             inputs=[
                 pdf_input,
@@ -547,11 +544,17 @@ def create_interface():
                 main_btn,
                 step_state,
                 graph_btn,
-                graph_html,
+                graph_html_state,
             ],
         )
 
-        clear_btn.click(
+        run_event.then(
+            fn=lambda html: gr.update(value=html, visible=True),
+            inputs=graph_html_state,
+            outputs=graph_html,
+        )
+
+        reset_event = clear_btn.click(
             fn=reset_all,
             inputs=[],
             outputs=[
@@ -564,8 +567,14 @@ def create_interface():
                 main_btn,
                 step_state,
                 graph_btn,
-                graph_html,
+                graph_html_state,
             ],
+        )
+
+        reset_event.then(
+            fn=lambda html: gr.update(value=html, visible=True),
+            inputs=graph_html_state,
+            outputs=graph_html,
         )
 
         graph_btn.click(
