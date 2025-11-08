@@ -268,5 +268,5 @@ def convert_pdf_to_json(pdf_path: str) -> str:
 
 
 if __name__ == "__main__":
-    pdf_path = "example/case1/diagnosis case1.pdf"
+    pdf_path = "example/case1/diagnosis.pdf"
     convert_pdf_to_json(pdf_path)

@@ -41,7 +41,7 @@ Let’s begin.
 """.strip()
 
 
-def build_user_json(diagnosis_path: str) -> dict:
+def build_json(diagnosis_path: str) -> dict:
     """Load diagnosis.json, filter review_of_systems, and return user_json dict."""
     with open(diagnosis_path, "r", encoding="utf-8") as f:
         diagnosis_data = json.load(f)
@@ -61,14 +61,20 @@ def build_user_json(diagnosis_path: str) -> dict:
     return user_json
 
 
-def build_messages(user_json: dict) -> list[dict]:
+def build_messages(user_json: dict, node_json: dict) -> list[dict]:
     """Build chat messages for the LLM based on filtered user_json."""
     user_json_str = json.dumps(user_json, ensure_ascii=False, indent=2)
-
+    node_json_str = json.dumps(node_json, ensure_ascii=False, indent=2)
     user_message = f"""
 This will be the patient information I provide to you, composed of JSON fields.
 
+Patient Information:
+
 {user_json_str}
+
+Node Information:
+
+{node_json_str}
 
 Please strictly follow the instructions I provide. Identify several potentially relevant fields from the symptoms, and return the corresponding list of node_ids.
 """.strip()
@@ -82,6 +88,7 @@ Please strictly follow the instructions I provide. Identify several potentially 
 
 def run_examination_node_selection(
     diagnosis_path: str = "example/case1/diagnosis.json",
+    node_path: str = "hpp_data/node.json",
 ):
     """
     Orchestrate:
@@ -90,13 +97,14 @@ def run_examination_node_selection(
     3) call large model,
     4) print user_json and model response.
     """
-    user_json = build_user_json(diagnosis_path)
-    messages = build_messages(user_json)
+    user_json = build_json(diagnosis_path)
+    node_json = build_json(node_path)
+    messages = build_messages(user_json=user_json, node_json=node_json)
     response = call_large_model_llm(messages)
-    print("LLM Output with examination:")
-    print(response)
     return response
 
 
 if __name__ == "__main__":
     run_examination_node_selection()
+    print("LLM Output with examination:")
+    print(response)
