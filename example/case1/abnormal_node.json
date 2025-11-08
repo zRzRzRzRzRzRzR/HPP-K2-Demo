@@ -26,18 +26,23 @@
       "unit": "Agatston"
     },
     {
+      "node_id": "CARDIO:cSBP",
+      "value": 139,
+      "unit": "mm[Hg]"
+    },
+    {
       "node_id": "NEURO:WMH_vol",
       "value": 13,
       "unit": "mL"
     },
     {
-      "node_id": "NEURO:Sleepiness",
-      "value": 11,
+      "node_id": "NEURO:PHQ9",
+      "value": 10,
       "unit": "score"
     },
     {
-      "node_id": "NEURO:PHQ9",
-      "value": 10,
+      "node_id": "NEURO:Sleepiness",
+      "value": 11,
       "unit": "score"
     },
     {
@@ -59,6 +64,11 @@
       "node_id": "RENAL:Proteinuria_gd",
       "value": 1.0,
       "unit": "g/d"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:WC",
+      "value": 92,
+      "unit": "cm"
     }
   ]
 }

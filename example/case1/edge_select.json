@@ -722,432 +722,6 @@
       }
     },
     {
-      "node_id": "CARDIO:cSBP",
-      "label": "Central systolic blood pressure",
-      "type": "direct",
-      "distance_hops": 0,
-      "priority_score": 1.1,
-      "current": 139,
-      "unit": "mm[Hg]",
-      "target_range": [
-        110,
-        125
-      ],
-      "recommended_drugs": [
-        {
-          "name": "Amlodipine",
-          "class": "Dihydropyridine calcium channel blocker (CCB)",
-          "timeframe": "4-6 weeks",
-          "on_target_mean_delta": -12,
-          "target_range": [
-            110,
-            125
-          ],
-          "side_effects": [
-            {
-              "node": "CARDIO:SBP_day",
-              "trend": "Decrease",
-              "mean": -10,
-              "unit": "mm[Hg]"
-            },
-            {
-              "node": "CARDIO:HRV_RMSSD",
-              "trend": "Increase",
-              "mean": 5,
-              "unit": "ms"
-            }
-          ],
-          "raw": {
-            "drugName": "Amlodipine",
-            "drugClass": "Dihydropyridine calcium channel blocker (CCB)",
-            "dosage": {
-              "initialDose": "5mg",
-              "maintenanceDose": "10mg",
-              "frequency": "Once daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "4-6 weeks",
-              "calculation": {
-                "method": "Logarithmic model",
-                "formula": "currentValue - (12 * log(t + 1))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -12,
-                "standardDeviation": 4,
-                "targetValueRange": {
-                  "lowerBound": 110,
-                  "upperBound": 125
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "CARDIO:SBP_day",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -10,
-                "standardDeviation": 3,
-                "unit": "mm[Hg]"
-              },
-              {
-                "affectedNodeId": "CARDIO:HRV_RMSSD",
-                "expectedTrend": "Increase",
-                "expectedMeanChange": 5,
-                "standardDeviation": 2,
-                "unit": "ms"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Perindopril",
-          "class": "Angiotensin-converting enzyme inhibitor (ACEI)",
-          "timeframe": "6-8 weeks",
-          "on_target_mean_delta": -10,
-          "target_range": [
-            110,
-            125
-          ],
-          "side_effects": [
-            {
-              "node": "CARDIO:AP",
-              "trend": "Decrease",
-              "mean": -5,
-              "unit": "mm[Hg]"
-            },
-            {
-              "node": "RENAL:CysC",
-              "trend": "Increase",
-              "mean": 0.1,
-              "unit": "mg/L"
-            }
-          ],
-          "raw": {
-            "drugName": "Perindopril",
-            "drugClass": "Angiotensin-converting enzyme inhibitor (ACEI)",
-            "dosage": {
-              "initialDose": "4mg",
-              "maintenanceDose": "8mg",
-              "frequency": "Once daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "6-8 weeks",
-              "calculation": {
-                "method": "Linear decrease",
-                "formula": "currentValue - (10 * (t / 8))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -10,
-                "standardDeviation": 3.5,
-                "targetValueRange": {
-                  "lowerBound": 110,
-                  "upperBound": 125
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "CARDIO:AP",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -5,
-                "standardDeviation": 2,
-                "unit": "mm[Hg]"
-              },
-              {
-                "affectedNodeId": "RENAL:CysC",
-                "expectedTrend": "Increase",
-                "expectedMeanChange": 0.1,
-                "standardDeviation": 0.05,
-                "unit": "mg/L"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Indapamide",
-          "class": "Thiazide diuretic",
-          "timeframe": "2-4 weeks",
-          "on_target_mean_delta": -18,
-          "target_range": [
-            110,
-            130
-          ],
-          "side_effects": [
-            {
-              "node": "RENAL:UricAcid",
-              "trend": "Increase",
-              "mean": 0.8,
-              "unit": "mg/dL"
-            },
-            {
-              "node": "METABOLIC_ENDO:TyG",
-              "trend": "Increase",
-              "mean": 0.2,
-              "unit": "a.u."
-            }
-          ],
-          "raw": {
-            "drugName": "Indapamide",
-            "drugClass": "Thiazide diuretic",
-            "dosage": {
-              "initialDose": "1.5mg",
-              "maintenanceDose": "2.5mg",
-              "frequency": "Once daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "2-4 weeks",
-              "calculation": {
-                "method": "Linear decrease",
-                "formula": "currentValue - (18 * (t / 4))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -18,
-                "standardDeviation": 6,
-                "targetValueRange": {
-                  "lowerBound": 110,
-                  "upperBound": 130
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "RENAL:UricAcid",
-                "expectedTrend": "Increase",
-                "expectedMeanChange": 0.8,
-                "standardDeviation": 0.3,
-                "unit": "mg/dL"
-              },
-              {
-                "affectedNodeId": "METABOLIC_ENDO:TyG",
-                "expectedTrend": "Increase",
-                "expectedMeanChange": 0.2,
-                "standardDeviation": 0.1,
-                "unit": "a.u."
-              }
-            ]
-          }
-        },
-        {
-          "name": "Losartan",
-          "class": "Angiotensin II receptor blocker (ARB)",
-          "timeframe": "4-8 weeks",
-          "on_target_mean_delta": -12,
-          "target_range": [
-            110,
-            129
-          ],
-          "side_effects": [
-            {
-              "node": "RENAL:UricAcid",
-              "trend": "Decrease",
-              "mean": -0.3,
-              "unit": "mg/dL"
-            },
-            {
-              "node": "RENAL:ACR_cat",
-              "trend": "Improvement (category decrease)",
-              "mean": -1,
-              "unit": "ordinal"
-            }
-          ],
-          "raw": {
-            "drugName": "Losartan",
-            "drugClass": "Angiotensin II receptor blocker (ARB)",
-            "dosage": {
-              "initialDose": "50mg",
-              "maintenanceDose": "100mg",
-              "frequency": "Once daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "4-8 weeks",
-              "calculation": {
-                "method": "Logarithmic model",
-                "formula": "currentValue - (12 * log(t + 1))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -12,
-                "standardDeviation": 6,
-                "targetValueRange": {
-                  "lowerBound": 110,
-                  "upperBound": 129
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "RENAL:UricAcid",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -0.3,
-                "standardDeviation": 0.2,
-                "unit": "mg/dL"
-              },
-              {
-                "affectedNodeId": "RENAL:ACR_cat",
-                "expectedTrend": "Improvement (category decrease)",
-                "expectedMeanChange": -1,
-                "standardDeviation": 0.5,
-                "unit": "ordinal"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Amlodipine",
-          "class": "Dihydropyridine calcium channel blocker (CCB)",
-          "timeframe": "2-4 weeks",
-          "on_target_mean_delta": -10,
-          "target_range": [
-            110,
-            129
-          ],
-          "side_effects": [
-            {
-              "node": "CARDIO:BPV",
-              "trend": "Decrease",
-              "mean": -2,
-              "unit": "mm[Hg]"
-            }
-          ],
-          "raw": {
-            "drugName": "Amlodipine",
-            "drugClass": "Dihydropyridine calcium channel blocker (CCB)",
-            "dosage": {
-              "initialDose": "5mg",
-              "maintenanceDose": "10mg",
-              "frequency": "Once daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "2-4 weeks",
-              "calculation": {
-                "method": "Linear decrease",
-                "formula": "currentValue - (10 * (t / 4))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -10,
-                "standardDeviation": 4,
-                "targetValueRange": {
-                  "lowerBound": 110,
-                  "upperBound": 129
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "CARDIO:BPV",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -2,
-                "standardDeviation": 1,
-                "unit": "mm[Hg]"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Perindopril",
-          "class": "Angiotensin-converting enzyme inhibitor (ACEI)",
-          "timeframe": "4-8 weeks",
-          "on_target_mean_delta": -14,
-          "target_range": [
-            110,
-            129
-          ],
-          "side_effects": [
-            {
-              "node": "RENAL:ACR_cat",
-              "trend": "Improvement (category decrease)",
-              "mean": -1,
-              "unit": "ordinal"
-            },
-            {
-              "node": "RENAL:eGFR_slope",
-              "trend": "Improvement",
-              "mean": 0.5,
-              "unit": "mL/min/1.73m2/y"
-            }
-          ],
-          "raw": {
-            "drugName": "Perindopril",
-            "drugClass": "Angiotensin-converting enzyme inhibitor (ACEI)",
-            "dosage": {
-              "initialDose": "4mg",
-              "maintenanceDose": "8mg",
-              "frequency": "Once daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "4-8 weeks",
-              "calculation": {
-                "method": "Exponential decay",
-                "formula": "currentValue - 14 * (1 - e^(-0.25 * t))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -14,
-                "standardDeviation": 6,
-                "targetValueRange": {
-                  "lowerBound": 110,
-                  "upperBound": 129
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "RENAL:ACR_cat",
-                "expectedTrend": "Improvement (category decrease)",
-                "expectedMeanChange": -1,
-                "standardDeviation": 0.4,
-                "unit": "ordinal"
-              },
-              {
-                "affectedNodeId": "RENAL:eGFR_slope",
-                "expectedTrend": "Improvement",
-                "expectedMeanChange": 0.5,
-                "standardDeviation": 0.3,
-                "unit": "mL/min/1.73m2/y"
-              }
-            ]
-          }
-        }
-      ],
-      "graph_paths": [
-        [
-          {
-            "edge_id": "E000066",
-            "from": "CARDIO:cSBP",
-            "to": "CARDIO:LVMI",
-            "effect_scale": "BETA",
-            "effect_estimate": 4.0,
-            "raw_effect": {
-              "scale": "BETA",
-              "estimate": 4.0,
-              "ci": [
-                2.0,
-                6.0
-              ],
-              "contrast": {
-                "type": "per_unit",
-                "delta": 10
-              }
-            }
-          }
-        ]
-      ],
-      "sources": {
-        "graph_nodes": "hpp_data/node.json",
-        "graph_edges": "hpp_data/edge.json",
-        "drug_kb": "hpp_data/drug.json"
-      }
-    },
-    {
       "node_id": "CARDIO:CAC",
       "label": "Coronary artery calcium score",
       "type": "direct",
@@ -2227,6 +1801,432 @@
       }
     },
     {
+      "node_id": "CARDIO:cSBP",
+      "label": "Central systolic blood pressure",
+      "type": "indirect",
+      "distance_hops": 1,
+      "priority_score": 1.0,
+      "current": null,
+      "unit": "mm[Hg]",
+      "target_range": [
+        110,
+        125
+      ],
+      "recommended_drugs": [
+        {
+          "name": "Amlodipine",
+          "class": "Dihydropyridine calcium channel blocker (CCB)",
+          "timeframe": "4-6 weeks",
+          "on_target_mean_delta": -12,
+          "target_range": [
+            110,
+            125
+          ],
+          "side_effects": [
+            {
+              "node": "CARDIO:SBP_day",
+              "trend": "Decrease",
+              "mean": -10,
+              "unit": "mm[Hg]"
+            },
+            {
+              "node": "CARDIO:HRV_RMSSD",
+              "trend": "Increase",
+              "mean": 5,
+              "unit": "ms"
+            }
+          ],
+          "raw": {
+            "drugName": "Amlodipine",
+            "drugClass": "Dihydropyridine calcium channel blocker (CCB)",
+            "dosage": {
+              "initialDose": "5mg",
+              "maintenanceDose": "10mg",
+              "frequency": "Once daily",
+              "route": "Oral"
+            },
+            "expectedIndicatorChange": {
+              "timeframe": "4-6 weeks",
+              "calculation": {
+                "method": "Logarithmic model",
+                "formula": "currentValue - (12 * log(t + 1))",
+                "parameters": {
+                  "t": "Weeks after medication"
+                },
+                "expectedMeanChange": -12,
+                "standardDeviation": 4,
+                "targetValueRange": {
+                  "lowerBound": 110,
+                  "upperBound": 125
+                }
+              }
+            },
+            "sideEffects": [
+              {
+                "affectedNodeId": "CARDIO:SBP_day",
+                "expectedTrend": "Decrease",
+                "expectedMeanChange": -10,
+                "standardDeviation": 3,
+                "unit": "mm[Hg]"
+              },
+              {
+                "affectedNodeId": "CARDIO:HRV_RMSSD",
+                "expectedTrend": "Increase",
+                "expectedMeanChange": 5,
+                "standardDeviation": 2,
+                "unit": "ms"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Perindopril",
+          "class": "Angiotensin-converting enzyme inhibitor (ACEI)",
+          "timeframe": "6-8 weeks",
+          "on_target_mean_delta": -10,
+          "target_range": [
+            110,
+            125
+          ],
+          "side_effects": [
+            {
+              "node": "CARDIO:AP",
+              "trend": "Decrease",
+              "mean": -5,
+              "unit": "mm[Hg]"
+            },
+            {
+              "node": "RENAL:CysC",
+              "trend": "Increase",
+              "mean": 0.1,
+              "unit": "mg/L"
+            }
+          ],
+          "raw": {
+            "drugName": "Perindopril",
+            "drugClass": "Angiotensin-converting enzyme inhibitor (ACEI)",
+            "dosage": {
+              "initialDose": "4mg",
+              "maintenanceDose": "8mg",
+              "frequency": "Once daily",
+              "route": "Oral"
+            },
+            "expectedIndicatorChange": {
+              "timeframe": "6-8 weeks",
+              "calculation": {
+                "method": "Linear decrease",
+                "formula": "currentValue - (10 * (t / 8))",
+                "parameters": {
+                  "t": "Weeks after medication"
+                },
+                "expectedMeanChange": -10,
+                "standardDeviation": 3.5,
+                "targetValueRange": {
+                  "lowerBound": 110,
+                  "upperBound": 125
+                }
+              }
+            },
+            "sideEffects": [
+              {
+                "affectedNodeId": "CARDIO:AP",
+                "expectedTrend": "Decrease",
+                "expectedMeanChange": -5,
+                "standardDeviation": 2,
+                "unit": "mm[Hg]"
+              },
+              {
+                "affectedNodeId": "RENAL:CysC",
+                "expectedTrend": "Increase",
+                "expectedMeanChange": 0.1,
+                "standardDeviation": 0.05,
+                "unit": "mg/L"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Indapamide",
+          "class": "Thiazide diuretic",
+          "timeframe": "2-4 weeks",
+          "on_target_mean_delta": -18,
+          "target_range": [
+            110,
+            130
+          ],
+          "side_effects": [
+            {
+              "node": "RENAL:UricAcid",
+              "trend": "Increase",
+              "mean": 0.8,
+              "unit": "mg/dL"
+            },
+            {
+              "node": "METABOLIC_ENDO:TyG",
+              "trend": "Increase",
+              "mean": 0.2,
+              "unit": "a.u."
+            }
+          ],
+          "raw": {
+            "drugName": "Indapamide",
+            "drugClass": "Thiazide diuretic",
+            "dosage": {
+              "initialDose": "1.5mg",
+              "maintenanceDose": "2.5mg",
+              "frequency": "Once daily",
+              "route": "Oral"
+            },
+            "expectedIndicatorChange": {
+              "timeframe": "2-4 weeks",
+              "calculation": {
+                "method": "Linear decrease",
+                "formula": "currentValue - (18 * (t / 4))",
+                "parameters": {
+                  "t": "Weeks after medication"
+                },
+                "expectedMeanChange": -18,
+                "standardDeviation": 6,
+                "targetValueRange": {
+                  "lowerBound": 110,
+                  "upperBound": 130
+                }
+              }
+            },
+            "sideEffects": [
+              {
+                "affectedNodeId": "RENAL:UricAcid",
+                "expectedTrend": "Increase",
+                "expectedMeanChange": 0.8,
+                "standardDeviation": 0.3,
+                "unit": "mg/dL"
+              },
+              {
+                "affectedNodeId": "METABOLIC_ENDO:TyG",
+                "expectedTrend": "Increase",
+                "expectedMeanChange": 0.2,
+                "standardDeviation": 0.1,
+                "unit": "a.u."
+              }
+            ]
+          }
+        },
+        {
+          "name": "Losartan",
+          "class": "Angiotensin II receptor blocker (ARB)",
+          "timeframe": "4-8 weeks",
+          "on_target_mean_delta": -12,
+          "target_range": [
+            110,
+            129
+          ],
+          "side_effects": [
+            {
+              "node": "RENAL:UricAcid",
+              "trend": "Decrease",
+              "mean": -0.3,
+              "unit": "mg/dL"
+            },
+            {
+              "node": "RENAL:ACR_cat",
+              "trend": "Improvement (category decrease)",
+              "mean": -1,
+              "unit": "ordinal"
+            }
+          ],
+          "raw": {
+            "drugName": "Losartan",
+            "drugClass": "Angiotensin II receptor blocker (ARB)",
+            "dosage": {
+              "initialDose": "50mg",
+              "maintenanceDose": "100mg",
+              "frequency": "Once daily",
+              "route": "Oral"
+            },
+            "expectedIndicatorChange": {
+              "timeframe": "4-8 weeks",
+              "calculation": {
+                "method": "Logarithmic model",
+                "formula": "currentValue - (12 * log(t + 1))",
+                "parameters": {
+                  "t": "Weeks after medication"
+                },
+                "expectedMeanChange": -12,
+                "standardDeviation": 6,
+                "targetValueRange": {
+                  "lowerBound": 110,
+                  "upperBound": 129
+                }
+              }
+            },
+            "sideEffects": [
+              {
+                "affectedNodeId": "RENAL:UricAcid",
+                "expectedTrend": "Decrease",
+                "expectedMeanChange": -0.3,
+                "standardDeviation": 0.2,
+                "unit": "mg/dL"
+              },
+              {
+                "affectedNodeId": "RENAL:ACR_cat",
+                "expectedTrend": "Improvement (category decrease)",
+                "expectedMeanChange": -1,
+                "standardDeviation": 0.5,
+                "unit": "ordinal"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Amlodipine",
+          "class": "Dihydropyridine calcium channel blocker (CCB)",
+          "timeframe": "2-4 weeks",
+          "on_target_mean_delta": -10,
+          "target_range": [
+            110,
+            129
+          ],
+          "side_effects": [
+            {
+              "node": "CARDIO:BPV",
+              "trend": "Decrease",
+              "mean": -2,
+              "unit": "mm[Hg]"
+            }
+          ],
+          "raw": {
+            "drugName": "Amlodipine",
+            "drugClass": "Dihydropyridine calcium channel blocker (CCB)",
+            "dosage": {
+              "initialDose": "5mg",
+              "maintenanceDose": "10mg",
+              "frequency": "Once daily",
+              "route": "Oral"
+            },
+            "expectedIndicatorChange": {
+              "timeframe": "2-4 weeks",
+              "calculation": {
+                "method": "Linear decrease",
+                "formula": "currentValue - (10 * (t / 4))",
+                "parameters": {
+                  "t": "Weeks after medication"
+                },
+                "expectedMeanChange": -10,
+                "standardDeviation": 4,
+                "targetValueRange": {
+                  "lowerBound": 110,
+                  "upperBound": 129
+                }
+              }
+            },
+            "sideEffects": [
+              {
+                "affectedNodeId": "CARDIO:BPV",
+                "expectedTrend": "Decrease",
+                "expectedMeanChange": -2,
+                "standardDeviation": 1,
+                "unit": "mm[Hg]"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Perindopril",
+          "class": "Angiotensin-converting enzyme inhibitor (ACEI)",
+          "timeframe": "4-8 weeks",
+          "on_target_mean_delta": -14,
+          "target_range": [
+            110,
+            129
+          ],
+          "side_effects": [
+            {
+              "node": "RENAL:ACR_cat",
+              "trend": "Improvement (category decrease)",
+              "mean": -1,
+              "unit": "ordinal"
+            },
+            {
+              "node": "RENAL:eGFR_slope",
+              "trend": "Improvement",
+              "mean": 0.5,
+              "unit": "mL/min/1.73m2/y"
+            }
+          ],
+          "raw": {
+            "drugName": "Perindopril",
+            "drugClass": "Angiotensin-converting enzyme inhibitor (ACEI)",
+            "dosage": {
+              "initialDose": "4mg",
+              "maintenanceDose": "8mg",
+              "frequency": "Once daily",
+              "route": "Oral"
+            },
+            "expectedIndicatorChange": {
+              "timeframe": "4-8 weeks",
+              "calculation": {
+                "method": "Exponential decay",
+                "formula": "currentValue - 14 * (1 - e^(-0.25 * t))",
+                "parameters": {
+                  "t": "Weeks after medication"
+                },
+                "expectedMeanChange": -14,
+                "standardDeviation": 6,
+                "targetValueRange": {
+                  "lowerBound": 110,
+                  "upperBound": 129
+                }
+              }
+            },
+            "sideEffects": [
+              {
+                "affectedNodeId": "RENAL:ACR_cat",
+                "expectedTrend": "Improvement (category decrease)",
+                "expectedMeanChange": -1,
+                "standardDeviation": 0.4,
+                "unit": "ordinal"
+              },
+              {
+                "affectedNodeId": "RENAL:eGFR_slope",
+                "expectedTrend": "Improvement",
+                "expectedMeanChange": 0.5,
+                "standardDeviation": 0.3,
+                "unit": "mL/min/1.73m2/y"
+              }
+            ]
+          }
+        }
+      ],
+      "graph_paths": [
+        [
+          {
+            "edge_id": "E000066",
+            "from": "CARDIO:cSBP",
+            "to": "CARDIO:LVMI",
+            "effect_scale": "BETA",
+            "effect_estimate": 4.0,
+            "raw_effect": {
+              "scale": "BETA",
+              "estimate": 4.0,
+              "ci": [
+                2.0,
+                6.0
+              ],
+              "contrast": {
+                "type": "per_unit",
+                "delta": 10
+              }
+            }
+          }
+        ]
+      ],
+      "sources": {
+        "graph_nodes": "hpp_data/node.json",
+        "graph_edges": "hpp_data/edge.json",
+        "drug_kb": "hpp_data/drug.json"
+      }
+    },
+    {
       "node_id": "METABOLIC_ENDO:PCSK9i_use",
       "label": "PCSK9 inhibitor (assignment)",
       "type": "indirect",
@@ -2554,333 +2554,6 @@
           }
         ]
       ],
-      "sources": {
-        "graph_nodes": "hpp_data/node.json",
-        "graph_edges": "hpp_data/edge.json",
-        "drug_kb": "hpp_data/drug.json"
-      }
-    },
-    {
-      "node_id": "METABOLIC_ENDO:WC",
-      "label": "Waist circumference",
-      "type": "direct",
-      "distance_hops": 0,
-      "priority_score": 1.0,
-      "current": 92,
-      "unit": "cm",
-      "target_range": null,
-      "recommended_drugs": [
-        {
-          "name": "Liraglutide",
-          "class": "GLP-1 receptor agonist",
-          "timeframe": "12-24 weeks",
-          "on_target_mean_delta": -5,
-          "target_range": null,
-          "side_effects": [
-            {
-              "node": "METABOLIC_ENDO:VAT",
-              "trend": "Significant decrease",
-              "mean": -25,
-              "unit": "cm2"
-            },
-            {
-              "node": "METABOLIC_ENDO:TyG",
-              "trend": "Improvement",
-              "mean": -0.4,
-              "unit": "a.u."
-            },
-            {
-              "node": "CARDIO:SBP_day",
-              "trend": "Decrease",
-              "mean": -5,
-              "unit": "mm[Hg]"
-            },
-            {
-              "node": "NEURO:PHQ9",
-              "trend": "Possible mild nausea",
-              "mean": null,
-              "unit": null
-            }
-          ],
-          "raw": {
-            "drugName": "Liraglutide",
-            "drugClass": "GLP-1 receptor agonist",
-            "dosage": {
-              "initialDose": "0.6mg",
-              "maintenanceDose": "1.2-1.8mg",
-              "frequency": "Once daily",
-              "route": "Subcutaneous injection"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "12-24 weeks",
-              "calculation": {
-                "method": "Progressive weight loss",
-                "formula": "WC = currentValue - (5 * (t / 24))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -5,
-                "standardDeviation": 2.5,
-                "targetValueRange": {
-                  "description": "Waist circumference reduced by 3-8cm, weight loss 5-10%"
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "METABOLIC_ENDO:VAT",
-                "expectedTrend": "Significant decrease",
-                "expectedMeanChange": -25,
-                "standardDeviation": 12,
-                "unit": "cm2"
-              },
-              {
-                "affectedNodeId": "METABOLIC_ENDO:TyG",
-                "expectedTrend": "Improvement",
-                "expectedMeanChange": -0.4,
-                "standardDeviation": 0.2,
-                "unit": "a.u."
-              },
-              {
-                "affectedNodeId": "CARDIO:SBP_day",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -5,
-                "standardDeviation": 3,
-                "unit": "mm[Hg]"
-              },
-              {
-                "affectedNodeId": "NEURO:PHQ9",
-                "expectedTrend": "Possible mild nausea",
-                "description": "Common in initial phase"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Semaglutide",
-          "class": "GLP-1 receptor agonist",
-          "timeframe": "24-48 weeks",
-          "on_target_mean_delta": -8,
-          "target_range": null,
-          "side_effects": [
-            {
-              "node": "METABOLIC_ENDO:VAT",
-              "trend": "Significant decrease",
-              "mean": -35,
-              "unit": "cm2"
-            },
-            {
-              "node": "METABOLIC_ENDO:SAT",
-              "trend": "Decrease",
-              "mean": -40,
-              "unit": "cm2"
-            },
-            {
-              "node": "METABOLIC_ENDO:nonHDL_C",
-              "trend": "Improvement",
-              "mean": -0.3,
-              "unit": "mmol/L"
-            },
-            {
-              "node": "CARDIO:hsCRP",
-              "trend": "Decrease",
-              "mean": -1.5,
-              "unit": "mg/L"
-            }
-          ],
-          "raw": {
-            "drugName": "Semaglutide",
-            "drugClass": "GLP-1 receptor agonist",
-            "dosage": {
-              "initialDose": "0.25mg",
-              "maintenanceDose": "1.0-2.4mg",
-              "frequency": "Once weekly",
-              "route": "Subcutaneous injection"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "24-48 weeks",
-              "calculation": {
-                "method": "Significant weight loss",
-                "formula": "WC = currentValue - (8 * (t / 48))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -8,
-                "standardDeviation": 3.5,
-                "targetValueRange": {
-                  "description": "Waist circumference reduced by 5-12cm, weight loss 10-15%"
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "METABOLIC_ENDO:VAT",
-                "expectedTrend": "Significant decrease",
-                "expectedMeanChange": -35,
-                "standardDeviation": 15,
-                "unit": "cm2"
-              },
-              {
-                "affectedNodeId": "METABOLIC_ENDO:SAT",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -40,
-                "standardDeviation": 20,
-                "unit": "cm2"
-              },
-              {
-                "affectedNodeId": "METABOLIC_ENDO:nonHDL_C",
-                "expectedTrend": "Improvement",
-                "expectedMeanChange": -0.3,
-                "standardDeviation": 0.15,
-                "unit": "mmol/L"
-              },
-              {
-                "affectedNodeId": "CARDIO:hsCRP",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -1.5,
-                "standardDeviation": 0.8,
-                "unit": "mg/L"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Orlistat",
-          "class": "Lipase inhibitor",
-          "timeframe": "12-24 weeks",
-          "on_target_mean_delta": -3,
-          "target_range": null,
-          "side_effects": [
-            {
-              "node": "METABOLIC_ENDO:VAT",
-              "trend": "Moderate decrease",
-              "mean": -15,
-              "unit": "cm2"
-            },
-            {
-              "node": "METABOLIC_ENDO:nonHDL_C",
-              "trend": "Mild improvement",
-              "mean": -0.2,
-              "unit": "mmol/L"
-            }
-          ],
-          "raw": {
-            "drugName": "Orlistat",
-            "drugClass": "Lipase inhibitor",
-            "dosage": {
-              "initialDose": "120mg",
-              "maintenanceDose": "120mg",
-              "frequency": "Three times daily with meals",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "12-24 weeks",
-              "calculation": {
-                "method": "Moderate weight loss",
-                "formula": "WC = currentValue - (3 * (t / 24))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -3,
-                "standardDeviation": 1.8,
-                "targetValueRange": {
-                  "description": "Waist circumference reduced by 2-5cm, weight loss 3-5%"
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "METABOLIC_ENDO:VAT",
-                "expectedTrend": "Moderate decrease",
-                "expectedMeanChange": -15,
-                "standardDeviation": 8,
-                "unit": "cm2"
-              },
-              {
-                "affectedNodeId": "METABOLIC_ENDO:nonHDL_C",
-                "expectedTrend": "Mild improvement",
-                "expectedMeanChange": -0.2,
-                "standardDeviation": 0.1,
-                "unit": "mmol/L"
-              }
-            ]
-          }
-        },
-        {
-          "name": "Metformin",
-          "class": "Biguanide antidiabetic",
-          "timeframe": "12-24 weeks",
-          "on_target_mean_delta": -2.5,
-          "target_range": null,
-          "side_effects": [
-            {
-              "node": "METABOLIC_ENDO:TyG",
-              "trend": "Improvement",
-              "mean": -0.3,
-              "unit": "a.u."
-            },
-            {
-              "node": "METABOLIC_ENDO:VAT",
-              "trend": "Decrease",
-              "mean": -12,
-              "unit": "cm2"
-            },
-            {
-              "node": "NEURO:PHQ9",
-              "trend": "Gastrointestinal discomfort",
-              "mean": null,
-              "unit": null
-            }
-          ],
-          "raw": {
-            "drugName": "Metformin",
-            "drugClass": "Biguanide antidiabetic",
-            "dosage": {
-              "initialDose": "500mg",
-              "maintenanceDose": "1500-2000mg",
-              "frequency": "2-3 times daily",
-              "route": "Oral"
-            },
-            "expectedIndicatorChange": {
-              "timeframe": "12-24 weeks",
-              "calculation": {
-                "method": "Improve insulin resistance",
-                "formula": "WC = currentValue - (2.5 * (t / 24))",
-                "parameters": {
-                  "t": "Weeks after medication"
-                },
-                "expectedMeanChange": -2.5,
-                "standardDeviation": 1.5,
-                "targetValueRange": {
-                  "description": "Waist circumference reduced by 2-4cm, improved menstrual cycle"
-                }
-              }
-            },
-            "sideEffects": [
-              {
-                "affectedNodeId": "METABOLIC_ENDO:TyG",
-                "expectedTrend": "Improvement",
-                "expectedMeanChange": -0.3,
-                "standardDeviation": 0.15,
-                "unit": "a.u."
-              },
-              {
-                "affectedNodeId": "METABOLIC_ENDO:VAT",
-                "expectedTrend": "Decrease",
-                "expectedMeanChange": -12,
-                "standardDeviation": 6,
-                "unit": "cm2"
-              },
-              {
-                "affectedNodeId": "NEURO:PHQ9",
-                "expectedTrend": "Gastrointestinal discomfort",
-                "description": "Diarrhea and nausea common, slow titration can reduce symptoms"
-              }
-            ]
-          }
-        }
-      ],
-      "graph_paths": [],
       "sources": {
         "graph_nodes": "hpp_data/node.json",
         "graph_edges": "hpp_data/edge.json",

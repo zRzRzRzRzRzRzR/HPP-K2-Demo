@@ -1,4 +1,5 @@
 import json
+import os
 
 from utils import build_json, call_large_model_llm
 
@@ -14,14 +15,13 @@ Your goal is to synthesize these into a concise, coherent Therapy Record that re
 
 === DATA DESCRIPTION ===
 
-1. diagnosis_json
-- Contains patient_information:
-  - name (if available), age, sex, other demographics.
-- chief_complaint:
-  - Free-text or structured description of main symptoms and reasons for consultation/admission.
-- review_of_systems / history:
-  - General health, comorbidities, prior diagnoses, risk factors.
-- May contain structured diagnostic conclusions or risk assessments.
+1. diagnosis_json (or diagnosis_exam.json):
+- May include patient_information (e.g., name, ID, age, sex, date of evaluation, referring physician).
+- May include chief_complaint describing the main symptoms and reasons for consultation or admission.
+- Often includes medical_history and a detailed review_of_systems and examination findings
+    (this file may primarily provide such narrative or structured examination data).
+- It may or may not contain explicit diagnostic conclusions or risk scores; if absent, infer only what is
+    clearly supported by the provided findings.
 
 Use this to:
 - Fill section (1) Basic patient information.
@@ -155,14 +155,24 @@ def run_therapy_record_selection(
     diagnosis_path: str = "example/case1/diagnosis_exam.json",
     node_path: str = "hpp_data/node.json",
     plan_path: str = "example/case1/plan.json",
-):
+) -> str:
     user_json = build_json(diagnosis_path)
     node_json = build_json(node_path)
     plan_json = build_json(plan_path)
+
     messages = build_messages(
-        user_json=user_json, node_json=node_json, plan_json=plan_json
+        user_json=user_json,
+        node_json=node_json,
+        plan_json=plan_json,
     )
+
     response = call_large_model_llm(messages)
+
+    base_dir = os.path.dirname(diagnosis_path) or "."
+    cache_path = os.path.join(base_dir, "therapy_record.txt")
+    with open(cache_path, "w", encoding="utf-8") as f:
+        f.write(str(response))
+
     return response
 
 
