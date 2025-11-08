@@ -1,14 +1,17 @@
-import json
-import base64
-from io import BytesIO
-from typing import Dict, Any, List
+# pdf_converter.py
 
-from pdf2image import convert_from_path
-from openai import OpenAI
-from dotenv import load_dotenv
+import base64
+import json
 import os
+from io import BytesIO
+from typing import Any, Dict, List
+
+from dotenv import load_dotenv
+from openai import OpenAI
+from pdf2image import convert_from_path
 
 load_dotenv()
+
 
 def empty_schema() -> Dict[str, Any]:
     return {
@@ -45,8 +48,6 @@ def empty_schema() -> Dict[str, Any]:
     }
 
 
-# ========== 2. PDF → 每页截图 (PNG base64) ==========
-
 def pdf_to_images_base64(pdf_path: str, dpi: int = 200) -> List[str]:
     """
     将 PDF 每一页转换为 PNG，并返回 base64 字符串列表（不带 data:image 前缀）。
@@ -66,12 +67,9 @@ def pdf_to_images_base64(pdf_path: str, dpi: int = 200) -> List[str]:
     return images_b64
 
 
-# ========== 3. 定义 JSON Schema（给 response_format 用） ==========
-
 def get_json_schema() -> Dict[str, Any]:
     """
-    与 empty_schema 对应的 JSON Schema，用于强约束 GPT-5 输出。
-    所有字段均为 string，允许为空字符串。
+    与 empty_schema 对应的 JSON Schema，用于强约束输出。
     """
     return {
         "type": "object",
@@ -162,6 +160,7 @@ def get_json_schema() -> Dict[str, Any]:
         "additionalProperties": False,
     }
 
+
 def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
     if not images_b64:
         return empty_schema()
@@ -169,7 +168,6 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
     client = OpenAI()
     schema = get_json_schema()
 
-    # ✅ 正确的 content 格式：type = "text"
     user_content = [
         {
             "type": "text",
@@ -188,13 +186,12 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
             ),
         }
     ]
+
     for b64 in images_b64:
         user_content.append(
             {
                 "type": "image_url",
-                "image_url": {
-                    "url": f"data:image/png;base64,{b64}"
-                },
+                "image_url": {"url": f"data:image/png;base64,{b64}"},
             }
         )
 
@@ -217,6 +214,7 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
             "content": user_content,
         },
     ]
+
     resp = client.chat.completions.create(
         model="gpt-5",
         messages=messages,
@@ -232,6 +230,7 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
     content = resp.choices[0].message.content
     return json.loads(content)
 
+
 def pdf_to_json_via_gpt(pdf_path: str, output_json_path: str) -> Dict[str, Any]:
     print(f"Processing PDF (via screenshots + GPT-5): {pdf_path}")
     print("=" * 60)
@@ -244,6 +243,7 @@ def pdf_to_json_via_gpt(pdf_path: str, output_json_path: str) -> Dict[str, Any]:
     print("\nExtracted JSON Data:")
     print("-" * 30)
     print(json.dumps(result, ensure_ascii=False, indent=2))
+
     os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
     with open(output_json_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
@@ -253,8 +253,20 @@ def pdf_to_json_via_gpt(pdf_path: str, output_json_path: str) -> Dict[str, Any]:
 
     return result
 
+
+def convert_pdf_to_json(pdf_path: str) -> str:
+    """
+    对外统一接口：
+    - 输入 PDF 路径
+    - 在同目录生成 diagnosis.json
+    - 返回 diagnosis.json 的路径（给后续检查节点选择用）
+    """
+    base_dir = os.path.dirname(pdf_path)
+    output_json_path = os.path.join(base_dir, "diagnosis.json")
+    pdf_to_json_via_gpt(pdf_path, output_json_path)
+    return output_json_path
+
+
 if __name__ == "__main__":
     pdf_path = "example/case1/diagnosis case1.pdf"
-    output_json_path = "example/case1/diagnosis.json"
-
-    pdf_to_json_via_gpt(pdf_path, output_json_path)
+    convert_pdf_to_json(pdf_path)

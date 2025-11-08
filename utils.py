@@ -1,12 +1,12 @@
 import json
-import re
-import numpy as np
-from openai import OpenAI
 import os
+import re
 
-K2_THINK_MODEL = os.getenv("K2_THINK_MODE", "MBZUAI-IFM/K2-Think")
-K2_THINK_API_URL = os.getenv("K2_THINK_API_URL", "https://llm-api.k2think.ai/v1/")
-K2_THINK_API_KEY = os.getenv("K2_THINK_API_KEY", "EMPTY")
+import numpy as np
+from dotenv import load_dotenv
+from openai import OpenAI
+
+load_dotenv()
 
 
 def load_json(file_path):
@@ -16,10 +16,11 @@ def load_json(file_path):
 
 
 def call_large_model_llm(messages, api_key=None, base_url=None, model=None):
-    api_key = api_key or K2_THINK_API_KEY
-    base_url = base_url or K2_THINK_API_URL
-    model = model or K2_THINK_MODEL
-
+    model = model or os.getenv("K2_THINK_MODEL", "MBZUAI-IFM/K2-Think")
+    base_url = base_url or os.getenv(
+        "K2_THINK_API_URL", "https://llm-api.k2think.ai/v1/"
+    )
+    api_key = api_key or os.getenv("K2_THINK_API_KEY", "EMPTY")
     client = OpenAI(api_key=api_key, base_url=base_url)
     try:
         response = client.chat.completions.create(
@@ -31,7 +32,7 @@ def call_large_model_llm(messages, api_key=None, base_url=None, model=None):
         )
         if response.choices[0].message.content.strip():
             content = response.choices[0].message.content.strip()
-            pattern = r'<answer>(.*?)</answer>'
+            pattern = r"<answer>(.*?)</answer>"
             match = re.search(pattern, content, re.DOTALL)
             if match:
                 return match.group(1).strip()
@@ -79,7 +80,7 @@ def call_embeddings_batch(texts, model="embedding-3", batch_size=10):
     client = OpenAI()
     embeddings = []
     for i in range(0, len(texts), batch_size):
-        batch = texts[i: i + batch_size]
+        batch = texts[i : i + batch_size]
         response = client.embeddings.create(model=model, input=batch)
         for item in response.data:
             emb = np.array(item.embedding, dtype="float32")

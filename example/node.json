@@ -1,90 +1,520 @@
 {
   "nodes": [
-    {"node_id":"CARDIO:SBP_day","label":"Daytime SBP (ABPM)","unit":"mm[Hg]","system":"CARDIO","type":"state","dataset_hint":["007-blood_pressure"]},
-    {"node_id":"CARDIO:SBP_night","label":"Nighttime SBP (ABPM)","unit":"mm[Hg]","system":"CARDIO","type":"state","dataset_hint":["007-blood_pressure"]},
-    {"node_id":"CARDIO:MAP","label":"Mean arterial pressure","unit":"mm[Hg]","system":"CARDIO","type":"state","dataset_hint":["007-blood_pressure"]},
-    {"node_id":"CARDIO:LVMI","label":"Left ventricular mass index","unit":"g/m2","system":"CARDIO","type":"state","dataset_hint":["echo_or_mri"]},
-    {"node_id":"CARDIO:LVEF","label":"Left ventricular ejection fraction","unit":"%","system":"CARDIO","type":"state","dataset_hint":["echo_or_mri"]},
-    {"node_id":"CARDIO:BNP","label":"B-type natriuretic peptide","unit":"pg/mL","system":"CARDIO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"CARDIO:hsCRP","label":"High-sensitivity C-reactive protein","unit":"mg/L","system":"CARDIO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"CARDIO:FMD","label":"Brachial flow-mediated dilation","unit":"%","system":"CARDIO","type":"state","dataset_hint":["vascular_function"]},
-    {"node_id":"CARDIO:RHI","label":"Reactive hyperemia index","unit":"a.u.","system":"CARDIO","type":"state","dataset_hint":["vascular_function"]},
-    {"node_id":"CARDIO:IMT_slope","label":"Carotid IMT annual change","unit":"mm/y","system":"CARDIO","type":"state","dataset_hint":["012-carotid_ultrasound"]},
-    {"node_id":"CARDIO:cSBP","label":"Central systolic blood pressure","unit":"mm[Hg]","system":"CARDIO","type":"state","dataset_hint":["010-peripheral_vascular_health"]},
-    {"node_id":"CARDIO:AP","label":"Augmentation pressure","unit":"mm[Hg]","system":"CARDIO","type":"state","dataset_hint":["010-peripheral_vascular_health"]},
-    {"node_id":"CARDIO:beta_stiff","label":"Carotid β-stiffness index","unit":"a.u.","system":"CARDIO","type":"state","dataset_hint":["010-peripheral_vascular_health"]},
-    {"node_id":"CARDIO:CAC","label":"Coronary artery calcium score","unit":"Agatston","system":"CARDIO","type":"state","dataset_hint":["ct_calcium"]},
-    {"node_id":"CARDIO:MI","label":"Myocardial infarction (incidence)","unit":"event","system":"CARDIO","type":"outcome","dataset_hint":["cardio_outcomes"]},
-    {"node_id":"CARDIO:PAD","label":"Peripheral artery disease (incidence)","unit":"event","system":"CARDIO","type":"outcome","dataset_hint":["vascular_outcomes"]},
-    {"node_id":"CARDIO:HRV_RMSSD","label":"Heart rate variability (RMSSD)","unit":"ms","system":"CARDIO","type":"state","dataset_hint":["015-ecg"]},
-    {"node_id":"CARDIO:BPV","label":"Blood pressure variability (24h)","unit":"mm[Hg]","system":"CARDIO","type":"state","dataset_hint":["007-blood_pressure"]},
-    {"node_id":"CARDIO:HTN_dx","label":"Hypertension diagnosis","unit":"binary","system":"CARDIO","type":"state","dataset_hint":["021-medical_conditions"]},
-    {"node_id":"CARDIO:ACEi_use","label":"ACE inhibitor (assignment)","unit":"binary","system":"CARDIO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"CARDIO:ARB_use","label":"ARB (assignment)","unit":"binary","system":"CARDIO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"CARDIO:Thiazide_use","label":"Thiazide diuretic (assignment)","unit":"binary","system":"CARDIO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"CARDIO:BB_use","label":"Beta-blocker (assignment)","unit":"binary","system":"CARDIO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"CARDIO:Smoking_status","label":"Current smoking","unit":"binary","system":"CARDIO","type":"state","dataset_hint":["055-lifestyle_and_environment"]},
-    {"node_id":"CARDIO:Alcohol_high","label":"High alcohol intake","unit":"binary","system":"CARDIO","type":"state","dataset_hint":["055-lifestyle_and_environment"]},
-    {"node_id":"NEURO:HV","label":"Hippocampal volume","unit":"mL","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:CT_thick","label":"Global cortical thickness","unit":"mm","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:WMH_vol","label":"White matter hyperintensity volume","unit":"mL","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:Lacunes","label":"Lacunar infarcts (count)","unit":"count","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:Microbleeds","label":"Cerebral microbleeds (count)","unit":"count","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:SCI","label":"Silent cerebral infarcts","unit":"binary","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:CBF","label":"Cerebral blood flow","unit":"mL/100g/min","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:CVR","label":"Cerebrovascular reactivity","unit":"%/mmHg","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:ExecFunc","label":"Executive function score","unit":"score","system":"NEURO","type":"state","dataset_hint":["neuro_cognitive"]},
-    {"node_id":"NEURO:ProcSpeed","label":"Processing speed score","unit":"score","system":"NEURO","type":"state","dataset_hint":["neuro_cognitive"]},
-    {"node_id":"NEURO:Memory","label":"Episodic memory score","unit":"score","system":"NEURO","type":"state","dataset_hint":["neuro_cognitive"]},
-    {"node_id":"NEURO:PHQ9","label":"Depression severity (PHQ-9)","unit":"score","system":"NEURO","type":"state","dataset_hint":["questionnaires"]},
-    {"node_id":"NEURO:GAD7","label":"Anxiety severity (GAD-7)","unit":"score","system":"NEURO","type":"state","dataset_hint":["questionnaires"]},
-    {"node_id":"NEURO:CognitiveDecline","label":"Cognitive decline (event)","unit":"event","system":"NEURO","type":"outcome","dataset_hint":["neuro_outcomes"]},
-    {"node_id":"NEURO:Dementia","label":"All-cause dementia (incidence)","unit":"event","system":"NEURO","type":"outcome","dataset_hint":["neuro_outcomes"]},
-    {"node_id":"NEURO:NIHSS","label":"Stroke severity (NIHSS)","unit":"score","system":"NEURO","type":"state","dataset_hint":["neuro_outcomes"]},
-    {"node_id":"NEURO:mRS","label":"Modified Rankin Scale","unit":"score","system":"NEURO","type":"state","dataset_hint":["neuro_outcomes"]},
-    {"node_id":"NEURO:ICAS","label":"Intracranial atherosclerosis burden","unit":"score","system":"NEURO","type":"state","dataset_hint":["neuro_imaging"]},
-    {"node_id":"NEURO:Carotid_sten","label":"Carotid stenosis (%)","unit":"%","system":"NEURO","type":"state","dataset_hint":["012-carotid_ultrasound"]},
-    {"node_id":"NEURO:Sleepiness","label":"Daytime sleepiness score","unit":"score","system":"NEURO","type":"state","dataset_hint":["questionnaires"]},
-    {"node_id":"RENAL:eGFR_slope","label":"eGFR annual change","unit":"mL/min/1.73m2/y","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:ACR_cat","label":"Albuminuria category (A1/A2/A3)","unit":"ordinal","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:Hyperfil","label":"Glomerular hyperfiltration","unit":"binary","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:CysC","label":"Cystatin C","unit":"mg/L","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:UricAcid","label":"Uric acid","unit":"mg/dL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:Phosphate","label":"Serum phosphate","unit":"mg/dL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:Calcium","label":"Serum calcium","unit":"mg/dL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:PTH","label":"Parathyroid hormone","unit":"pg/mL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:FGF23","label":"Fibroblast growth factor 23","unit":"pg/mL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:Albumin_serum","label":"Serum albumin","unit":"g/dL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:Hb","label":"Hemoglobin","unit":"g/dL","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:Proteinuria_gd","label":"Proteinuria (g/day)","unit":"g/d","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:SGLT2i_use","label":"SGLT2 inhibitor (assignment)","unit":"binary","system":"RENAL","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"RENAL:ACEi_use","label":"ACE inhibitor (assignment)","unit":"binary","system":"RENAL","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"RENAL:ARB_use","label":"ARB (assignment)","unit":"binary","system":"RENAL","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"RENAL:Loop_use","label":"Loop diuretic (assignment)","unit":"binary","system":"RENAL","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"RENAL:MetabolicAcid","label":"Metabolic acidosis (bicarbonate low)","unit":"binary","system":"RENAL","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"RENAL:StoneHx","label":"Kidney stone history","unit":"binary","system":"RENAL","type":"state","dataset_hint":["058-health_and_medical_history"]},
-    {"node_id":"RENAL:DietaryNa","label":"Dietary sodium intake","unit":"g/d","system":"RENAL","type":"state","dataset_hint":["005-diet_logging","055-lifestyle_and_environment"]},
-    {"node_id":"RENAL:DietaryK","label":"Dietary potassium intake","unit":"g/d","system":"RENAL","type":"state","dataset_hint":["005-diet_logging","055-lifestyle_and_environment"]},
-    {"node_id":"METABOLIC_ENDO:WC","label":"Waist circumference","unit":"cm","system":"METABOLIC_ENDO","type":"state","dataset_hint":["002-anthropometrics"]},
-    {"node_id":"METABOLIC_ENDO:WHR","label":"Waist-to-hip ratio","unit":"ratio","system":"METABOLIC_ENDO","type":"state","dataset_hint":["002-anthropometrics"]},
-    {"node_id":"METABOLIC_ENDO:VAT","label":"Visceral adipose tissue (DXA)","unit":"cm2","system":"METABOLIC_ENDO","type":"state","dataset_hint":["011-body_composition"]},
-    {"node_id":"METABOLIC_ENDO:SAT","label":"Subcutaneous adipose tissue (DXA)","unit":"cm2","system":"METABOLIC_ENDO","type":"state","dataset_hint":["011-body_composition"]},
-    {"node_id":"METABOLIC_ENDO:nonHDL_C","label":"Non-HDL cholesterol","unit":"mmol/L","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"METABOLIC_ENDO:ApoA1","label":"Apolipoprotein A1","unit":"g/L","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"METABOLIC_ENDO:Lpa","label":"Lipoprotein(a)","unit":"mg/dL","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"METABOLIC_ENDO:Remnant_C","label":"Remnant cholesterol","unit":"mmol/L","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests","029-nightingale_metabolomics"]},
-    {"node_id":"METABOLIC_ENDO:sdLDL","label":"Small dense LDL fraction","unit":"%","system":"METABOLIC_ENDO","type":"state","dataset_hint":["008-serum_lipidomics"]},
-    {"node_id":"METABOLIC_ENDO:TyG","label":"Triglyceride-glucose index","unit":"a.u.","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"METABOLIC_ENDO:GLP1","label":"Glucagon-like peptide-1","unit":"pmol/L","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"METABOLIC_ENDO:Ghrelin","label":"Ghrelin","unit":"pmol/L","system":"METABOLIC_ENDO","type":"state","dataset_hint":["016-blood_tests"]},
-    {"node_id":"METABOLIC_ENDO:GLP1RA_use","label":"GLP-1 receptor agonist (assignment)","unit":"binary","system":"METABOLIC_ENDO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"METABOLIC_ENDO:Metformin_use","label":"Metformin (assignment)","unit":"binary","system":"METABOLIC_ENDO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"METABOLIC_ENDO:SGLT2i_use","label":"SGLT2 inhibitor (assignment)","unit":"binary","system":"METABOLIC_ENDO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"METABOLIC_ENDO:Statin_use","label":"Statin (assignment)","unit":"binary","system":"METABOLIC_ENDO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"METABOLIC_ENDO:PCSK9i_use","label":"PCSK9 inhibitor (assignment)","unit":"binary","system":"METABOLIC_ENDO","type":"exposure","dataset_hint":["018-medications"]},
-    {"node_id":"METABOLIC_ENDO:DietaryNa","label":"Dietary sodium intake","unit":"g/d","system":"METABOLIC_ENDO","type":"state","dataset_hint":["005-diet_logging","055-lifestyle_and_environment"]},
-    {"node_id":"METABOLIC_ENDO:Steps","label":"Steps per day","unit":"count/d","system":"METABOLIC_ENDO","type":"state","dataset_hint":["055-lifestyle_and_environment"]},
-    {"node_id":"METABOLIC_ENDO:MVPA","label":"Moderate-to-vigorous PA (min/d)","unit":"min/d","system":"METABOLIC_ENDO","type":"state","dataset_hint":["055-lifestyle_and_environment"]},
-    {"node_id":"METABOLIC_ENDO:VO2max","label":"Cardiorespiratory fitness (VO2max)","unit":"mL/kg/min","system":"METABOLIC_ENDO","type":"state","dataset_hint":["exercise_testing"]}
+    {
+      "node_id": "CARDIO:SBP_day",
+      "label": "Daytime SBP (ABPM)",
+      "unit": "mm[Hg]",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:SBP_night",
+      "label": "Nighttime SBP (ABPM)",
+      "unit": "mm[Hg]",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:MAP",
+      "label": "Mean arterial pressure",
+      "unit": "mm[Hg]",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:LVMI",
+      "label": "Left ventricular mass index",
+      "unit": "g/m2",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:LVEF",
+      "label": "Left ventricular ejection fraction",
+      "unit": "%",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:BNP",
+      "label": "B-type natriuretic peptide",
+      "unit": "pg/mL",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:hsCRP",
+      "label": "High-sensitivity C-reactive protein",
+      "unit": "mg/L",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:FMD",
+      "label": "Brachial flow-mediated dilation",
+      "unit": "%",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:RHI",
+      "label": "Reactive hyperemia index",
+      "unit": "a.u.",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:IMT_slope",
+      "label": "Carotid IMT annual change",
+      "unit": "mm/y",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:cSBP",
+      "label": "Central systolic blood pressure",
+      "unit": "mm[Hg]",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:AP",
+      "label": "Augmentation pressure",
+      "unit": "mm[Hg]",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:beta_stiff",
+      "label": "Carotid β-stiffness index",
+      "unit": "a.u.",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:CAC",
+      "label": "Coronary artery calcium score",
+      "unit": "Agatston",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:MI",
+      "label": "Myocardial infarction (incidence)",
+      "unit": "event",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:PAD",
+      "label": "Peripheral artery disease (incidence)",
+      "unit": "event",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:HRV_RMSSD",
+      "label": "Heart rate variability (RMSSD)",
+      "unit": "ms",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:BPV",
+      "label": "Blood pressure variability (24h)",
+      "unit": "mm[Hg]",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:HTN_dx",
+      "label": "Hypertension diagnosis",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:ACEi_use",
+      "label": "ACE inhibitor (assignment)",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:ARB_use",
+      "label": "ARB (assignment)",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:Thiazide_use",
+      "label": "Thiazide diuretic (assignment)",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:BB_use",
+      "label": "Beta-blocker (assignment)",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:Smoking_status",
+      "label": "Current smoking",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "CARDIO:Alcohol_high",
+      "label": "High alcohol intake",
+      "unit": "binary",
+      "system": "CARDIO"
+    },
+    {
+      "node_id": "NEURO:HV",
+      "label": "Hippocampal volume",
+      "unit": "mL",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:CT_thick",
+      "label": "Global cortical thickness",
+      "unit": "mm",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:WMH_vol",
+      "label": "White matter hyperintensity volume",
+      "unit": "mL",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:Lacunes",
+      "label": "Lacunar infarcts (count)",
+      "unit": "count",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:Microbleeds",
+      "label": "Cerebral microbleeds (count)",
+      "unit": "count",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:SCI",
+      "label": "Silent cerebral infarcts",
+      "unit": "binary",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:CBF",
+      "label": "Cerebral blood flow",
+      "unit": "mL/100g/min",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:CVR",
+      "label": "Cerebrovascular reactivity",
+      "unit": "%/mmHg",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:ExecFunc",
+      "label": "Executive function score",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:ProcSpeed",
+      "label": "Processing speed score",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:Memory",
+      "label": "Episodic memory score",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:PHQ9",
+      "label": "Depression severity (PHQ-9)",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:GAD7",
+      "label": "Anxiety severity (GAD-7)",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:CognitiveDecline",
+      "label": "Cognitive decline (event)",
+      "unit": "event",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:Dementia",
+      "label": "All-cause dementia (incidence)",
+      "unit": "event",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:NIHSS",
+      "label": "Stroke severity (NIHSS)",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:mRS",
+      "label": "Modified Rankin Scale",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:ICAS",
+      "label": "Intracranial atherosclerosis burden",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:Carotid_sten",
+      "label": "Carotid stenosis (%)",
+      "unit": "%",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "NEURO:Sleepiness",
+      "label": "Daytime sleepiness score",
+      "unit": "score",
+      "system": "NEURO"
+    },
+    {
+      "node_id": "RENAL:eGFR_slope",
+      "label": "eGFR annual change",
+      "unit": "mL/min/1.73m2/y",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:ACR_cat",
+      "label": "Albuminuria category (A1/A2/A3)",
+      "unit": "ordinal",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Hyperfil",
+      "label": "Glomerular hyperfiltration",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:CysC",
+      "label": "Cystatin C",
+      "unit": "mg/L",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:UricAcid",
+      "label": "Uric acid",
+      "unit": "mg/dL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Phosphate",
+      "label": "Serum phosphate",
+      "unit": "mg/dL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Calcium",
+      "label": "Serum calcium",
+      "unit": "mg/dL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:PTH",
+      "label": "Parathyroid hormone",
+      "unit": "pg/mL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:FGF23",
+      "label": "Fibroblast growth factor 23",
+      "unit": "pg/mL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Albumin_serum",
+      "label": "Serum albumin",
+      "unit": "g/dL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Hb",
+      "label": "Hemoglobin",
+      "unit": "g/dL",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Proteinuria_gd",
+      "label": "Proteinuria (g/day)",
+      "unit": "g/d",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:SGLT2i_use",
+      "label": "SGLT2 inhibitor (assignment)",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:ACEi_use",
+      "label": "ACE inhibitor (assignment)",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:ARB_use",
+      "label": "ARB (assignment)",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:Loop_use",
+      "label": "Loop diuretic (assignment)",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:MetabolicAcid",
+      "label": "Metabolic acidosis (bicarbonate low)",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:StoneHx",
+      "label": "Kidney stone history",
+      "unit": "binary",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:DietaryNa",
+      "label": "Dietary sodium intake",
+      "unit": "g/d",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "RENAL:DietaryK",
+      "label": "Dietary potassium intake",
+      "unit": "g/d",
+      "system": "RENAL"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:WC",
+      "label": "Waist circumference",
+      "unit": "cm",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:WHR",
+      "label": "Waist-to-hip ratio",
+      "unit": "ratio",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:VAT",
+      "label": "Visceral adipose tissue (DXA)",
+      "unit": "cm2",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:SAT",
+      "label": "Subcutaneous adipose tissue (DXA)",
+      "unit": "cm2",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:nonHDL_C",
+      "label": "Non-HDL cholesterol",
+      "unit": "mmol/L",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:ApoA1",
+      "label": "Apolipoprotein A1",
+      "unit": "g/L",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:Lpa",
+      "label": "Lipoprotein(a)",
+      "unit": "mg/dL",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:Remnant_C",
+      "label": "Remnant cholesterol",
+      "unit": "mmol/L",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:sdLDL",
+      "label": "Small dense LDL fraction",
+      "unit": "%",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:TyG",
+      "label": "Triglyceride-glucose index",
+      "unit": "a.u.",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:GLP1",
+      "label": "Glucagon-like peptide-1",
+      "unit": "pmol/L",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:Ghrelin",
+      "label": "Ghrelin",
+      "unit": "pmol/L",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:GLP1RA_use",
+      "label": "GLP-1 receptor agonist (assignment)",
+      "unit": "binary",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:Metformin_use",
+      "label": "Metformin (assignment)",
+      "unit": "binary",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:SGLT2i_use",
+      "label": "SGLT2 inhibitor (assignment)",
+      "unit": "binary",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:Statin_use",
+      "label": "Statin (assignment)",
+      "unit": "binary",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:PCSK9i_use",
+      "label": "PCSK9 inhibitor (assignment)",
+      "unit": "binary",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:DietaryNa",
+      "label": "Dietary sodium intake",
+      "unit": "g/d",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:Steps",
+      "label": "Steps per day",
+      "unit": "count/d",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:MVPA",
+      "label": "Moderate-to-vigorous PA (min/d)",
+      "unit": "min/d",
+      "system": "METABOLIC_ENDO"
+    },
+    {
+      "node_id": "METABOLIC_ENDO:VO2max",
+      "label": "Cardiorespiratory fitness (VO2max)",
+      "unit": "mL/kg/min",
+      "system": "METABOLIC_ENDO"
+    }
   ]
 }

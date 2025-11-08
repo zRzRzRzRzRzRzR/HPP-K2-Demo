@@ -1,0 +1,5 @@
+{
+  ""
+}
+
+["NEURO:CognitiveDecline", "NEURO:TIA", "NEURO:WMH_MRI", "CARDIO:BNP_level", "CARDIO:Dyspnea_exertion", "CARDIO:Edema_lowerlimb", "CARDIO:CAC_score", "METABOLIC:Dyslipidemia"]

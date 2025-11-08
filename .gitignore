@@ -184,7 +184,7 @@ tmp*.txt
 *.png
 *.pdf
 
-# personnal
+# personal
 work_dirs/
 *.csv
 
