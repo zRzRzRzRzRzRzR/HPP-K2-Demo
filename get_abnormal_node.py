@@ -13,7 +13,7 @@ def build_user_review_of_systems_json(diagnosis_path: str) -> dict:
 SYSTEM_MESSAGE = """
 You are an assistant to an attending physician. You will receive a patient’s examination report and basic information wrapped in a JSON object.
 
-## Patient Information:
+## Patient Information
 
 You will receive one or more examination results in the following categories:
 
@@ -26,7 +26,7 @@ You will receive one or more examination results in the following categories:
 
 Next, you will receive a Node mapping table for the relevant clinical indicators.
 
-## Node Information:
+## Node Information
 
 The JSON contains the following fields, with these meanings:
 - label: Typical symptom or clinical manifestation. This will be matched against the patient’s reported symptoms.

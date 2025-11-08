@@ -7,14 +7,14 @@ You are a medical assistant who is about to issue an examination order. Based on
 
 You will receive two inputs:
 
-## Patient Information:
+## Patient Information
 
 This JSON will contain the patient’s basic information.
 patient_information: Describes details such as the patient’s age and sex, which can be used as decision factors (for example, cardiovascular or heart disease is more likely in middle-aged and elderly patients).
 chief_complaint: Contains the patient’s description of their current condition.
 review_of_systems: Usually includes only a general_health field, representing the patient’s overall health status.
 
-## Node Information:
+## Node Information
 
 The JSON contains the following fields, with these meanings:
 label: Typical symptom or clinical manifestation. This will be matched against the patient’s reported symptoms.
@@ -47,11 +47,11 @@ def build_messages(user_json: dict, node_json: dict) -> list[dict]:
     user_message = f"""
 This will be the patient information I provide to you, composed of JSON fields.
 
-Patient Information:
+## Patient Information
 
 {user_json_str}
 
-Node Information:
+## Node Information
 
 {node_json_str}
 
@@ -65,7 +65,7 @@ Please strictly follow the instructions I provide. Identify several potentially 
     return messages
 
 
-def run_examination_node_selection(
+def run_therapy_record_selection(
     diagnosis_path: str = "example/case1/diagnosis.json",
     node_path: str = "hpp_data/node.json",
 ):
@@ -77,6 +77,6 @@ def run_examination_node_selection(
 
 
 if __name__ == "__main__":
-    response = run_examination_node_selection()
+    response = run_therapy_record_selection()
     print("LLM Output with examination:")
     print(response)

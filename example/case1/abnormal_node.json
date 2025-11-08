@@ -16,6 +16,11 @@
       "unit": "mm[Hg]"
     },
     {
+      "node_id": "CARDIO:LVMI",
+      "value": 110,
+      "unit": "g/m2"
+    },
+    {
       "node_id": "CARDIO:CAC",
       "value": 480,
       "unit": "Agatston"
@@ -26,13 +31,13 @@
       "unit": "mL"
     },
     {
-      "node_id": "NEURO:PHQ9",
-      "value": 10,
+      "node_id": "NEURO:Sleepiness",
+      "value": 11,
       "unit": "score"
     },
     {
-      "node_id": "NEURO:Sleepiness",
-      "value": 11,
+      "node_id": "NEURO:PHQ9",
+      "value": 10,
       "unit": "score"
     },
     {
