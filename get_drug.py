@@ -1,20 +1,11 @@
-import os
-import json
-import math
 import itertools
+import math
+import os
 import re
 from collections import defaultdict
-from typing import Dict, List, Tuple, Optional, Any
+from typing import Any, Dict, List, Optional, Tuple
 
-
-def load_json(path: str) -> dict:
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def save_json(obj: dict, path: str):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+from utils import load_json, save_json
 
 
 class Edge:
@@ -69,14 +60,24 @@ def load_graph(node_file: str, edge_file: str) -> Graph:
     g = Graph()
     node_data = load_json(node_file)
     if isinstance(node_data, dict):
-        nodes_iter = node_data.get("node") or node_data.get("nodes") or node_data.get("data") or []
+        nodes_iter = (
+            node_data.get("node")
+            or node_data.get("nodes")
+            or node_data.get("data")
+            or []
+        )
     else:
         nodes_iter = node_data
     for n in nodes_iter:
         g.add_node(n)
     edge_data = load_json(edge_file)
     if isinstance(edge_data, dict):
-        edges_iter = edge_data.get("edge") or edge_data.get("edges") or edge_data.get("data") or []
+        edges_iter = (
+            edge_data.get("edge")
+            or edge_data.get("edges")
+            or edge_data.get("data")
+            or []
+        )
     else:
         edges_iter = edge_data
     for e in edges_iter:
@@ -202,7 +203,9 @@ def read_drug_kb_to_actions(kb: dict) -> Dict[str, List[dict]]:
     return {k: v for k, v in out.items() if v}
 
 
-def build_on_target_from_step7_and_kb(regimen: dict, step6: dict, drug_kb: dict) -> Dict[str, List[dict]]:
+def build_on_target_from_step7_and_kb(
+    regimen: dict, step6: dict, drug_kb: dict
+) -> Dict[str, List[dict]]:
     class_defaults = {
         "ARB": {"node": "CARDIO:SBP", "delta": -10.0, "timeframe": "P90D"},
         "ACEI": {"node": "CARDIO:SBP", "delta": -10.0, "timeframe": "P90D"},
@@ -212,7 +215,11 @@ def build_on_target_from_step7_and_kb(regimen: dict, step6: dict, drug_kb: dict)
         "STATIN": {"node": "CARDIO:LDL_C", "delta": -1.2, "timeframe": "P90D"},
         "PCSK9I": {"node": "CARDIO:LDL_C", "delta": -2.0, "timeframe": "P90D"},
         "SGLT2I": {"node": "METABOLIC_ENDO:HbA1c", "delta": -0.7, "timeframe": "P90D"},
-        "METFORMIN": {"node": "METABOLIC_ENDO:HbA1c", "delta": -1.0, "timeframe": "P90D"},
+        "METFORMIN": {
+            "node": "METABOLIC_ENDO:HbA1c",
+            "delta": -1.0,
+            "timeframe": "P90D",
+        },
         "GLP1RA": {"node": "METABOLIC_ENDO:Weight", "delta": -5.0, "timeframe": "P90D"},
     }
 
@@ -260,7 +267,9 @@ def build_on_target_from_step7_and_kb(regimen: dict, step6: dict, drug_kb: dict)
                 sfx.append(
                     {
                         "node": sx.get("affectedNodeId") or sx.get("node_id"),
-                        "trend": (sx.get("expectedTrend") or sx.get("trend") or "").lower(),
+                        "trend": (
+                            sx.get("expectedTrend") or sx.get("trend") or ""
+                        ).lower(),
                         "mean": sx.get("expectedMeanChange") or sx.get("mean"),
                         "unit": sx.get("unit"),
                     }
@@ -353,7 +362,9 @@ def within_target(cur: Optional[float], tr: Optional[List[Optional[float]]]) -> 
     return True
 
 
-def towards_score(cur: Optional[float], delta: float, tr: Optional[List[Optional[float]]]) -> float:
+def towards_score(
+    cur: Optional[float], delta: float, tr: Optional[List[Optional[float]]]
+) -> float:
     if cur is None:
         gap = abs(delta)
         return min(0.6, 1.0 - math.exp(-gap / (1.0 + gap)))
@@ -386,7 +397,9 @@ def exp_ramp(total_delta: float, days_since_start: int, ttb_days: float) -> floa
     return cum_t - cum_t_1
 
 
-def propagate_numeric(graph: Graph, src_delta: Dict[str, float], edge_cap: Optional[float]) -> Tuple[Dict[str, float], Dict[str, dict], List[str]]:
+def propagate_numeric(
+    graph: Graph, src_delta: Dict[str, float], edge_cap: Optional[float]
+) -> Tuple[Dict[str, float], Dict[str, dict], List[str]]:
     out = defaultdict(float)
     risk_log = defaultdict(float)
     used = []
@@ -422,21 +435,35 @@ def generate_schedules(regimen: dict, horizon_days: int) -> List[dict]:
     if not drugs:
         return []
     schedules = []
-    schedules.append({"starts": {d: 0 for d in drugs}, "label": "parallel", "horizon": horizon_days})
+    schedules.append(
+        {"starts": {d: 0 for d in drugs}, "label": "parallel", "horizon": horizon_days}
+    )
     for perm in itertools.permutations(drugs):
         starts = {perm[0]: 0}
         if len(perm) >= 2:
             starts[perm[1]] = 7
         if len(perm) >= 3:
             starts[perm[2]] = 14
-        schedules.append({"starts": starts, "label": "stagger7@" + ",".join(perm), "horizon": horizon_days})
+        schedules.append(
+            {
+                "starts": starts,
+                "label": "stagger7@" + ",".join(perm),
+                "horizon": horizon_days,
+            }
+        )
     for perm in itertools.permutations(drugs):
         starts = {perm[0]: 0}
         if len(perm) >= 2:
             starts[perm[1]] = 14
         if len(perm) >= 3:
             starts[perm[2]] = 28
-        schedules.append({"starts": starts, "label": "stagger14@" + ",".join(perm), "horizon": horizon_days})
+        schedules.append(
+            {
+                "starts": starts,
+                "label": "stagger14@" + ",".join(perm),
+                "horizon": horizon_days,
+            }
+        )
     uniq = {}
     for s in schedules:
         key = tuple(sorted(s["starts"].items()))
@@ -574,7 +601,13 @@ def main():
     if not args["debug_out"]:
         args["debug_out"] = os.path.join(cache_dir, "rx.json")
 
-    for p in [args["node_file"], args["edge_file"], args["targets"], args["drug_kb"], args["step7"]]:
+    for p in [
+        args["node_file"],
+        args["edge_file"],
+        args["targets"],
+        args["drug_kb"],
+        args["step7"],
+    ]:
         if not os.path.exists(p):
             raise FileNotFoundError(f"File not found: {p}")
 
@@ -603,8 +636,12 @@ def main():
                 horizon_days=args["horizon_days"],
                 edge_cap=args["edge_cap"],
             )
-            reg_sims.append({"regimen": reg.get("drugs", []), "schedule": sch, "sim": sim})
-            all_candidates.append({"regimen": reg.get("drugs", []), "schedule": sch, "sim": sim})
+            reg_sims.append(
+                {"regimen": reg.get("drugs", []), "schedule": sch, "sim": sim}
+            )
+            all_candidates.append(
+                {"regimen": reg.get("drugs", []), "schedule": sch, "sim": sim}
+            )
         if not reg_sims:
             continue
         reg_sims.sort(

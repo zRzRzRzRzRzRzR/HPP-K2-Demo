@@ -1,0 +1,2324 @@
+{
+  "candidates": [
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "parallel",
+      "starts": {
+        "Evolocumab": 0,
+        "Alirocumab": 0,
+        "Rosuvastatin": 0
+      },
+      "overall": 0.13,
+      "time_score": 0.2,
+      "risk_penalty": 0.0,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Alirocumab,Rosuvastatin,Evolocumab",
+      "starts": {
+        "Alirocumab": 0,
+        "Rosuvastatin": 7,
+        "Evolocumab": 14
+      },
+      "overall": 0.1295,
+      "time_score": 0.2,
+      "risk_penalty": 0.0019,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Rosuvastatin,Evolocumab,Alirocumab",
+      "starts": {
+        "Rosuvastatin": 0,
+        "Evolocumab": 7,
+        "Alirocumab": 14
+      },
+      "overall": 0.1295,
+      "time_score": 0.2,
+      "risk_penalty": 0.0019,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Evolocumab,Rosuvastatin,Alirocumab",
+      "starts": {
+        "Evolocumab": 0,
+        "Rosuvastatin": 7,
+        "Alirocumab": 14
+      },
+      "overall": 0.1295,
+      "time_score": 0.2,
+      "risk_penalty": 0.0021,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Alirocumab,Evolocumab,Rosuvastatin",
+      "starts": {
+        "Alirocumab": 0,
+        "Evolocumab": 7,
+        "Rosuvastatin": 14
+      },
+      "overall": 0.1295,
+      "time_score": 0.2,
+      "risk_penalty": 0.0021,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Alirocumab,Atorvastatin,Rosuvastatin",
+      "starts": {
+        "Alirocumab": 0,
+        "Atorvastatin": 7,
+        "Rosuvastatin": 14
+      },
+      "overall": 0.1291,
+      "time_score": 0.2,
+      "risk_penalty": 0.0036,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Atorvastatin,Rosuvastatin,Alirocumab",
+      "starts": {
+        "Atorvastatin": 0,
+        "Rosuvastatin": 7,
+        "Alirocumab": 14
+      },
+      "overall": 0.1291,
+      "time_score": 0.2,
+      "risk_penalty": 0.0036,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Alirocumab,Rosuvastatin,Evolocumab",
+      "starts": {
+        "Alirocumab": 0,
+        "Rosuvastatin": 14,
+        "Evolocumab": 28
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.0038,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Rosuvastatin,Alirocumab,Evolocumab",
+      "starts": {
+        "Rosuvastatin": 0,
+        "Alirocumab": 7,
+        "Evolocumab": 14
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.0039,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Rosuvastatin,Evolocumab,Alirocumab",
+      "starts": {
+        "Rosuvastatin": 0,
+        "Evolocumab": 14,
+        "Alirocumab": 28
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.0039,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Atorvastatin,Alirocumab,Rosuvastatin",
+      "starts": {
+        "Atorvastatin": 0,
+        "Alirocumab": 7,
+        "Rosuvastatin": 14
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.0039,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Alirocumab,Atorvastatin,Rosuvastatin",
+      "starts": {
+        "Alirocumab": 0,
+        "Atorvastatin": 14,
+        "Rosuvastatin": 28
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.0039,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Atorvastatin,Rosuvastatin,Alirocumab",
+      "starts": {
+        "Atorvastatin": 0,
+        "Rosuvastatin": 14,
+        "Alirocumab": 28
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.0039,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger7@Evolocumab,Alirocumab,Rosuvastatin",
+      "starts": {
+        "Evolocumab": 0,
+        "Alirocumab": 7,
+        "Rosuvastatin": 14
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.004,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Evolocumab,Rosuvastatin,Alirocumab",
+      "starts": {
+        "Evolocumab": 0,
+        "Rosuvastatin": 14,
+        "Alirocumab": 28
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.004,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Alirocumab,Evolocumab,Rosuvastatin",
+      "starts": {
+        "Alirocumab": 0,
+        "Evolocumab": 14,
+        "Rosuvastatin": 28
+      },
+      "overall": 0.129,
+      "time_score": 0.2,
+      "risk_penalty": 0.004,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Rosuvastatin,Alirocumab,Evolocumab",
+      "starts": {
+        "Rosuvastatin": 0,
+        "Alirocumab": 14,
+        "Evolocumab": 28
+      },
+      "overall": 0.1285,
+      "time_score": 0.2,
+      "risk_penalty": 0.0061,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "parallel",
+      "starts": {
+        "Alirocumab": 0,
+        "Rosuvastatin": 0,
+        "Atorvastatin": 0
+      },
+      "overall": 0.1285,
+      "time_score": 0.2,
+      "risk_penalty": 0.0061,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Evolocumab",
+          "class": "PCSK9 inhibitor"
+        },
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Evolocumab,Alirocumab,Rosuvastatin",
+      "starts": {
+        "Evolocumab": 0,
+        "Alirocumab": 14,
+        "Rosuvastatin": 28
+      },
+      "overall": 0.1284,
+      "time_score": 0.2,
+      "risk_penalty": 0.0063,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    },
+    {
+      "regimen": [
+        {
+          "name": "Alirocumab",
+          "class": "PCSK9 Inhibitor"
+        },
+        {
+          "name": "Rosuvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        },
+        {
+          "name": "Atorvastatin",
+          "class": "HMG-CoA Reductase Inhibitor (Statin)"
+        }
+      ],
+      "schedule": "stagger14@Atorvastatin,Alirocumab,Rosuvastatin",
+      "starts": {
+        "Atorvastatin": 0,
+        "Alirocumab": 14,
+        "Rosuvastatin": 28
+      },
+      "overall": 0.1281,
+      "time_score": 0.2,
+      "risk_penalty": 0.0076,
+      "reached_day": {
+        "CARDIO:SBP_day": null,
+        "CARDIO:SBP_night": null,
+        "CARDIO:cSBP": null,
+        "CARDIO:CAC": null,
+        "CARDIO:LVMI": null,
+        "CARDIO:MAP": null,
+        "METABOLIC_ENDO:PCSK9i_use": null,
+        "METABOLIC_ENDO:Statin_use": null,
+        "METABOLIC_ENDO:WC": null,
+        "NEURO:PHQ9": null,
+        "NEURO:Sleepiness": null,
+        "NEURO:WMH_vol": null
+      },
+      "traj_sample": [
+        {
+          "day": 0,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 1,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 2,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 3,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        },
+        {
+          "day": 4,
+          "nodes": {
+            "CARDIO:SBP_day": 155.0,
+            "CARDIO:SBP_night": 142.0,
+            "CARDIO:cSBP": 139.0,
+            "CARDIO:CAC": 480.0,
+            "CARDIO:LVMI": 110.0,
+            "CARDIO:MAP": 107.0,
+            "METABOLIC_ENDO:WC": 92.0,
+            "NEURO:PHQ9": 10.0,
+            "NEURO:Sleepiness": 11.0,
+            "NEURO:WMH_vol": 13.0
+          }
+        }
+      ]
+    }
+  ]
+}

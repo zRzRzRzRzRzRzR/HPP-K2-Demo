@@ -1,19 +1,10 @@
-import os
-import json
-import math
-import itertools
 import collections
-from typing import Dict, List, Tuple, Optional, Any
+import itertools
+import math
+import os
+from typing import Any, Dict, List, Optional, Tuple
 
-
-def load_json(path: str) -> dict:
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def save_json(obj: dict, path: str):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+from utils import load_json, save_json
 
 
 class Edge:
@@ -80,18 +71,30 @@ class Graph:
             self.succ_risk[ed.src].append(ed)
 
 
-def load_graph(node_file: str, edge_file: str, allow_plausible_seed: bool = False) -> Graph:
+def load_graph(
+    node_file: str, edge_file: str, allow_plausible_seed: bool = False
+) -> Graph:
     g = Graph()
     node_data = load_json(node_file)
     if isinstance(node_data, dict):
-        nodes_iter = node_data.get("node") or node_data.get("nodes") or node_data.get("data") or []
+        nodes_iter = (
+            node_data.get("node")
+            or node_data.get("nodes")
+            or node_data.get("data")
+            or []
+        )
     else:
         nodes_iter = node_data
     for n in nodes_iter:
         g.add_node(n)
     edge_data = load_json(edge_file)
     if isinstance(edge_data, dict):
-        edges_iter = edge_data.get("edge") or edge_data.get("edges") or edge_data.get("data") or []
+        edges_iter = (
+            edge_data.get("edge")
+            or edge_data.get("edges")
+            or edge_data.get("data")
+            or []
+        )
     else:
         edges_iter = edge_data
     for e in edges_iter:
@@ -126,7 +129,9 @@ def parse_targets(step6: dict) -> Dict[str, dict]:
 def read_drug_kb(kb: dict) -> Dict[str, dict]:
     out: Dict[str, dict] = {}
 
-    def ensure_drug(name: str, clazz: Optional[str], adherence: float = 0.5, cost: float = 0.5) -> dict:
+    def ensure_drug(
+        name: str, clazz: Optional[str], adherence: float = 0.5, cost: float = 0.5
+    ) -> dict:
         if name not in out:
             out[name] = {
                 "name": name,
@@ -141,13 +146,18 @@ def read_drug_kb(kb: dict) -> Dict[str, dict]:
         return out[name]
 
     def to_float(v: Any) -> Optional[float]:
+        if v is None:
+            return None
         if isinstance(v, (int, float)):
             return float(v)
         if isinstance(v, str):
             s = v.strip()
             if not s:
                 return None
-            return float(s)
+            try:
+                return float(s)
+            except ValueError:
+                return None
         return None
 
     def normalize_rec(rec: dict) -> Optional[dict]:
@@ -188,7 +198,14 @@ def read_drug_kb(kb: dict) -> Dict[str, dict]:
             "side_effects": sfx,
         }
 
-    def add_action(drug_name: str, clazz: Optional[str], node_id: Optional[str], delta: float, timeframe: Optional[str], sfx: List[dict]):
+    def add_action(
+        drug_name: str,
+        clazz: Optional[str],
+        node_id: Optional[str],
+        delta: float,
+        timeframe: Optional[str],
+        sfx: List[dict],
+    ):
         if not drug_name or not node_id:
             return
         drv = ensure_drug(drug_name, clazz)
@@ -208,19 +225,28 @@ def read_drug_kb(kb: dict) -> Dict[str, dict]:
             node_id = node_meta.get("nodeId") or node_meta.get("node_id")
             if not node_id:
                 continue
-            diseases = (ind.get("subIndicators") or {}).get("potentialDiseases") or []
-            for dz in diseases:
-                for rec in dz.get("recommendedDrugs", []) or []:
-                    norm = normalize_rec(rec)
-                    if norm:
-                        add_action(
-                            norm["name"],
-                            norm["class"],
-                            node_id,
-                            norm["delta"],
-                            norm.get("timeframe"),
-                            norm.get("side_effects") or [],
-                        )
+        indicators = kb.get("indicators")
+        if isinstance(indicators, list):
+            for ind in indicators:
+                node_meta = ind.get("indicatorNode") or {}
+                node_id = node_meta.get("nodeId") or node_meta.get("node_id")
+                if not node_id:
+                    continue
+                diseases = (node_meta.get("subIndicators") or {}).get(
+                    "potentialDiseases"
+                ) or []
+                for dz in diseases:
+                    for rec in dz.get("recommendedDrugs", []) or []:
+                        norm = normalize_rec(rec)
+                        if norm:
+                            add_action(
+                                norm["name"],
+                                norm["class"],
+                                node_id,
+                                norm["delta"],
+                                norm.get("timeframe"),
+                                norm.get("side_effects") or [],
+                            )
 
     entries: List[dict] = []
     if isinstance(kb.get("drugs"), list):
@@ -249,7 +275,12 @@ def read_drug_kb(kb: dict) -> Dict[str, dict]:
         clazz = it.get("class") or it.get("drugClass")
         adh = to_float(it.get("adherence"))
         cost = to_float(it.get("cost"))
-        drv = ensure_drug(nm, clazz, adh if adh is not None else 0.5, cost if cost is not None else 0.5)
+        drv = ensure_drug(
+            nm,
+            clazz,
+            adh if adh is not None else 0.5,
+            cost if cost is not None else 0.5,
+        )
         payloads: List[dict] = []
         for key in ("targets", "effects", "indicators", "actions"):
             if isinstance(it.get(key), list):
@@ -303,7 +334,9 @@ def within_target(cur: Optional[float], tr: Optional[List[Optional[float]]]) -> 
     return True
 
 
-def towards_score(cur: Optional[float], delta: float, tr: Optional[List[Optional[float]]]) -> float:
+def towards_score(
+    cur: Optional[float], delta: float, tr: Optional[List[Optional[float]]]
+) -> float:
     if tr is None or all(v is None for v in tr):
         gap = abs(delta)
         return min(0.6, 1.0 - math.exp(-gap / (1.0 + gap)))
@@ -312,7 +345,9 @@ def towards_score(cur: Optional[float], delta: float, tr: Optional[List[Optional
         return min(0.6, 1.0 - math.exp(-gap / (1.0 + gap)))
     lo, hi = tr
     if within_target(cur, tr):
-        center = ((lo if lo is not None else cur) + (hi if hi is not None else cur)) / 2.0
+        center = (
+            (lo if lo is not None else cur) + (hi if hi is not None else cur)
+        ) / 2.0
         if (cur < center and delta < 0) or (cur > center and delta > 0):
             return 0.1
         return 0.2
@@ -330,7 +365,9 @@ def towards_score(cur: Optional[float], delta: float, tr: Optional[List[Optional
     return max(0.0, min(1.0, (gap - new_gap) / (gap + 1e-6)))
 
 
-def k_paths_to_targets(g: Graph, src: str, targets: List[str], max_hops: int = 2, k_per_target: int = 3) -> Dict[str, List[dict]]:
+def k_paths_to_targets(
+    g: Graph, src: str, targets: List[str], max_hops: int = 2, k_per_target: int = 3
+) -> Dict[str, List[dict]]:
     out: Dict[str, List[dict]] = {t: [] for t in targets}
     frontier = [(src, [], 1.0)]
     visited = {(src, 0): 1.0}
@@ -348,7 +385,9 @@ def k_paths_to_targets(g: Graph, src: str, targets: List[str], max_hops: int = 2
                 if e.dst in out:
                     out[e.dst].append(
                         {
-                            "edges": [ed.id or f"{ed.src}->{ed.dst}" for ed in path_edges],
+                            "edges": [
+                                ed.id or f"{ed.src}->{ed.dst}" for ed in path_edges
+                            ],
                             "coef": new_coef,
                             "nodes": [src] + [ed.dst for ed in path_edges],
                         }
@@ -383,7 +422,9 @@ def overall_score(s: dict) -> float:
     return round(0.70 * eff - 0.20 * sp + 0.06 * adh + 0.04 * (1.0 - cost), 4)
 
 
-def build_treatment_paths(drug_name: str, dk: dict, tmeta: Dict[str, dict], g: Graph, max_hops: int = 2) -> List[dict]:
+def build_treatment_paths(
+    drug_name: str, dk: dict, tmeta: Dict[str, dict], g: Graph, max_hops: int = 2
+) -> List[dict]:
     out: List[dict] = []
     targets = list(tmeta.keys())
     for a in dk.get("actions", []):
@@ -429,7 +470,9 @@ def build_treatment_paths(drug_name: str, dk: dict, tmeta: Dict[str, dict], g: G
     return out
 
 
-def simulate_single_drug(drug_name: str, dk: dict, tmeta: Dict[str, dict], g: Graph, max_hops: int = 2) -> dict:
+def simulate_single_drug(
+    drug_name: str, dk: dict, tmeta: Dict[str, dict], g: Graph, max_hops: int = 2
+) -> dict:
     actions = dk.get("actions", [])
     targets = list(tmeta.keys())
     activated = set()
@@ -490,31 +533,51 @@ def simulate_single_drug(drug_name: str, dk: dict, tmeta: Dict[str, dict], g: Gr
         "predicted_effects": per_target,
         "risk_predictions": risk,
         "activated_edges": sorted(list(activated)),
-        "treatment_paths": build_treatment_paths(drug_name, dk, tmeta, g, max_hops=max_hops),
+        "treatment_paths": build_treatment_paths(
+            drug_name, dk, tmeta, g, max_hops=max_hops
+        ),
     }
 
 
 def merge_two(r1: dict, r2: dict, tmeta: Optional[Dict[str, dict]] = None) -> dict:
     drugs = r1["drugs"] + r2["drugs"]
     pe: Dict[str, dict] = {}
-    nids = set(list(r1["predicted_effects"].keys()) + list(r2["predicted_effects"].keys()))
+    nids = set(
+        list(r1["predicted_effects"].keys()) + list(r2["predicted_effects"].keys())
+    )
     for nid in nids:
         d1 = r1["predicted_effects"].get(nid, {"delta_mean": 0.0})
         d2 = r2["predicted_effects"].get(nid, {"delta_mean": 0.0})
-        dm = float(d1.get("delta_mean", 0.0) or 0.0) + float(d2.get("delta_mean", 0.0) or 0.0)
-        unit = d1.get("unit") or d2.get("unit") or ((tmeta or {}).get(nid) or {}).get("unit")
+        dm = float(d1.get("delta_mean", 0.0) or 0.0) + float(
+            d2.get("delta_mean", 0.0) or 0.0
+        )
+        unit = (
+            d1.get("unit")
+            or d2.get("unit")
+            or ((tmeta or {}).get(nid) or {}).get("unit")
+        )
         ts = 0.0
         if tmeta and nid in tmeta:
-            ts = towards_score(tmeta[nid].get("current"), dm, tmeta[nid].get("target_range"))
-        pe[nid] = {"delta_mean": round(dm, 6), "unit": unit, "towards_score": round(ts, 4)}
+            ts = towards_score(
+                tmeta[nid].get("current"), dm, tmeta[nid].get("target_range")
+            )
+        pe[nid] = {
+            "delta_mean": round(dm, 6),
+            "unit": unit,
+            "towards_score": round(ts, 4),
+        }
     risk: Dict[str, dict] = {}
-    r_keys = set(list(r1["risk_predictions"].keys()) + list(r2["risk_predictions"].keys()))
+    r_keys = set(
+        list(r1["risk_predictions"].keys()) + list(r2["risk_predictions"].keys())
+    )
     for k in r_keys:
         hr1 = float(r1["risk_predictions"].get(k, {}).get("hr_multiplier", 1.0) or 1.0)
         hr2 = float(r2["risk_predictions"].get(k, {}).get("hr_multiplier", 1.0) or 1.0)
         risk[k] = {"hr_multiplier": round(hr1 * hr2, 4)}
     paths = (r1.get("treatment_paths") or []) + (r2.get("treatment_paths") or [])
-    act_edges = sorted(list({*r1.get("activated_edges", []), *r2.get("activated_edges", [])}))
+    act_edges = sorted(
+        list({*r1.get("activated_edges", []), *r2.get("activated_edges", [])})
+    )
     wsum = 0.0
     ssum = 0.0
     if tmeta:
@@ -527,8 +590,13 @@ def merge_two(r1: dict, r2: dict, tmeta: Optional[Dict[str, dict]] = None) -> di
     c1 = max(1, len(r1.get("drugs", [])))
     c2 = max(1, len(r2.get("drugs", [])))
     total = c1 + c2
-    adh = ((r1["score"].get("adherence", 0.5) * c1) + (r2["score"].get("adherence", 0.5) * c2)) / total
-    cost = ((r1["score"].get("cost", 0.5) * c1) + (r2["score"].get("cost", 0.5) * c2)) / total
+    adh = (
+        (r1["score"].get("adherence", 0.5) * c1)
+        + (r2["score"].get("adherence", 0.5) * c2)
+    ) / total
+    cost = (
+        (r1["score"].get("cost", 0.5) * c1) + (r2["score"].get("cost", 0.5) * c2)
+    ) / total
     sc = {
         "efficacy": round(eff, 4),
         "safety_penalty": s_pen,
@@ -546,7 +614,12 @@ def merge_two(r1: dict, r2: dict, tmeta: Optional[Dict[str, dict]] = None) -> di
     }
 
 
-def merge_regimens(base_regs: List[dict], size: int, tmeta: Optional[Dict[str, dict]] = None, max_combos: Optional[int] = None) -> List[dict]:
+def merge_regimens(
+    base_regs: List[dict],
+    size: int,
+    tmeta: Optional[Dict[str, dict]] = None,
+    max_combos: Optional[int] = None,
+) -> List[dict]:
     combos: List[dict] = []
     if size < 2 or len(base_regs) < size:
         return combos
@@ -559,7 +632,13 @@ def merge_regimens(base_regs: List[dict], size: int, tmeta: Optional[Dict[str, d
             merged = merge_two(merged, base_regs[idx], tmeta)
         combos.append(merged)
         count += 1
-    combos.sort(key=lambda r: (-r["score"]["overall"], -r["score"]["efficacy"], r["score"]["safety_penalty"]))
+    combos.sort(
+        key=lambda r: (
+            -r["score"]["overall"],
+            -r["score"]["efficacy"],
+            r["score"]["safety_penalty"],
+        )
+    )
     return combos
 
 
@@ -593,7 +672,11 @@ def main():
         if not os.path.exists(p):
             raise FileNotFoundError(f"File not found: {p}")
 
-    g = load_graph(args["node_file"], args["edge_file"], allow_plausible_seed=args["allow_plausible_seed"])
+    g = load_graph(
+        args["node_file"],
+        args["edge_file"],
+        allow_plausible_seed=args["allow_plausible_seed"],
+    )
     tmeta = parse_targets(load_json(args["targets"]))
     kb = read_drug_kb(load_json(args["drug_kb"]))
 
@@ -604,7 +687,9 @@ def main():
         singles.append(reg)
         pre_paths.extend(reg.get("treatment_paths") or [])
 
-    singles_sorted = sorted(singles, key=lambda r: (-r["score"]["overall"], -r["score"]["efficacy"]))
+    singles_sorted = sorted(
+        singles, key=lambda r: (-r["score"]["overall"], -r["score"]["efficacy"])
+    )
 
     combo_pool_limit = max(2, args["combo_pool_limit"])
     combo_pool: List[dict] = []
@@ -655,12 +740,24 @@ def main():
         combo_sizes.add(3)
     combo_sizes = sorted([s for s in combo_sizes if s >= 2])
 
-    combo_cap = args["max_combos_per_size"] if args["max_combos_per_size"] and args["max_combos_per_size"] > 0 else None
+    combo_cap = (
+        args["max_combos_per_size"]
+        if args["max_combos_per_size"] and args["max_combos_per_size"] > 0
+        else None
+    )
     for size in combo_sizes:
-        combos += merge_regimens(combo_pool, size=size, tmeta=tmeta, max_combos=combo_cap)
+        combos += merge_regimens(
+            combo_pool, size=size, tmeta=tmeta, max_combos=combo_cap
+        )
 
     regimens = singles + combos
-    regimens.sort(key=lambda r: (-r["score"]["overall"], -r["score"]["efficacy"], r["score"]["safety_penalty"]))
+    regimens.sort(
+        key=lambda r: (
+            -r["score"]["overall"],
+            -r["score"]["efficacy"],
+            r["score"]["safety_penalty"],
+        )
+    )
 
     out = {
         "parameters": {

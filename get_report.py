@@ -2,7 +2,6 @@ import json
 
 from utils import build_json, call_large_model_llm
 
-
 SYSTEM_MESSAGE = """
 You are an experienced medical diagnostic and therapeutic documentation assistant.
 
@@ -160,7 +159,9 @@ def run_therapy_record_selection(
     user_json = build_json(diagnosis_path)
     node_json = build_json(node_path)
     plan_json = build_json(plan_path)
-    messages = build_messages(user_json=user_json, node_json=node_json, plan_json=plan_json)
+    messages = build_messages(
+        user_json=user_json, node_json=node_json, plan_json=plan_json
+    )
     response = call_large_model_llm(messages)
     return response
 

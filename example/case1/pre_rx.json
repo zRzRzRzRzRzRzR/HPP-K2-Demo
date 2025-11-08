@@ -1,3 +1,907 @@
 {
-  "treatment_paths": []
+  "treatment_paths": [
+    {
+      "drug": "Hydrochlorothiazide",
+      "drug_class": "Thiazide Diuretic",
+      "on_target_node": "CARDIO:SBP_day",
+      "on_target_delta": -15.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000061"
+      ],
+      "path_coef_linear": 5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Valsartan",
+      "drug_class": "Angiotensin II Receptor Blocker (ARB)",
+      "on_target_node": "CARDIO:SBP_day",
+      "on_target_delta": -20.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000061"
+      ],
+      "path_coef_linear": 5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Valsartan",
+      "drug_class": "Angiotensin II Receptor Blocker (ARB)",
+      "on_target_node": "CARDIO:SBP_night",
+      "on_target_delta": -18.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000062"
+      ],
+      "path_coef_linear": 6.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Amlodipine",
+      "drug_class": "Calcium Channel Blocker (CCB)",
+      "on_target_node": "CARDIO:SBP_day",
+      "on_target_delta": -18.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000061"
+      ],
+      "path_coef_linear": 5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Amlodipine",
+      "drug_class": "Calcium Channel Blocker (CCB)",
+      "on_target_node": "CARDIO:cSBP",
+      "on_target_delta": -12.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000066"
+      ],
+      "path_coef_linear": 4.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Amlodipine",
+      "drug_class": "Calcium Channel Blocker (CCB)",
+      "on_target_node": "CARDIO:cSBP",
+      "on_target_delta": -10.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000066"
+      ],
+      "path_coef_linear": 4.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Amlodipine",
+      "drug_class": "Calcium Channel Blocker (CCB)",
+      "on_target_node": "CARDIO:BPV",
+      "on_target_delta": -6.0,
+      "dst": "NEURO:Stroke_IS",
+      "edges": [
+        "E000076"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Amlodipine",
+      "drug_class": "Calcium Channel Blocker (CCB)",
+      "on_target_node": "CARDIO:BPV",
+      "on_target_delta": -2.0,
+      "dst": "NEURO:Stroke_IS",
+      "edges": [
+        "E000076"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Benazepril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:SBP_day",
+      "on_target_delta": -18.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000061"
+      ],
+      "path_coef_linear": 5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Benazepril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:SBP_night",
+      "on_target_delta": -16.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000062"
+      ],
+      "path_coef_linear": 6.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Benazepril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:SBP_night",
+      "on_target_delta": -16.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000062"
+      ],
+      "path_coef_linear": 6.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Spironolactone",
+      "drug_class": "Mineralocorticoid Receptor Antagonist",
+      "on_target_node": "CARDIO:SBP_day",
+      "on_target_delta": -22.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000061"
+      ],
+      "path_coef_linear": 5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Spironolactone",
+      "drug_class": "Mineralocorticoid Receptor Antagonist",
+      "on_target_node": "CARDIO:SBP_night",
+      "on_target_delta": -12.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000062"
+      ],
+      "path_coef_linear": 6.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Telmisartan",
+      "drug_class": "Angiotensin II Receptor Blocker (ARB)",
+      "on_target_node": "CARDIO:SBP_night",
+      "on_target_delta": -18.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000062"
+      ],
+      "path_coef_linear": 6.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Perindopril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:cSBP",
+      "on_target_delta": -10.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000066"
+      ],
+      "path_coef_linear": 4.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Perindopril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:cSBP",
+      "on_target_delta": -14.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000066"
+      ],
+      "path_coef_linear": 4.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Perindopril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 6.0,
+      "dst": "CARDIO:AF",
+      "edges": [
+        "E000077"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Perindopril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 6.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000271"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Perindopril",
+      "drug_class": "Angiotensin-Converting Enzyme Inhibitor (ACEI)",
+      "on_target_node": "RENAL:eGFR_slope",
+      "on_target_delta": 2.5,
+      "dst": "RENAL:ESRD",
+      "edges": [
+        "E000104"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Candesartan",
+      "drug_class": "Angiotensin II Receptor Blocker (ARB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 12.0,
+      "dst": "CARDIO:AF",
+      "edges": [
+        "E000077"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Candesartan",
+      "drug_class": "Angiotensin II Receptor Blocker (ARB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 12.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000271"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Sevelamer",
+      "drug_class": "Non-Calcium Phosphate Binder",
+      "on_target_node": "CARDIO:CAC",
+      "on_target_delta": 20.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000074"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Dapagliflozin",
+      "drug_class": "SGLT2 Inhibitor",
+      "on_target_node": "CARDIO:hsCRP",
+      "on_target_delta": -0.6,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000270"
+      ],
+      "path_risk_log_coef": -0.0288
+    },
+    {
+      "drug": "Dapagliflozin",
+      "drug_class": "SGLT2 Inhibitor",
+      "on_target_node": "METABOLIC_ENDO:TyG",
+      "on_target_delta": -0.6,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000348"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Carvedilol",
+      "drug_class": "Beta-Blocker",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 18.0,
+      "dst": "CARDIO:AF",
+      "edges": [
+        "E000077"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Carvedilol",
+      "drug_class": "Beta-Blocker",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 18.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000271"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Atorvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "CARDIO:hsCRP",
+      "on_target_delta": -1.5,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000270"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Atorvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "CARDIO:CAC",
+      "on_target_delta": 15.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000074"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Atorvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "CARDIO:CAC",
+      "on_target_delta": -10.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000074"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Atorvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "METABOLIC_ENDO:Statin_use",
+      "on_target_delta": 0.55,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000136",
+        "E000072"
+      ],
+      "path_coef_linear": -15.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Atorvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "METABOLIC_ENDO:Statin_use",
+      "on_target_delta": 0.55,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000137",
+        "E000073"
+      ],
+      "path_coef_linear": -5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Rosuvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "CARDIO:hsCRP",
+      "on_target_delta": -1.8,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000270"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Rosuvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "CARDIO:CAC",
+      "on_target_delta": -8.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000074"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Rosuvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "METABOLIC_ENDO:Statin_use",
+      "on_target_delta": 0.6,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000136",
+        "E000072"
+      ],
+      "path_coef_linear": -15.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Rosuvastatin",
+      "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+      "on_target_node": "METABOLIC_ENDO:Statin_use",
+      "on_target_delta": 0.6,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000137",
+        "E000073"
+      ],
+      "path_coef_linear": -5.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Metformin",
+      "drug_class": "Biguanide Antidiabetic Drug",
+      "on_target_node": "CARDIO:hsCRP",
+      "on_target_delta": -1.2,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000270"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metformin",
+      "drug_class": "Biguanide Antidiabetic Drug",
+      "on_target_node": "METABOLIC_ENDO:TyG",
+      "on_target_delta": -0.8,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000348"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metformin",
+      "drug_class": "Biguanide Antidiabetic Drug",
+      "on_target_node": "METABOLIC_ENDO:TyG",
+      "on_target_delta": -0.8,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000348"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Tocilizumab",
+      "drug_class": "Interleukin-6 (IL-6) Receptor Antagonist",
+      "on_target_node": "CARDIO:hsCRP",
+      "on_target_delta": -3.5,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000270"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Olmesartan",
+      "drug_class": "Angiotensin II Receptor Blocker (ARB)",
+      "on_target_node": "CARDIO:BPV",
+      "on_target_delta": -5.0,
+      "dst": "NEURO:Stroke_IS",
+      "edges": [
+        "E000076"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Alirocumab",
+      "drug_class": "PCSK9 Inhibitor",
+      "on_target_node": "METABOLIC_ENDO:PCSK9i_use",
+      "on_target_delta": 0.48,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000138",
+        "E000072"
+      ],
+      "path_coef_linear": -30.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Alirocumab",
+      "drug_class": "PCSK9 Inhibitor",
+      "on_target_node": "METABOLIC_ENDO:PCSK9i_use",
+      "on_target_delta": 0.48,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000139",
+        "E000073"
+      ],
+      "path_coef_linear": -10.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Pioglitazone",
+      "drug_class": "Thiazolidinedione (TZD) Antidiabetic Drug",
+      "on_target_node": "METABOLIC_ENDO:TyG",
+      "on_target_delta": -1.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000348"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Indapamide",
+      "drug_class": "Thiazide diuretic",
+      "on_target_node": "CARDIO:cSBP",
+      "on_target_delta": -18.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000066"
+      ],
+      "path_coef_linear": 4.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Losartan",
+      "drug_class": "Angiotensin II receptor blocker (ARB)",
+      "on_target_node": "CARDIO:cSBP",
+      "on_target_delta": -12.0,
+      "dst": "CARDIO:LVMI",
+      "edges": [
+        "E000066"
+      ],
+      "path_coef_linear": 4.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 15.0,
+      "dst": "CARDIO:AF",
+      "edges": [
+        "E000077"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 15.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000271"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 10.0,
+      "dst": "CARDIO:AF",
+      "edges": [
+        "E000077"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 10.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000271"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 8.0,
+      "dst": "CARDIO:AF",
+      "edges": [
+        "E000077"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:HRV_RMSSD",
+      "on_target_delta": 8.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000271"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Metoprolol succinate",
+      "drug_class": "Beta-blocker (BB)",
+      "on_target_node": "CARDIO:BPV",
+      "on_target_delta": -2.0,
+      "dst": "NEURO:Stroke_IS",
+      "edges": [
+        "E000076"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Empagliflozin",
+      "drug_class": "SGLT2 inhibitor",
+      "on_target_node": "METABOLIC_ENDO:TyG",
+      "on_target_delta": -0.9,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000348"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Evolocumab",
+      "drug_class": "PCSK9 inhibitor",
+      "on_target_node": "CARDIO:CAC",
+      "on_target_delta": 8.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000074"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Evolocumab",
+      "drug_class": "PCSK9 inhibitor",
+      "on_target_node": "CARDIO:CAC",
+      "on_target_delta": -20.0,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000074"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Evolocumab",
+      "drug_class": "PCSK9 inhibitor",
+      "on_target_node": "METABOLIC_ENDO:PCSK9i_use",
+      "on_target_delta": 0.5,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000138",
+        "E000072"
+      ],
+      "path_coef_linear": -30.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Evolocumab",
+      "drug_class": "PCSK9 inhibitor",
+      "on_target_node": "METABOLIC_ENDO:PCSK9i_use",
+      "on_target_delta": 0.5,
+      "dst": "CARDIO:CAC",
+      "edges": [
+        "E000139",
+        "E000073"
+      ],
+      "path_coef_linear": -10.0,
+      "ttb_days": null,
+      "ttb_score": null
+    },
+    {
+      "drug": "Terazosin",
+      "drug_class": "Alpha-1 receptor blocker",
+      "on_target_node": "CARDIO:BPV",
+      "on_target_delta": -4.0,
+      "dst": "NEURO:Stroke_IS",
+      "edges": [
+        "E000076"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Chlorthalidone",
+      "drug_class": "Thiazide diuretic",
+      "on_target_node": "CARDIO:BPV",
+      "on_target_delta": -3.0,
+      "dst": "NEURO:Stroke_IS",
+      "edges": [
+        "E000076"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": 0.44,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.35,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.35,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.38,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": 0.44,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.35,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.35,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Varenicline",
+      "drug_class": "Partial Nicotinic Receptor Agonist",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.38,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Nicotine Replacement Patch",
+      "drug_class": "Nicotine Replacement Therapy",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": 0.23,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Nicotine Replacement Patch",
+      "drug_class": "Nicotine Replacement Therapy",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": 0.23,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Bupropion Extended-Release",
+      "drug_class": "Norepinephrine-Dopamine Reuptake Inhibitor",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.3,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Bupropion Extended-Release",
+      "drug_class": "Norepinephrine-Dopamine Reuptake Inhibitor",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.3,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Bupropion Extended-Release",
+      "drug_class": "Norepinephrine-Dopamine Reuptake Inhibitor",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.3,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Bupropion Extended-Release",
+      "drug_class": "Norepinephrine-Dopamine Reuptake Inhibitor",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": -0.3,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": -0.03
+    },
+    {
+      "drug": "Bupropion Hydrochloride Extended-Release",
+      "drug_class": "Antidepressant (Smoking Cessation Indication)",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": 0.3,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Bupropion Hydrochloride Extended-Release",
+      "drug_class": "Antidepressant (Smoking Cessation Indication)",
+      "on_target_node": "CARDIO:Smoking_status",
+      "on_target_delta": 0.3,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000085"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Canagliflozin",
+      "drug_class": "SGLT2 Inhibitor",
+      "on_target_node": "RENAL:eGFR_slope",
+      "on_target_delta": 3.0,
+      "dst": "RENAL:ESRD",
+      "edges": [
+        "E000104"
+      ],
+      "path_risk_log_coef": 0.03
+    },
+    {
+      "drug": "Liraglutide",
+      "drug_class": "GLP-1 receptor agonist",
+      "on_target_node": "METABOLIC_ENDO:TyG",
+      "on_target_delta": -0.7,
+      "dst": "CARDIO:MI",
+      "edges": [
+        "E000348"
+      ],
+      "path_risk_log_coef": -0.03
+    }
+  ]
 }

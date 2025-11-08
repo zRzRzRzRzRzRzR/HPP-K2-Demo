@@ -326,7 +326,6 @@ def build_targets_from_input(
     targets.sort(key=lambda x: (-x.get("priority_score", 0.0), x["node_id"]))
 
     return {
-        "step": "5B_targets_from_abnormalities",
         "t_eval_weeks": t_eval,
         "targets": targets,
         "unmatched_abnormal_nodes": unmatched,

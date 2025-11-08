@@ -9,12 +9,6 @@ from openai import OpenAI
 load_dotenv()
 
 
-def load_json(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data
-
-
 def call_embedding(texts, model="embedding-3"):
     if isinstance(texts, list):
         texts = [" " if text == "" else text for text in texts]
@@ -53,6 +47,16 @@ def call_embeddings_batch(texts, model="embedding-3", batch_size=10):
 def build_json(diagnosis_path: str) -> dict:
     with open(diagnosis_path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def load_json(path: str) -> dict:
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_json(obj: dict, path: str):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
 
 
 def format_response(content: str) -> str:

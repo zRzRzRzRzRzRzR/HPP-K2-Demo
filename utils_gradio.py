@@ -209,18 +209,6 @@ def resolve_case_dir(case_dir_raw: Optional[str]) -> str:
     return case_dir_raw.strip()
 
 
-def find_diagnosis_json(case_dir: str) -> Optional[str]:
-    if not case_dir:
-        return None
-    path_exam = os.path.join(case_dir, "diagnosis_exam.json")
-    path_default = os.path.join(case_dir, "diagnosis.json")
-    if os.path.exists(path_exam):
-        return path_exam
-    if os.path.exists(path_default):
-        return path_default
-    return None
-
-
 def find_exam_source(case_dir: str) -> Optional[str]:
     if not case_dir:
         return None
@@ -239,13 +227,8 @@ def find_exam_source(case_dir: str) -> Optional[str]:
     return None
 
 
-def find_edge_select(case_dir: str) -> Optional[str]:
-    if not case_dir:
-        return None
-    edge_json = os.path.join(case_dir, "edge_select.json")
-    if os.path.exists(edge_json):
-        return edge_json
-    return None
+def find_json(case_dir: str, name) -> Optional[str]:
+    return os.path.join(case_dir, f"{name}.json")
 
 
 def build_diagnosis_preview_html(diagnosis_path: str) -> str:
