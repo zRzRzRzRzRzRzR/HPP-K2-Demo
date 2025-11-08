@@ -1,0 +1,2810 @@
+{
+  "edges": [
+    {
+      "edge_id": "E000001",
+      "from": "CARDIO:PWV",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 1.5,
+        "ci": [
+          0.8,
+          2.2
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000002",
+      "from": "CARDIO:SBP",
+      "to": "NEURO:Stroke_IS",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.182,
+        "ci": [
+          0.113,
+          0.246
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000003",
+      "from": "CARDIO:SBP",
+      "to": "NEURO:Stroke_HS",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.223,
+        "ci": [
+          0.140,
+          0.336
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000004",
+      "from": "CARDIO:DBP",
+      "to": "NEURO:Stroke_IS",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.095,
+        "ci": [
+          0.020,
+          0.166
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000005",
+      "from": "CARDIO:ApoB",
+      "to": "CARDIO:IMT",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.005,
+        "ci": [
+          0.002,
+          0.008
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000006",
+      "from": "CARDIO:LDL_C",
+      "to": "CARDIO:IMT",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.03,
+        "ci": [
+          0.015,
+          0.045
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000007",
+      "from": "CARDIO:IMT",
+      "to": "NEURO:Stroke_IS",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.140,
+        "ci": [
+          0.077,
+          0.223
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000008",
+      "from": "CARDIO:AF",
+      "to": "NEURO:Stroke_IS",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.182,
+        "ci": [
+          0.095,
+          0.262
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000009",
+      "from": "CARDIO:QTc",
+      "to": "CARDIO:AF",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(OR)",
+        "estimate": 0.077,
+        "ci": [
+          0.020,
+          0.120
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "logistic"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000010",
+      "from": "CARDIO:HDL_C",
+      "to": "CARDIO:IMT",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.02,
+        "ci": [
+          -0.035,
+          -0.005
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000011",
+      "from": "CARDIO:TG",
+      "to": "CARDIO:HDL_C",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.15,
+        "ci": [
+          -0.25,
+          -0.05
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000012",
+      "from": "CARDIO:SBP",
+      "to": "RENAL:eGFR",
+      "systems": {
+        "from": "CARDIO",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -1.2,
+        "ci": [
+          -2.0,
+          -0.4
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "seed"
+    },
+    {
+      "edge_id": "E000061",
+      "from": "CARDIO:SBP_day",
+      "to": "CARDIO:LVMI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 5.0,
+        "ci": [
+          3.0,
+          7.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000062",
+      "from": "CARDIO:SBP_night",
+      "to": "CARDIO:LVMI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 6.0,
+        "ci": [
+          4.0,
+          8.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000063",
+      "from": "CARDIO:MAP",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.6,
+        "ci": [
+          0.3,
+          0.9
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000064",
+      "from": "CARDIO:PWV",
+      "to": "CARDIO:IMT_slope",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.010,
+        "ci": [
+          0.005,
+          0.015
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000065",
+      "from": "CARDIO:AIx",
+      "to": "CARDIO:cSBP",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 4.0,
+        "ci": [
+          2.0,
+          6.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P14D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000066",
+      "from": "CARDIO:cSBP",
+      "to": "CARDIO:LVMI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 4.0,
+        "ci": [
+          2.0,
+          6.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000068",
+      "from": "CARDIO:FMD",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.10,
+        "ci": [
+          -0.18,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000069",
+      "from": "CARDIO:RHI",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.50,
+        "ci": [
+          -0.90,
+          -0.10
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000070",
+      "from": "CARDIO:hsCRP",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.05,
+        "ci": [
+          0.02,
+          0.08
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000071",
+      "from": "CARDIO:hsCRP",
+      "to": "NEURO:WML",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.20,
+        "ci": [
+          0.05,
+          0.35
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000072",
+      "from": "CARDIO:LDL_C",
+      "to": "CARDIO:CAC",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 15.0,
+        "ci": [
+          8.0,
+          22.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000073",
+      "from": "CARDIO:ApoB",
+      "to": "CARDIO:CAC",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 25.0,
+        "ci": [
+          12.0,
+          38.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000074",
+      "from": "CARDIO:CAC",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.113,
+        "ci": [
+          0.057,
+          0.170
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 100
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000075",
+      "from": "CARDIO:IMT",
+      "to": "CARDIO:PAD",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.182,
+        "ci": [
+          0.095,
+          0.262
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000076",
+      "from": "CARDIO:BPV",
+      "to": "NEURO:Stroke_IS",
+      "systems": {
+        "from": "CARDIO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.105,
+        "ci": [
+          0.050,
+          0.160
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000077",
+      "from": "CARDIO:HRV_RMSSD",
+      "to": "CARDIO:AF",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(OR)",
+        "estimate": -0.077,
+        "ci": [
+          -0.130,
+          -0.025
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "logistic"
+      }
+    },
+    {
+      "edge_id": "E000082",
+      "from": "CARDIO:Thiazide_use",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -10.0,
+        "ci": [
+          -14.0,
+          -6.0
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P30D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000083",
+      "from": "CARDIO:Thiazide_use",
+      "to": "RENAL:K",
+      "systems": {
+        "from": "CARDIO",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.30,
+        "ci": [
+          -0.60,
+          -0.10
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P30D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000084",
+      "from": "CARDIO:BB_use",
+      "to": "CARDIO:HR",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -10.0,
+        "ci": [
+          -14.0,
+          -6.0
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P30D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000085",
+      "from": "CARDIO:Smoking_status",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.693,
+        "ci": [
+          0.510,
+          0.875
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000086",
+      "from": "CARDIO:Alcohol_high",
+      "to": "CARDIO:BPV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 3.0,
+        "ci": [
+          1.0,
+          5.0
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000098",
+      "from": "NEURO:NIHSS",
+      "to": "NEURO:mRS",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.25,
+        "ci": [
+          0.18,
+          0.32
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P14D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000099",
+      "from": "NEURO:PHQ9",
+      "to": "NEURO:MMSE",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.50,
+        "ci": [
+          -0.90,
+          -0.10
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000100",
+      "from": "NEURO:GAD7",
+      "to": "NEURO:MMSE",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.30,
+        "ci": [
+          -0.60,
+          -0.05
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000101",
+      "from": "NEURO:Sleepiness",
+      "to": "NEURO:ProcSpeed",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.10,
+        "ci": [
+          -0.18,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P14D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000102",
+      "from": "RENAL:Proteinuria_gd",
+      "to": "RENAL:eGFR_slope",
+      "systems": {
+        "from": "RENAL",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -2.0,
+        "ci": [
+          -3.0,
+          -1.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000103",
+      "from": "RENAL:ACR_cat",
+      "to": "RENAL:eGFR_slope",
+      "systems": {
+        "from": "RENAL",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -1.5,
+        "ci": [
+          -2.5,
+          -0.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000104",
+      "from": "RENAL:eGFR_slope",
+      "to": "RENAL:ESRD",
+      "systems": {
+        "from": "RENAL",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.095,
+        "ci": [
+          0.050,
+          0.140
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": -1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000105",
+      "from": "RENAL:CysC",
+      "to": "RENAL:eGFR",
+      "systems": {
+        "from": "RENAL",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -4.0,
+        "ci": [
+          -6.0,
+          -2.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P14D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000121",
+      "from": "METABOLIC_ENDO:WC",
+      "to": "METABOLIC_ENDO:BMI",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 1.2,
+        "ci": [
+          0.8,
+          1.6
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P14D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000122",
+      "from": "METABOLIC_ENDO:WHR",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.6,
+        "ci": [
+          0.3,
+          0.9
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000123",
+      "from": "METABOLIC_ENDO:VAT",
+      "to": "METABOLIC_ENDO:HOMA_IR",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.10,
+        "ci": [
+          0.05,
+          0.15
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000124",
+      "from": "METABOLIC_ENDO:VAT",
+      "to": "METABOLIC_ENDO:HbA1c",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.02,
+        "ci": [
+          0.01,
+          0.03
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000126",
+      "from": "METABOLIC_ENDO:ApoA1",
+      "to": "CARDIO:HDL_C",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.01,
+        "ci": [
+          0.005,
+          0.015
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000131",
+      "from": "METABOLIC_ENDO:TyG",
+      "to": "METABOLIC_ENDO:HOMA_IR",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.20,
+        "ci": [
+          0.12,
+          0.28
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P14D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000132",
+      "from": "METABOLIC_ENDO:GLP1RA_use",
+      "to": "METABOLIC_ENDO:Weight",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.6,
+        "ci": [
+          -0.9,
+          -0.3
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000133",
+      "from": "METABOLIC_ENDO:GLP1RA_use",
+      "to": "METABOLIC_ENDO:HbA1c",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.6,
+        "ci": [
+          -0.9,
+          -0.3
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000136",
+      "from": "METABOLIC_ENDO:Statin_use",
+      "to": "CARDIO:LDL_C",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -1.0,
+        "ci": [
+          -1.6,
+          -0.4
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000137",
+      "from": "METABOLIC_ENDO:Statin_use",
+      "to": "CARDIO:ApoB",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.20,
+        "ci": [
+          -0.30,
+          -0.10
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000138",
+      "from": "METABOLIC_ENDO:PCSK9i_use",
+      "to": "CARDIO:LDL_C",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -2.0,
+        "ci": [
+          -2.8,
+          -1.2
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000139",
+      "from": "METABOLIC_ENDO:PCSK9i_use",
+      "to": "CARDIO:ApoB",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.40,
+        "ci": [
+          -0.60,
+          -0.20
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000140",
+      "from": "METABOLIC_ENDO:DietaryNa",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 1.5,
+        "ci": [
+          0.8,
+          2.2
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P30D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000141",
+      "from": "METABOLIC_ENDO:Steps",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.5,
+        "ci": [
+          -0.9,
+          -0.1
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 2000
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P30D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000142",
+      "from": "METABOLIC_ENDO:Steps",
+      "to": "METABOLIC_ENDO:BMI",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.10,
+        "ci": [
+          -0.18,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 2000
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000143",
+      "from": "METABOLIC_ENDO:MVPA",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.8,
+        "ci": [
+          -1.2,
+          -0.4
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 30
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P30D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000144",
+      "from": "METABOLIC_ENDO:MVPA",
+      "to": "CARDIO:HDL_C",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.05,
+        "ci": [
+          0.02,
+          0.08
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 30
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000145",
+      "from": "METABOLIC_ENDO:MVPA",
+      "to": "CARDIO:TG",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.10,
+        "ci": [
+          -0.18,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 30
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000146",
+      "from": "METABOLIC_ENDO:VO2max",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.6,
+        "ci": [
+          -0.9,
+          -0.3
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000147",
+      "from": "METABOLIC_ENDO:VO2max",
+      "to": "METABOLIC_ENDO:HOMA_IR",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.05,
+        "ci": [
+          -0.08,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000162",
+      "from": "CARDIO:SBP",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.5,
+        "ci": [
+          0.2,
+          0.8
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000163",
+      "from": "CARDIO:DBP",
+      "to": "CARDIO:PWV",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.3,
+        "ci": [
+          0.1,
+          0.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000164",
+      "from": "CARDIO:PP",
+      "to": "CARDIO:CAC",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 20.0,
+        "ci": [
+          10.0,
+          30.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000165",
+      "from": "CARDIO:PP",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.069,
+        "ci": [
+          0.03,
+          0.11
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000166",
+      "from": "CARDIO:LAVI",
+      "to": "CARDIO:AF",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.105,
+        "ci": [
+          0.06,
+          0.15
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000167",
+      "from": "CARDIO:E_eprime",
+      "to": "CARDIO:LAVI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 1.0,
+        "ci": [
+          0.5,
+          1.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P180D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000168",
+      "from": "CARDIO:E_eprime",
+      "to": "CARDIO:HFpEF",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.095,
+        "ci": [
+          0.04,
+          0.15
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      },
+      "ident": "numeric_plausible_prior"
+    },
+    {
+      "edge_id": "E000258",
+      "from": "CARDIO:ARNI_use",
+      "to": "CARDIO:BNP",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -40.0,
+        "ci": [
+          -70.0,
+          -10.0
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000259",
+      "from": "CARDIO:ARNI_use",
+      "to": "CARDIO:HF_hosp",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": -0.287,
+        "ci": [
+          -0.46,
+          -0.11
+        ],
+        "contrast": {
+          "type": "assignment"
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000260",
+      "from": "CARDIO:LV_GLS_abs",
+      "to": "CARDIO:HF_hosp",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": -0.069,
+        "ci": [
+          -0.11,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000261",
+      "from": "CARDIO:LV_GLS_abs",
+      "to": "CARDIO:LVEF",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.6,
+        "ci": [
+          0.3,
+          0.9
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P180D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000262",
+      "from": "CARDIO:ABI",
+      "to": "CARDIO:PAD",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": -0.223,
+        "ci": [
+          -0.36,
+          -0.08
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000263",
+      "from": "CARDIO:LpPLA2_act",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.069,
+        "ci": [
+          0.03,
+          0.11
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 50
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000264",
+      "from": "CARDIO:sST2",
+      "to": "CARDIO:HF_hosp",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.105,
+        "ci": [
+          0.05,
+          0.16
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000265",
+      "from": "CARDIO:Galectin3",
+      "to": "CARDIO:HF_hosp",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.095,
+        "ci": [
+          0.04,
+          0.15
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000266",
+      "from": "CARDIO:LDL_P",
+      "to": "CARDIO:CAC",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 8.0,
+        "ci": [
+          3.0,
+          13.0
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 100
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000267",
+      "from": "CARDIO:LDL_P",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.048,
+        "ci": [
+          0.015,
+          0.085
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 100
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000268",
+      "from": "CARDIO:CFR",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": -0.105,
+        "ci": [
+          -0.16,
+          -0.05
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000269",
+      "from": "CARDIO:CFR",
+      "to": "CARDIO:LVEF",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 1.0,
+        "ci": [
+          0.5,
+          1.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P180D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000270",
+      "from": "CARDIO:hsCRP",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.048,
+        "ci": [
+          0.015,
+          0.085
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000271",
+      "from": "CARDIO:HRV_RMSSD",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "CARDIO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": -0.048,
+        "ci": [
+          -0.085,
+          -0.015
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P1Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000276",
+      "from": "NEURO:Amyloid_SUVR",
+      "to": "NEURO:Dementia",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.405,
+        "ci": [
+          0.30,
+          0.51
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.2
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P3Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000277",
+      "from": "NEURO:Tau_SUVR",
+      "to": "NEURO:CognitiveDecline",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.287,
+        "ci": [
+          0.18,
+          0.39
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 0.2
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P3Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000278",
+      "from": "NEURO:MoCA",
+      "to": "NEURO:Dementia",
+      "systems": {
+        "from": "NEURO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": -0.105,
+        "ci": [
+          -0.16,
+          -0.05
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P3Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000329",
+      "from": "METABOLIC_ENDO:Homocysteine",
+      "to": "NEURO:Stroke_IS",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "NEURO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.069,
+        "ci": [
+          0.03,
+          0.11
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P3Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000330",
+      "from": "METABOLIC_ENDO:Homocysteine",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.048,
+        "ci": [
+          0.015,
+          0.085
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P3Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000331",
+      "from": "METABOLIC_ENDO:Folate",
+      "to": "METABOLIC_ENDO:Homocysteine",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -1.0,
+        "ci": [
+          -1.6,
+          -0.4
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 2
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P60D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000332",
+      "from": "METABOLIC_ENDO:VitaminB12",
+      "to": "METABOLIC_ENDO:Homocysteine",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -1.5,
+        "ci": [
+          -2.5,
+          -0.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 200
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P60D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000333",
+      "from": "METABOLIC_ENDO:Ferritin",
+      "to": "METABOLIC_ENDO:HOMA_IR",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.10,
+        "ci": [
+          0.04,
+          0.16
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 50
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000334",
+      "from": "METABOLIC_ENDO:TransferrinSat",
+      "to": "RENAL:Hb",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "RENAL"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.3,
+        "ci": [
+          0.1,
+          0.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000343",
+      "from": "METABOLIC_ENDO:OGTT_2h_glucose",
+      "to": "METABOLIC_ENDO:HbA1c",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.20,
+        "ci": [
+          0.10,
+          0.30
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 20
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000345",
+      "from": "METABOLIC_ENDO:Ghrelin",
+      "to": "METABOLIC_ENDO:Weight",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.3,
+        "ci": [
+          0.1,
+          0.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 100
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P60D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000346",
+      "from": "METABOLIC_ENDO:GLP1",
+      "to": "METABOLIC_ENDO:Weight",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.5,
+        "ci": [
+          -0.8,
+          -0.2
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P60D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000347",
+      "from": "METABOLIC_ENDO:GLP1",
+      "to": "METABOLIC_ENDO:HbA1c",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.10,
+        "ci": [
+          -0.18,
+          -0.02
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 10
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P60D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000348",
+      "from": "METABOLIC_ENDO:TyG",
+      "to": "CARDIO:MI",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "LOG(HR)",
+        "estimate": 0.095,
+        "ci": [
+          0.05,
+          0.14
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P3Y"
+      },
+      "design": {
+        "type": "prior",
+        "model": "cox"
+      }
+    },
+    {
+      "edge_id": "E000351",
+      "from": "METABOLIC_ENDO:Weight",
+      "to": "CARDIO:SBP",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "CARDIO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.7,
+        "ci": [
+          0.3,
+          1.1
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 5
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P90D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000352",
+      "from": "METABOLIC_ENDO:BMI",
+      "to": "METABOLIC_ENDO:VO2max",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": -0.5,
+        "ci": [
+          -0.8,
+          -0.2
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 1
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P180D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000353",
+      "from": "METABOLIC_ENDO:Steps",
+      "to": "METABOLIC_ENDO:VO2max",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 0.5,
+        "ci": [
+          0.2,
+          0.8
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 2000
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P120D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    },
+    {
+      "edge_id": "E000354",
+      "from": "METABOLIC_ENDO:MVPA",
+      "to": "METABOLIC_ENDO:VO2max",
+      "systems": {
+        "from": "METABOLIC_ENDO",
+        "to": "METABOLIC_ENDO"
+      },
+      "effect": {
+        "scale": "BETA",
+        "estimate": 1.0,
+        "ci": [
+          0.5,
+          1.5
+        ],
+        "contrast": {
+          "type": "per_unit",
+          "delta": 30
+        }
+      },
+      "time_semantics": {
+        "time_horizon": "P120D"
+      },
+      "design": {
+        "type": "prior",
+        "model": "linear"
+      }
+    }
+  ]
+}

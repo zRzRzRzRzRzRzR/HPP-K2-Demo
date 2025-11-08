@@ -18,7 +18,14 @@ You are a medical assistant who is about to issue an examination order. Based on
 
 You will receive two inputs:
 
-node.json
+## Patient Information:
+
+This JSON will contain the patient’s basic information.
+patient_information: Describes details such as the patient’s age and sex, which can be used as decision factors (for example, cardiovascular or heart disease is more likely in middle-aged and elderly patients).
+chief_complaint: Contains the patient’s description of their current condition.
+review_of_systems: Usually includes only a general_health field, representing the patient’s overall health status.
+
+## Node Information:
 
 The JSON contains the following fields, with these meanings:
 label: Typical symptom or clinical manifestation. This will be matched against the patient’s reported symptoms.
@@ -28,16 +35,19 @@ system: Related organ/system category. There are four categories:
     + NEURO (neurological)
     + RENAL (renal)
     + METABOLIC (metabolic)
-node_id: This is what you must output. Only return node_ids, do not include any other text, and strictly follow the format below:
+node_id: This is what you must output, mean what you will order for examination.
 
+These details will help you accurately identify which Nodes are needed for diagnosis. You should avoid:
+1.	Outputting irrelevant types of nodes. For example, do not order localized cardiac examinations for a patient whose condition is more suggestive of a hematologic disease.
+2.	You may select 5–10 examination items; aim for precision and relevance, and avoid excessive or unnecessary items.
+
+## OUTPUT FORMAT
+
+Only return node_ids, do not include any other text, and strictly follow the format below:
 <answer>[node_id1, node_id2, node_id3]</answer>
 
 For example:
 <answer>["CARDIO:SBP_day", "CARDIO:SBP_night", "NEURO:CognitiveDecline", "RENAL:Proteinuria_gd", "RENAL:eGFR_slope"]</answer>
-
-means that these five items should be ordered for examination.
-
-Let’s begin.
 """.strip()
 
 
@@ -105,6 +115,6 @@ def run_examination_node_selection(
 
 
 if __name__ == "__main__":
-    run_examination_node_selection()
+    response = run_examination_node_selection()
     print("LLM Output with examination:")
     print(response)
