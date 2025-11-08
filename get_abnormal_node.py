@@ -1,4 +1,5 @@
 import json
+import os
 
 from utils import build_json, call_large_model_llm
 
@@ -6,9 +7,8 @@ from utils import build_json, call_large_model_llm
 def build_user_review_of_systems_json(diagnosis_path: str) -> dict:
     data = build_json(diagnosis_path)
     review = data.get("review_of_systems", {})
-    return {
-        "review_of_systems": review
-    }
+    return {"review_of_systems": review}
+
 
 SYSTEM_MESSAGE = """
 You are an assistant to an attending physician. You will receive a patient’s examination report and basic information wrapped in a JSON object.
@@ -68,7 +68,6 @@ USER_MESSAGE = """
 
 
 def build_messages(user_json: dict, node_json: dict) -> list[dict]:
-    """Build chat messages for the LLM based on filtered user_json."""
     user_json_str = json.dumps(user_json, ensure_ascii=False, indent=2)
     node_json_str = json.dumps(node_json, ensure_ascii=False, indent=2)
     user_message = f"""
@@ -92,18 +91,46 @@ Please strictly follow the instructions I provide. Identify several potentially 
     return messages
 
 
+def parse_llm_response_to_json(resp):
+    if isinstance(resp, dict):
+        return resp
+    if isinstance(resp, str):
+        resp = resp.strip()
+        # Allow the model to return extra text; try to locate JSON block
+        try:
+            return json.loads(resp)
+        except json.JSONDecodeError:
+            start = resp.find("{")
+            end = resp.rfind("}")
+            if start != -1 and end != -1 and end > start:
+                inner = resp[start : end + 1]
+                return json.loads(inner)
+    raise ValueError("LLM response is not valid JSON for abnormal_points.")
+
+
 def run_abnormal_node_selection(
     diagnosis_path: str = "example/case1/diagnosis_exam.json",
     node_path: str = "hpp_data/node.json",
+    output_filename: str = "abnormal_node.json",
 ):
     user_json = build_user_review_of_systems_json(diagnosis_path)
     node_json = build_json(node_path)
     messages = build_messages(user_json=user_json, node_json=node_json)
-    response = call_large_model_llm(messages)
-    return response
+
+    resp = call_large_model_llm(messages)
+    abnormal_json = parse_llm_response_to_json(resp)
+
+    out_dir = os.path.dirname(diagnosis_path) or "."
+    out_path = os.path.join(out_dir, output_filename)
+
+    os.makedirs(out_dir, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(abnormal_json, f, ensure_ascii=False, indent=2)
+
+    return abnormal_json
 
 
 if __name__ == "__main__":
-    response = run_abnormal_node_selection()
-    print("LLM Output with abnormal Node:")
-    print(response)
+    abnormal_json, out_path = run_abnormal_node_selection()
+    print("LLM Output with abnormal Node saved to:", out_path)
+    print(json.dumps(abnormal_json, ensure_ascii=False, indent=2))

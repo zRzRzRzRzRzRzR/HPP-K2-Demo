@@ -14,7 +14,7 @@
     "past_medical_history": "Hypertension > 20 years; chronic kidney disease (stage 3) with stable function (eGFR 45 mL/min/1.73 m²); dyslipidemia and central obesity (waist-to-hip ratio 0.90); coronary artery calcification (CAC = 480 Agatston); prior lacunar infarct and mild white-matter change (WMH_vol = 13 mL).",
     "family_medical_history": "Mother with hypertension and late-onset dementia; father with myocardial infarction at 68 years.",
     "current_medications": "ACE inhibitor (perindopril 4 mg daily); statin (atorvastatin 20 mg nightly); SGLT2 inhibitor (dapagliflozin 10 mg daily); low-salt diet advice (DietaryNa = 5 g/d; DietaryK = 2.5 g/d).",
-    "allergies": "UNknown",
+    "allergies": "UUnknown",
     "previous_hospitalizations_surgeries": "Hypertensive crisis (age 65); ischemic stroke (age 75); no operations."
   },
   "review_of_systems": {
