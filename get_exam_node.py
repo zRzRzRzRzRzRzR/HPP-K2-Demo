@@ -1,17 +1,6 @@
 import json
 
-from utils import call_large_model_llm
-
-EXCLUDED_SECTIONS = {
-    "cardiovascular",
-    "respiratory",
-    "gastrointestinal",
-    "neurological",
-    "musculoskeletal",
-    "psychiatric",
-    "other_relevant_systems",
-}
-
+from utils import build_json, call_large_model_llm
 
 SYSTEM_MESSAGE = """
 You are a medical assistant who is about to issue an examination order. Based on the examination information I provide, you will recommend a list of corresponding node_ids for typical symptoms and clinical manifestations that require attention.
@@ -51,26 +40,6 @@ For example:
 """.strip()
 
 
-def build_json(diagnosis_path: str) -> dict:
-    """Load diagnosis.json, filter review_of_systems, and return user_json dict."""
-    with open(diagnosis_path, "r", encoding="utf-8") as f:
-        diagnosis_data = json.load(f)
-
-    user_json = {}
-    for key, value in diagnosis_data.items():
-        if key == "review_of_systems" and isinstance(value, dict):
-            filtered_systems = {
-                system_name: system_data
-                for system_name, system_data in value.items()
-                if system_name not in EXCLUDED_SECTIONS
-            }
-            user_json[key] = filtered_systems
-        else:
-            user_json[key] = value
-
-    return user_json
-
-
 def build_messages(user_json: dict, node_json: dict) -> list[dict]:
     """Build chat messages for the LLM based on filtered user_json."""
     user_json_str = json.dumps(user_json, ensure_ascii=False, indent=2)
@@ -100,13 +69,6 @@ def run_examination_node_selection(
     diagnosis_path: str = "example/case1/diagnosis.json",
     node_path: str = "hpp_data/node.json",
 ):
-    """
-    Orchestrate:
-    1) load & filter diagnosis JSON,
-    2) build messages,
-    3) call large model,
-    4) print user_json and model response.
-    """
     user_json = build_json(diagnosis_path)
     node_json = build_json(node_path)
     messages = build_messages(user_json=user_json, node_json=node_json)

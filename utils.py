@@ -15,35 +15,6 @@ def load_json(file_path):
     return data
 
 
-def call_large_model_llm(messages, api_key=None, base_url=None, model=None):
-    model = model or os.getenv("K2_THINK_MODEL", "MBZUAI-IFM/K2-Think")
-    base_url = base_url or os.getenv(
-        "K2_THINK_API_URL", "https://llm-api.k2think.ai/v1/"
-    )
-    api_key = api_key or os.getenv("K2_THINK_API_KEY", "EMPTY")
-    client = OpenAI(api_key=api_key, base_url=base_url)
-    try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=0.0,
-            max_tokens=8192,
-            stream=False,
-        )
-        if response.choices[0].message.content.strip():
-            content = response.choices[0].message.content.strip()
-            pattern = r"<answer>(.*?)</answer>"
-            match = re.search(pattern, content, re.DOTALL)
-            if match:
-                return match.group(1).strip()
-            else:
-                return content
-
-    except Exception as e:
-        print(f"Error in call_large_model as {e}")
-        return {}
-
-
 def call_embedding(texts, model="embedding-3"):
     if isinstance(texts, list):
         texts = [" " if text == "" else text for text in texts]
@@ -67,15 +38,6 @@ def cosine_similarity(a, b):
     return float(np.dot(a, b) / (norm_a * norm_b))
 
 
-def clean_response(response_str):
-    response_str = response_str.strip()
-    if response_str.startswith("```") and response_str.endswith("```"):
-        lines = response_str.split("\n")
-        lines = lines[1:-1]
-        response_str = "\n".join(lines).strip()
-    return response_str
-
-
 def call_embeddings_batch(texts, model="embedding-3", batch_size=10):
     client = OpenAI()
     embeddings = []
@@ -86,3 +48,40 @@ def call_embeddings_batch(texts, model="embedding-3", batch_size=10):
             emb = np.array(item.embedding, dtype="float32")
             embeddings.append(emb)
     return embeddings
+
+
+def build_json(diagnosis_path: str) -> dict:
+    with open(diagnosis_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def format_response(content: str) -> str:
+    if not content:
+        return ""
+
+    content = content.strip()
+    pattern = r"<answer>(.*?)</answer>"
+    match = re.search(pattern, content, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return content
+
+
+def call_large_model_llm(messages, api_key=None, base_url=None, model=None):
+    model = model or os.getenv("K2_THINK_MODEL", "MBZUAI-IFM/K2-Think")
+    base_url = base_url or os.getenv(
+        "K2_THINK_API_URL", "https://llm-api.k2think.ai/v1/"
+    )
+    api_key = api_key or os.getenv("K2_THINK_API_KEY", "EMPTY")
+
+    client = OpenAI(api_key=api_key, base_url=base_url)
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=0.0,
+        max_tokens=8192,
+        stream=False,
+    )
+
+    raw_content = (response.choices[0].message.content or "").strip()
+    return format_response(raw_content)

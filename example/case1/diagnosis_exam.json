@@ -19,5 +19,12 @@
   },
   "review_of_systems": {
     "general_health": "Moderate fatigue and reduced exercise capacity. BMI 27.5 kg/m²; waist circumference 92 cm; waist-to-hip ratio 0.90.",
+    "cardiovascular": "Office BP 156/88 mm Hg; heart rate 72 bpm. Ambulatory monitoring shows daytime SBP 155 mm Hg, nighttime SBP 142 mm Hg, and mean arterial pressure 107 mm Hg. Central hemodynamics: cSBP 139 mm Hg; augmentation pressure 13 mm Hg. Arterial function: PWV 12.4 m/s; RHI 1.6. Echocardiography: LV mass index 110 g/m²; preserved LVEF 56 %. CT: Coronary calcium 480 Agatston.",
+    "respiratory": "Breathes normally at rest; short of breath after stairs; SpO2 98 % on room air.",
+    "gastrointestinal": "Appetite fair; no nausea or vomiting; prefers salty soups and preserved foods.",
+    "neurological": "Mild slowness of movement and attention. MRI shows white-matter hyperintensity volume 13 mL. Mini-mental status 26/30.",
+    "musculoskeletal": "Normal strength; mild deconditioning from low activity.",
+    "psychiatric": "Mild depressive symptoms (PHQ-9 = 10); daytime sleepiness score 11. No psychosis or anxiety.",
+    "other_relevant_systems": "eGFR 45 mL/min/1.73 m²; serum phosphate 5.0 mg/dL; parathyroid hormone 85 pg/mL; FGF23 170 pg/mL. Urine protein 1.0 g/day. No stone history."
   }
 }

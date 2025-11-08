@@ -1,5 +1,3 @@
-# pdf_converter.py
-
 import base64
 import json
 import os
@@ -11,6 +9,29 @@ from openai import OpenAI
 from pdf2image import convert_from_path
 
 load_dotenv()
+
+SYSTEM_PROMPT = """ 
+You are a precise medical information extraction model.
+
+- Output only valid JSON that matches the provided json_schema.
+- Do not include any field whose value is unknown, missing, or not explicitly supported by the images.
+- Do not hallucinate, infer, or guess any values.
+- Do not add new fields, and do not rename any existing key.
+- Do not wrap the JSON in markdown, code fences, or explanations.
+"""
+
+USER_PROMPT = """
+You are a clinical data extraction assistant.
+You will be given one or more images of a patient intake/consultation form and clinical notes.
+Read all images carefully and extract information into the specified JSON schema.
+Only use information that is explicitly present in the images.
+1. If a field has no explicit information, omit this field from the JSON output.
+2. Keep a parent object only if at least one of its child fields is present.
+3. Do not add any extra fields beyond the schema keys.
+4. Do not change key names.
+5. Copy dates exactly as shown.
+6. If a severity score from 1 to 10 exists, output it as a string (e.g. \"7\"); otherwise omit that field.
+"""
 
 
 def empty_schema() -> Dict[str, Any]:
@@ -49,28 +70,19 @@ def empty_schema() -> Dict[str, Any]:
 
 
 def pdf_to_images_base64(pdf_path: str, dpi: int = 200) -> List[str]:
-    """
-    将 PDF 每一页转换为 PNG，并返回 base64 字符串列表（不带 data:image 前缀）。
-    """
     if not os.path.exists(pdf_path):
         raise FileNotFoundError(f"PDF not found: {pdf_path}")
-
     pages = convert_from_path(pdf_path, dpi=dpi)
     images_b64: List[str] = []
-
     for page in pages:
         buf = BytesIO()
         page.save(buf, format="PNG")
         b64 = base64.b64encode(buf.getvalue()).decode("utf-8")
         images_b64.append(b64)
-
     return images_b64
 
 
 def get_json_schema() -> Dict[str, Any]:
-    """
-    与 empty_schema 对应的 JSON Schema，用于强约束输出。
-    """
     return {
         "type": "object",
         "properties": {
@@ -84,14 +96,6 @@ def get_json_schema() -> Dict[str, Any]:
                     "referring_physician": {"type": "string"},
                     "insurance_information": {"type": "string"},
                 },
-                "required": [
-                    "name",
-                    "patient_id",
-                    "date_of_birth",
-                    "date_of_evaluation",
-                    "referring_physician",
-                    "insurance_information",
-                ],
                 "additionalProperties": False,
             },
             "chief_complaint": {
@@ -101,11 +105,6 @@ def get_json_schema() -> Dict[str, Any]:
                     "duration": {"type": "string"},
                     "severity_1_to_10": {"type": "string"},
                 },
-                "required": [
-                    "primary_complaint",
-                    "duration",
-                    "severity_1_to_10",
-                ],
                 "additionalProperties": False,
             },
             "medical_history": {
@@ -117,13 +116,6 @@ def get_json_schema() -> Dict[str, Any]:
                     "allergies": {"type": "string"},
                     "previous_hospitalizations_surgeries": {"type": "string"},
                 },
-                "required": [
-                    "past_medical_history",
-                    "family_medical_history",
-                    "current_medications",
-                    "allergies",
-                    "previous_hospitalizations_surgeries",
-                ],
                 "additionalProperties": False,
             },
             "review_of_systems": {
@@ -138,60 +130,30 @@ def get_json_schema() -> Dict[str, Any]:
                     "psychiatric": {"type": "string"},
                     "other_relevant_systems": {"type": "string"},
                 },
-                "required": [
-                    "general_health",
-                    "cardiovascular",
-                    "respiratory",
-                    "gastrointestinal",
-                    "neurological",
-                    "musculoskeletal",
-                    "psychiatric",
-                    "other_relevant_systems",
-                ],
                 "additionalProperties": False,
             },
         },
-        "required": [
-            "patient_information",
-            "chief_complaint",
-            "medical_history",
-            "review_of_systems",
-        ],
         "additionalProperties": False,
     }
 
 
-def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
-    if not images_b64:
-        return empty_schema()
-
+def extract_structured_data(images_b64: List[str]) -> Dict[str, Any]:
     client = OpenAI()
     schema = get_json_schema()
-
-    user_content = [
+    user_content: List[Dict[str, Any]] = [
         {
             "type": "text",
-            "text": (
-                "You are a clinical data extraction assistant. "
-                "You will be given one or more images of a patient intake/consultation form "
-                "and clinical notes. Read all images carefully and extract information into "
-                "the specified JSON schema.\n"
-                "Rules:\n"
-                "- Only use information that is explicitly present in the images.\n"
-                "- If a field is unknown, missing, or not clearly stated, use an empty string.\n"
-                "- Do NOT add new fields.\n"
-                "- Do NOT change key names.\n"
-                "- Dates should be copied exactly as shown.\n"
-                "- Severity_1_to_10 should be the numeric string if available, else empty.\n"
-            ),
+            "text": USER_PROMPT,
         }
     ]
-
     for b64 in images_b64:
         user_content.append(
             {
                 "type": "image_url",
-                "image_url": {"url": f"data:image/png;base64,{b64}"},
+                "image_url": {
+                    "url": f"data:image/png;base64,{b64}",
+                    "detail": "high",
+                },
             }
         )
 
@@ -201,11 +163,7 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
             "content": [
                 {
                     "type": "text",
-                    "text": (
-                        "You are a precise medical information extraction model. "
-                        "Output only valid JSON that matches the provided json_schema. "
-                        "No explanations."
-                    ),
+                    "text": SYSTEM_PROMPT,
                 }
             ],
         },
@@ -214,7 +172,6 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
             "content": user_content,
         },
     ]
-
     resp = client.chat.completions.create(
         model="gpt-5",
         messages=messages,
@@ -223,7 +180,6 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
             "json_schema": {
                 "name": "patient_intake_extraction",
                 "schema": schema,
-                "strict": True,
             },
         },
     )
@@ -231,42 +187,25 @@ def extract_structured_data_with_gpt5(images_b64: List[str]) -> Dict[str, Any]:
     return json.loads(content)
 
 
-def pdf_to_json_via_gpt(pdf_path: str, output_json_path: str) -> Dict[str, Any]:
-    print(f"Processing PDF (via screenshots + GPT-5): {pdf_path}")
-    print("=" * 60)
-
+def pdf_to_json(pdf_path: str, output_json_path: str) -> Dict[str, Any]:
     images_b64 = pdf_to_images_base64(pdf_path)
-    print(f"Total pages converted to images: {len(images_b64)}")
-
-    result = extract_structured_data_with_gpt5(images_b64)
-
+    result = extract_structured_data(images_b64)
     print("\nExtracted JSON Data:")
     print("-" * 30)
     print(json.dumps(result, ensure_ascii=False, indent=2))
-
     os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
     with open(output_json_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-
-    print("\n" + "=" * 60)
-    print(f"JSON data saved to: {output_json_path}")
-
     return result
 
 
 def convert_pdf_to_json(pdf_path: str) -> str:
-    """
-    对外统一接口：
-    - 输入 PDF 路径
-    - 在同目录生成 diagnosis.json
-    - 返回 diagnosis.json 的路径（给后续检查节点选择用）
-    """
-    base_dir = os.path.dirname(pdf_path)
-    output_json_path = os.path.join(base_dir, "diagnosis.json")
-    pdf_to_json_via_gpt(pdf_path, output_json_path)
+    output_json_path = os.path.splitext(pdf_path)[0] + ".json"
+    pdf_to_json(pdf_path, output_json_path)
     return output_json_path
 
 
 if __name__ == "__main__":
-    pdf_path = "example/case1/diagnosis.pdf"
+    # pdf_path = "example/case1/diagnosis.pdf"
+    pdf_path = "example/case1/diagnosis_exam.pdf"
     convert_pdf_to_json(pdf_path)

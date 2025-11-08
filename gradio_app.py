@@ -5,7 +5,8 @@ from typing import Optional
 
 import gradio as gr
 
-from get_json import run_examination_node_selection
+from get_abnormal_node import run_abnormal_node_selection
+from get_exam_node import run_examination_node_selection
 from pdf_converter import convert_pdf_to_json
 
 
@@ -140,7 +141,7 @@ def simulate_workflow(pdf_file, case_dir):
             "Step 1 · Parse case & suggest initial examinations</div>"
             "<div>Status: ⚠ No node_id list returned.</div>"
             "<div style='margin-top:4px; font-size:12px;'>"
-            "Please run <code>get_json.py</code> manually and check that "
+            "Please run <code>get_exam_node.py</code> manually and check that "
             "<code>utils.call_large_model_llm</code> extracts the &lt;answer&gt;[...]&lt;/answer&gt; block."
             "</div>"
             "</div>"

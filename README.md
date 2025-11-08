@@ -29,5 +29,3 @@ This part of the data is derived from the HPP dataset provided by MBZUAI and is 
 
 `node.json`: Contains all node information across the four major systems.
 `edge.json`: Contains the causal relationships between different indicators in the HPP dataset.
-
-
