@@ -1,0 +1,32 @@
+{
+  "patient_information": {
+    "name": "Ayana",
+    "patient_id": "29803",
+    "date_of_birth": "",
+    "date_of_evaluation": "November 7, 2025",
+    "referring_physician": "Dr. Alex (Cardionephrology Unit)",
+    "insurance_information": ""
+  },
+  "chief_complaint": {
+    "primary_complaint": "Progressive cognitive slowing, fatigue, and shortness of breath on exertion; recent transient ischemic episode (suspected small-vessel origin).",
+    "duration": "3 years",
+    "severity_1_to_10": "7"
+  },
+  "medical_history": {
+    "past_medical_history": "Hypertension for >20 years; Coronary artery calcium (CAC) markedly elevated; Long-standing dyslipidemia with central adiposity; White-matter hyperintensities (WMH) on MRI; Elevated BNP; Single ischemic stroke",
+    "family_medical_history": "Mother: hypertension and late-onset dementia. Father: myocardial infarction at 68 years.",
+    "current_medications": "ACE inhibitor (perindopril 4 mg daily) for hypertension. Statin (atorvastatin 20 mg nightly) for dyslipidemia. SGLT2 inhibitor (dapagliflozin 10 mg daily) for renal protection. Low-salt dietary advice",
+    "allergies": "No known drug allergies",
+    "previous_hospitalizations_surgeries": "Hypertensive crisis admission (age 65). Ischemic stroke admission (age 75). No surgeries."
+  },
+  "review_of_systems": {
+    "general_health": "Reports chronic fatigue, decreased exercise tolerance, and mild lower-limb edema. BMI 27.5 (overweight). No recent weight loss.",
+    "cardiovascular": "High SBP day and night; Elevated MAP and arterial stiffness; Mild concentric LV hypertrophy; preserved LVEF ~55%; BNP 185 pg/mL (indicating early diastolic dysfunction); Severe CAC (Agatston score >400).",
+    "respiratory": "Occasional dyspnea on exertion; lungs clear; no COPD or asthma.",
+    "gastrointestinal": "High-salt intake from preserved foods; otherwise normal appetite and bowel habits.",
+    "neurological": "Prior ischemic stroke; Mild executive and processing-speed decline; PHQ-9 score 10; No seizures or new focal deficits.",
+    "musculoskeletal": "Mild muscle weakness (likely deconditioning); no focal arthritis or fractures.",
+    "psychiatric": "Mild depressive symptoms post-stroke; no psychosis. Normal affect, slow response time.",
+    "other_relevant_systems": ""
+  }
+}
