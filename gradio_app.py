@@ -1049,4 +1049,4 @@ def create_interface():
 
 if __name__ == "__main__":
     app = create_interface()
-    app.launch()
+    app.launch(server_port=8000)
