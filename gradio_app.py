@@ -1003,7 +1003,6 @@ def create_interface():
                 final_report_html,
                 final_report_file,
             ],
-            show_progress=False,
         )
 
         run_event.then(
@@ -1030,7 +1029,6 @@ def create_interface():
                 final_report_html,
                 final_report_file,
             ],
-            show_progress=False,
         )
 
         reset_event.then(
@@ -1044,7 +1042,6 @@ def create_interface():
             fn=render_graph,
             inputs=[step_state],
             outputs=graph_html,
-            show_progress=False,
         )
 
     return demo
