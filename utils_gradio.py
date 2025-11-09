@@ -1,7 +1,9 @@
 import json
 import os
 from typing import Optional
+
 import gradio as gr
+
 VIEW_HEIGHT = 420
 
 HTML_TEMPLATE = r"""<!doctype html>
@@ -14,7 +16,7 @@ HTML_TEMPLATE = r"""<!doctype html>
     body {
       margin: 0;
       padding: 0;
-      background: #f9fafb;
+      background: #ffffff;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
     .viewer {
@@ -23,7 +25,7 @@ HTML_TEMPLATE = r"""<!doctype html>
       border: 1px solid #e5e7eb;
       border-radius: 8px;
       overflow: hidden;
-      background: #000000;
+      background: #ffffff;
       position: relative;
       box-sizing: border-box;
     }
@@ -33,36 +35,10 @@ HTML_TEMPLATE = r"""<!doctype html>
       border: 0;
       display: block;
     }
-    .fullscreen-toggle {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      padding: 4px 10px;
-      font-size: 10px;
-      border-radius: 999px;
-      border: none;
-      background: rgba(15,23,42,0.9);
-      color: #f9fafb;
-      cursor: pointer;
-      z-index: 20;
-    }
-    .viewer-fullscreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-      border: none;
-      margin: 0;
-      z-index: 99999;
-      background: #000000;
-    }
   </style>
 </head>
 <body>
-  <div class="viewer" id="viewer">
-    <button class="fullscreen-toggle" id="fs-btn">Fullscreen</button>
+  <div class="viewer">
     <iframe
       sandbox="allow-scripts allow-same-origin"
       srcdoc='<!doctype html>
@@ -70,7 +46,7 @@ HTML_TEMPLATE = r"""<!doctype html>
 <head>
   <meta charset="utf-8" />
   <style>
-    html, body { height: 100%; margin: 0; background: #000000; overflow: hidden; }
+    html, body { height: 100%; margin: 0; background: #ffffff; overflow: hidden; }
     #3d-graph { position: fixed; inset: 0; }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/3d-force-graph"></script>
@@ -86,7 +62,7 @@ HTML_TEMPLATE = r"""<!doctype html>
     let hoverNode = null;
 
     const Graph = new ForceGraph3D(document.getElementById("3d-graph"))
-      .backgroundColor("#000000")
+      .backgroundColor("#ffffff")
       .linkDirectionalArrowLength(3.5)
       .linkDirectionalArrowRelPos(1)
       .linkCurvature(0.25)
@@ -97,7 +73,7 @@ HTML_TEMPLATE = r"""<!doctype html>
       .nodeThreeObject(node => {
         const sprite = new SpriteText(String(node.id));
         sprite.material.depthWrite = false;
-        sprite.color = node.color || "#ffffff";
+        sprite.color = node.color || "#000000";
         sprite.textHeight = 8;
         sprite.center.y = -0.6;
         return sprite;
@@ -134,7 +110,7 @@ HTML_TEMPLATE = r"""<!doctype html>
           if (highlightNodes.has(node)) {
             return node === hoverNode ? "#ff0000" : "#ffa000";
           }
-          return node.color || "#ffffff";
+          return node.color || "#000000";
         })
         .linkWidth(Graph.linkWidth())
         .linkDirectionalParticles(Graph.linkDirectionalParticles());
@@ -181,23 +157,6 @@ HTML_TEMPLATE = r"""<!doctype html>
 </html>'>
     </iframe>
   </div>
-  <script>
-    const viewer = document.getElementById("viewer");
-    const btn = document.getElementById("fs-btn");
-    if (viewer && btn) {
-      let isFullscreen = false;
-      btn.addEventListener("click", () => {
-        isFullscreen = !isFullscreen;
-        if (isFullscreen) {
-          viewer.classList.add("viewer-fullscreen");
-          btn.textContent = "Exit";
-        } else {
-          viewer.classList.remove("viewer-fullscreen");
-          btn.textContent = "Fullscreen";
-        }
-      });
-    }
-  </script>
 </body>
 </html>
 """
