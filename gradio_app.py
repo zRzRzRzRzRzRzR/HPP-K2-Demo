@@ -624,7 +624,6 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
     if step_state == 4:
         resolved_case_dir = resolve_case_dir(current_case_dir)
         candidates_path = find_json(resolved_case_dir, "candidates")
-        breakpoint()
         if not candidates_path or not os.path.exists(candidates_path):
             edge_select_path = find_json(resolved_case_dir, "edge_select")
             node_path = os.path.join("hpp_data", "node.json")
