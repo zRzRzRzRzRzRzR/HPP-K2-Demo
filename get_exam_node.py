@@ -74,9 +74,3 @@ def run_examination_node_selection(
     messages = build_messages(user_json=user_json, node_json=node_json)
     response = call_large_model_llm(messages)
     return response
-
-
-if __name__ == "__main__":
-    response = run_examination_node_selection()
-    print("LLM Output with examination:")
-    print(response)

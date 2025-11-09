@@ -174,8 +174,3 @@ def run_therapy_record_selection(
         f.write(str(response))
 
     return response
-
-
-if __name__ == "__main__":
-    resp = run_therapy_record_selection()
-    print(resp)
