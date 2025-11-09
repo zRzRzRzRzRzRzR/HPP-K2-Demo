@@ -332,37 +332,78 @@ def build_targets_from_input(
     }
 
 
-def main():
-    node_file = "hpp_data/node.json"
-    edge_file = "hpp_data/edge.json"
-    drug_kb_file = "hpp_data/drug.json"
-    abnormal_json_file = "example/case1/abnormal_node.json"
-    out_file = "example/case1/edge_select.json"
+def run_target_node_selection(
+    abnormal_input_path: str = "example/case1/abnormal_node.json",
+    node_path: str = "hpp_data/node.json",
+    edge_path: str = "hpp_data/edge.json",
+    drug_kb_path: str = "hpp_data/drug.json",
+    output_path: Optional[str] = None,
+    max_hops: int = 3,
+    prefer_strong_edges: bool = True,
+) -> dict:
+    """
+    Run target node selection based on abnormal nodes.
 
-    for p in [node_file, edge_file, drug_kb_file, abnormal_json_file]:
-        if not os.path.exists(p):
-            raise FileNotFoundError(f"File not found: {p}")
+    Args:
+        abnormal_input_path: Path to abnormal node input JSON file
+        node_path: Path to graph node data file
+        edge_path: Path to graph edge data file
+        drug_kb_path: Path to drug knowledge base file
+        output_path: Optional path to save output JSON (if None, won't save to file)
+        max_hops: Maximum hops for reverse BFS search
+        prefer_strong_edges: Whether to prefer edges with strong evidence
 
-    graph = load_graph(node_file=node_file, edge_file=edge_file)
-    drug_index = load_drug_kb(drug_kb_file=drug_kb_file)
-    abnormal_input = build_json(abnormal_json_file)
+    Returns:
+        dict: Result containing targets, unmatched nodes, and metadata
 
+    Raises:
+        FileNotFoundError: If any required input file does not exist
+    """
+    # Validate input files
+    for path in [node_path, edge_path, drug_kb_path, abnormal_input_path]:
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"File not found: {path}")
+
+    # Load graph and drug knowledge base
+    graph = load_graph(node_file=node_path, edge_file=edge_path)
+    drug_index = load_drug_kb(drug_kb_file=drug_kb_path)
+    abnormal_input = build_json(abnormal_input_path)
+
+    # Build targets from input
     result = build_targets_from_input(
         abnormal_input=abnormal_input,
         graph=graph,
         drug_index=drug_index,
+        max_hops=max_hops,
+        prefer_strong_edges=prefer_strong_edges,
+    )
+
+    # Save to file if output path is provided
+    if output_path:
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+
+        n_targets = len(result.get("targets", []))
+        n_unmatched = len(result.get("unmatched_abnormal_nodes", []))
+        print(f"[Info] Targets: {n_targets}, Unmatched abnormal nodes: {n_unmatched}")
+        print(f"[Info] Wrote output to: {output_path}")
+
+    return result
+
+
+def main():
+    """Command-line entry point for target node selection."""
+    result = run_target_node_selection(
+        abnormal_input_path="example/case1/abnormal_node.json",
+        node_path="hpp_data/node.json",
+        edge_path="hpp_data/edge.json",
+        drug_kb_path="hpp_data/drug.json",
+        output_path="example/case1/edge_select.json",
         max_hops=3,
         prefer_strong_edges=True,
     )
-
-    os.makedirs(os.path.dirname(out_file), exist_ok=True)
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
-
-    n_targets = len(result.get("targets", []))
-    n_unmatched = len(result.get("unmatched_abnormal_nodes", []))
-    print(f"[Info] Targets: {n_targets}, Unmatched abnormal nodes: {n_unmatched}")
-    print(f"[Info] Wrote output to: {out_file}")
+    return result
 
 
 if __name__ == "__main__":

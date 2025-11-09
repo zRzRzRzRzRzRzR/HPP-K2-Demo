@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 venv
-
+gradio_temp
 # C extensions
 *.so
 

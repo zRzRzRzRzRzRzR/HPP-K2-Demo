@@ -190,8 +190,6 @@ def extract_structured_data(images_b64: List[str]) -> Dict[str, Any]:
 def pdf_to_json(pdf_path: str, output_json_path: str) -> Dict[str, Any]:
     images_b64 = pdf_to_images_base64(pdf_path)
     result = extract_structured_data(images_b64)
-    print("\nExtracted JSON Data:")
-    print("-" * 30)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
     with open(output_json_path, "w", encoding="utf-8") as f:
@@ -203,9 +201,3 @@ def convert_pdf_to_json(pdf_path: str) -> str:
     output_json_path = os.path.splitext(pdf_path)[0] + ".json"
     pdf_to_json(pdf_path, output_json_path)
     return output_json_path
-
-
-if __name__ == "__main__":
-    # pdf_path = "example/case1/diagnosis.pdf"
-    pdf_path = "example/case1/diagnosis_exam.pdf"
-    convert_pdf_to_json(pdf_path)

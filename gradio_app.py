@@ -1,9 +1,13 @@
 import json
 import os
 
+import dotenv
 import gradio as gr
 
+dotenv.load_dotenv()
+
 from get_abnormal_node import run_abnormal_node_selection
+from get_edge import run_target_node_selection
 from get_exam_node import run_examination_node_selection
 from get_report import run_therapy_record_selection
 from pdf_converter import convert_pdf_to_json
@@ -338,6 +342,7 @@ def build_step5_block(pre_rx_output, previous_html: str) -> str:
         "<summary>Step 5 · Final regimen pathways (from pre_rx.json)</summary>"
         "<div class='step-body teal'>"
         "<div class='note'>Each row shows a drug, its key target, expected change, and causal path towards outcomes.</div>"
+        "<div style='overflow-x: auto; max-width: 100%;'>"
         "<table class='table'>"
         "<thead>"
         "<tr>"
@@ -355,6 +360,7 @@ def build_step5_block(pre_rx_output, previous_html: str) -> str:
         f"{rows_html}"
         "</tbody>"
         "</table>"
+        "</div>"
         "</div>"
         "</details>"
     )
@@ -506,8 +512,9 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
         )
         case_dir_input_update = gr.update(value=case_dir)
         graph_html_value = get_graph_html(2)
+        pdf_update = gr.update(value=None, visible=True)
         return (
-            gr.update(),
+            pdf_update,
             case_dir_input_update,
             case_dir,
             step1_html,
@@ -560,7 +567,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
             )
         abnormal_output = run_abnormal_node_selection(
             exam_json_path,
-            "hpp_data/node.json",
+            node_path="hpp_data/node.json",
         )
         html = build_step2_block(abnormal_output, previous_html)
         case_dir_input_update = gr.update(value=resolved_case_dir)
@@ -585,27 +592,13 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
         resolved_case_dir = resolve_case_dir(current_case_dir)
         edge_path = find_json(resolved_case_dir, "edge_select")
         if not edge_path or not os.path.exists(edge_path):
-            html = (
-                previous_html + "<details open class='step-card'>"
-                "<summary>Step 3 · Causal Targets & Strategies</summary>"
-                "<div class='step-body gray'>No edge_select.json found.</div>"
-                "</details>"
+            result = run_target_node_selection(
+                abnormal_input_path=current_case_dir + "/abnormal_node.json",
+                output_path=current_case_dir + "/edge_select.json",
             )
-            graph_html_value = get_graph_html(3)
-            return (
-                gr.update(value=None, visible=False),
-                case_dir_input_update,
-                resolved_case_dir,
-                previous_html,
-                html,
-                "Step 3 · Causal Targets & Strategies",
-                gr.update(value="Run Step 3"),
-                3,
-                graph_btn_update,
-                graph_html_value,
-                final_report_html_update,
-                final_report_file_update,
-            )
+            print(result)
+            resolved_case_dir = resolve_case_dir(current_case_dir)
+            edge_path = find_json(resolved_case_dir, "edge_select")
         with open(edge_path, "r", encoding="utf-8") as f:
             edge_output = json.load(f)
         final_html = build_step3_block(edge_output, previous_html)
@@ -814,8 +807,8 @@ def reset_all():
     graph_html_value = get_graph_html(1)
     return (
         gr.update(value=None, visible=True),
-        "example/case1",
-        "example/case1",
+        None,
+        None,
         "",
         initial_html,
         "Step 1 · Initial Diagnosis",
@@ -829,7 +822,7 @@ def reset_all():
 
 
 def create_interface():
-    initial_case_dir = "example/case1"
+    initial_case_dir = None
     initial_step = 1
     initial_graph_html = get_graph_html(initial_step)
     initial_workflow_html = (
@@ -1049,4 +1042,4 @@ def create_interface():
 
 if __name__ == "__main__":
     app = create_interface()
-    app.launch(server_port=8000)
+    app.launch(server_name="0.0.0.0", server_port=12305)
