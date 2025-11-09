@@ -179,7 +179,6 @@ def edges_to_path_dict(path_edges: List[Edge]) -> List[dict]:
                 "raw_effect": eff,
             }
         )
-    print(f"[Debug] Converted path edges to dict: {out}")
     return out
 
 

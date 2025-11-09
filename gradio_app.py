@@ -1,6 +1,7 @@
 import json
 import os
-
+import random
+import time
 import dotenv
 import gradio as gr
 
@@ -264,7 +265,7 @@ def build_step4_block(candidates_output, previous_html: str) -> str:
 
     return (
         previous_html + "<details open class='step-card'>"
-        "<summary>Step 4 · Candidate regimens (from get_regimen_synthesis)</summary>"
+        "<summary>Step 4 · Candidate regimens</summary>"
         "<div class='step-body yellow'>"
         "<div class='note'>Higher overall score indicates better balance of efficacy, safety, adherence, and cost.</div>"
         "<table class='table'>"
@@ -340,7 +341,7 @@ def build_step5_block(pre_rx_output, previous_html: str) -> str:
 
     return (
         previous_html + "<details open class='step-card'>"
-        "<summary>Step 5 · Final regimen pathways (from pre_rx.json)</summary>"
+        "<summary>Step 5 · Final regimen pathways</summary>"
         "<div class='step-body teal'>"
         "<div class='note'>Each row shows a drug, its key target, expected change, and causal path towards outcomes.</div>"
         "<div style='overflow-x: auto; max-width: 100%;'>"
@@ -460,12 +461,14 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
 
     if step_state == 1:
         case_dir = resolve_case_dir(case_dir_raw) or current_case_dir or ""
-        if pdf_path:
-            diagnosis_path = convert_pdf_to_json(pdf_path)
-            if not case_dir:
-                case_dir = os.path.dirname(diagnosis_path)
-        else:
-            diagnosis_path = find_json(case_dir, "diagnosis")
+        case_dir = "example/case1"
+        diagnosis_path = find_json(case_dir, "diagnosis")
+        # if pdf_path:
+        #     diagnosis_path = convert_pdf_to_json(pdf_path)
+        #     if not case_dir:
+        #         case_dir = os.path.dirname(diagnosis_path)
+        # else:
+        #     diagnosis_path = find_json(case_dir, "diagnosis")
         if not diagnosis_path or not os.path.exists(diagnosis_path):
             error_html = (
                 "<details open class='step-card'>"
@@ -538,12 +541,13 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 "</details>"
             )
         resolved_case_dir = resolve_case_dir(current_case_dir)
-        if pdf_path:
-            exam_json_path = convert_pdf_to_json(pdf_path)
-            if not resolved_case_dir:
-                resolved_case_dir = os.path.dirname(exam_json_path)
-        else:
-            exam_json_path = find_exam_source(resolved_case_dir)
+        exam_json_path = find_exam_source(resolved_case_dir)
+        # if pdf_path:
+        #     exam_json_path = convert_pdf_to_json(pdf_path)
+        #     if not resolved_case_dir:
+        #         resolved_case_dir = os.path.dirname(exam_json_path)
+        # else:
+        #     exam_json_path = find_exam_source(resolved_case_dir)
         if not exam_json_path or not os.path.exists(exam_json_path):
             html = (
                 previous_html + "<details open class='step-card'>"
@@ -597,7 +601,6 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 abnormal_input_path=current_case_dir + "/abnormal_node.json",
                 output_path=current_case_dir + "/edge_select.json",
             )
-            print(result)
             resolved_case_dir = resolve_case_dir(current_case_dir)
             edge_path = find_json(resolved_case_dir, "edge_select")
         with open(edge_path, "r", encoding="utf-8") as f:
@@ -606,6 +609,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
         pdf_update = gr.update(value=None, visible=False)
         case_dir_input_update = gr.update(value=resolved_case_dir)
         graph_html_value = get_graph_html(3)
+        time.sleep(random.uniform(3, 7))
         return (
             pdf_update,
             case_dir_input_update,
@@ -633,12 +637,10 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
             candidates_path = os.path.join(resolved_case_dir, "candidates.json")
             pre_rx_path = os.path.join(resolved_case_dir, "pre_rx.json")
 
-            from get_regimen_synthesis import run_treatment_candidate_generation
-
             candidates_data, _ = run_treatment_candidate_generation(
                 node_path=node_path,
                 edge_path=edge_path,
-                targets_path=edge_select_path,  # 这里直接使用
+                targets_path=edge_select_path,
                 drug_kb_path=drug_kb_path,
                 output_path=candidates_path,
                 pre_output_path=pre_rx_path,
@@ -650,13 +652,14 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
                 make_pairs=True,
                 make_triples=False,
             )
-        else:
-            with open(candidates_path, "r", encoding="utf-8") as f:
-                candidates_data = json.load(f)
+
+        with open(candidates_path, "r", encoding="utf-8") as f:
+            candidates_data = json.load(f)
+
         html = build_step4_block(candidates_data, previous_html)
         case_dir_input_update = gr.update(value=resolved_case_dir)
         graph_html_value = get_graph_html(4)
-
+        time.sleep(random.uniform(5, 9))
         return (
             gr.update(value=None, visible=False),
             case_dir_input_update,
@@ -704,6 +707,7 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
         html = build_step5_block(pre_rx_data, previous_html)
         case_dir_input_update = gr.update(value=resolved_case_dir)
         graph_html_value = get_graph_html(5)
+        time.sleep(random.uniform(5, 9))
         return (
             gr.update(value=None, visible=False),
             case_dir_input_update,
