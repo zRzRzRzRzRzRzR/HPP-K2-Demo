@@ -249,3 +249,25 @@ def build_diagnosis_preview_html(diagnosis_path: str) -> str:
         "</pre>"
         "</details>"
     )
+
+
+def get_graph_html(step_state: int) -> str:
+    json_path = "hpp_data/causal_graph.json"
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, dict):
+        data["_current_step"] = step_state
+    graph_json = json.dumps(data, ensure_ascii=False)
+    html = HTML_TEMPLATE.replace("{GRAPH_JSON}", graph_json).replace(
+        "{VIEW_HEIGHT}", str(VIEW_HEIGHT)
+    )
+    return html
+
+
+def render_graph(step_state):
+    html = get_graph_html(step_state or 1)
+    return gr.update(value=html, visible=True)
+
+
+def html_escape(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")

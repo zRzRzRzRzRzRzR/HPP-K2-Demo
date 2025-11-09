@@ -8,35 +8,14 @@ from get_exam_node import run_examination_node_selection
 from get_report import run_therapy_record_selection
 from pdf_converter import convert_pdf_to_json
 from utils_gradio import (
-    HTML_TEMPLATE,
-    VIEW_HEIGHT,
     build_diagnosis_preview_html,
     find_exam_source,
     find_json,
+    get_graph_html,
+    html_escape,
+    render_graph,
     resolve_case_dir,
 )
-
-
-def get_graph_html(step_state: int) -> str:
-    json_path = "hpp_data/causal_graph.json"
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    if isinstance(data, dict):
-        data["_current_step"] = step_state
-    graph_json = json.dumps(data, ensure_ascii=False)
-    html = HTML_TEMPLATE.replace("{GRAPH_JSON}", graph_json).replace(
-        "{VIEW_HEIGHT}", str(VIEW_HEIGHT)
-    )
-    return html
-
-
-def render_graph(step_state):
-    html = get_graph_html(step_state or 1)
-    return gr.update(value=html, visible=True)
-
-
-def html_escape(text: str) -> str:
-    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 def build_step2_block(abnormal_output, previous_html: str) -> str:
@@ -1073,11 +1052,4 @@ def create_interface():
 
 if __name__ == "__main__":
     app = create_interface()
-    app.launch(
-        server_name="0.0.0.0",
-        server_port=7860,
-        share=False,
-        debug=True,
-        show_error=True,
-        quiet=False,
-    )
+    app.launch()
