@@ -1,7 +1,7 @@
 import json
 import os
 from typing import Optional
-
+import gradio as gr
 VIEW_HEIGHT = 420
 
 HTML_TEMPLATE = r"""<!doctype html>
