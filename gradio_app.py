@@ -9,6 +9,7 @@ dotenv.load_dotenv()
 from get_abnormal_node import run_abnormal_node_selection
 from get_edge import run_target_node_selection
 from get_exam_node import run_examination_node_selection
+from get_regimen_synthesis import run_treatment_candidate_generation
 from get_report import run_therapy_record_selection
 from pdf_converter import convert_pdf_to_json
 from utils_gradio import (
@@ -623,35 +624,40 @@ def run_flow(pdf_file, case_dir_raw, current_case_dir, previous_html, step_state
     if step_state == 4:
         resolved_case_dir = resolve_case_dir(current_case_dir)
         candidates_path = find_json(resolved_case_dir, "candidates")
+        breakpoint()
         if not candidates_path or not os.path.exists(candidates_path):
-            html = (
-                previous_html + "<details open class='step-card'>"
-                "<summary>Step 4 · Candidate regimens</summary>"
-                "<div class='step-body gray'>"
-                "candidates.json not found in the case directory. Please run get_regimen_synthesis.py."
-                "</div>"
-                "</details>"
+            edge_select_path = find_json(resolved_case_dir, "edge_select")
+            node_path = os.path.join("hpp_data", "node.json")
+            edge_path = os.path.join("hpp_data", "edge.json")
+            drug_kb_path = os.path.join("hpp_data", "drug.json")
+
+            candidates_path = os.path.join(resolved_case_dir, "candidates.json")
+            pre_rx_path = os.path.join(resolved_case_dir, "pre_rx.json")
+
+            from get_regimen_synthesis import run_treatment_candidate_generation
+
+            candidates_data, _ = run_treatment_candidate_generation(
+                node_path=node_path,
+                edge_path=edge_path,
+                targets_path=edge_select_path,  # 这里直接使用
+                drug_kb_path=drug_kb_path,
+                output_path=candidates_path,
+                pre_output_path=pre_rx_path,
+                max_hops=2,
+                allow_plausible_seed=False,
+                max_combo_size=3,
+                combo_pool_limit=15,
+                max_combos_per_size=500,
+                make_pairs=True,
+                make_triples=False,
             )
-            graph_html_value = get_graph_html(4)
-            return (
-                gr.update(value=None, visible=False),
-                case_dir_input_update,
-                resolved_case_dir,
-                html,
-                html,
-                "Step 4 · Candidate regimens",
-                gr.update(value="Run Step 4"),
-                4,
-                graph_btn_update,
-                graph_html_value,
-                final_report_html_update,
-                final_report_file_update,
-            )
-        with open(candidates_path, "r", encoding="utf-8") as f:
-            candidates_data = json.load(f)
+        else:
+            with open(candidates_path, "r", encoding="utf-8") as f:
+                candidates_data = json.load(f)
         html = build_step4_block(candidates_data, previous_html)
         case_dir_input_update = gr.update(value=resolved_case_dir)
         graph_html_value = get_graph_html(4)
+
         return (
             gr.update(value=None, visible=False),
             case_dir_input_update,

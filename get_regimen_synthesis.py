@@ -642,48 +642,73 @@ def merge_regimens(
     return combos
 
 
-def main():
-    args = {
-        "node_file": "hpp_data/node.json",
-        "edge_file": "hpp_data/edge.json",
-        "targets": "example/case1/edge_select.json",
-        "drug_kb": "hpp_data/drug.json",
-        "max_hops": 2,
-        "allow_plausible_seed": False,
-        "top_drugs": 12,
-        "max_combo_size": 3,
-        "combo_pool_limit": 15,
-        "max_combos_per_size": 500,
-        "focus_nodes": "",
-        "focus_top_each": 3,
-        "make_pairs": True,
-        "make_triples": False,
-        "out": "",
-        "pre_out": "",
-    }
+def run_treatment_candidate_generation(
+    node_path: str = "hpp_data/node.json",
+    edge_path: str = "hpp_data/edge.json",
+    targets_path: str = "example/case1/edge_select.json",
+    drug_kb_path: str = "hpp_data/drug.json",
+    output_path: Optional[str] = None,
+    pre_output_path: Optional[str] = None,
+    max_hops: int = 2,
+    allow_plausible_seed: bool = False,
+    top_drugs: int = 12,
+    max_combo_size: int = 3,
+    combo_pool_limit: int = 15,
+    max_combos_per_size: Optional[int] = 500,
+    focus_nodes: str = "",
+    focus_top_each: int = 3,
+    make_pairs: bool = True,
+    make_triples: bool = False,
+) -> Tuple[dict, dict]:
+    """
+    Generate treatment candidates including single drugs and combinations.
 
-    cache_dir = os.path.dirname(args["targets"]) or "."
-    if not args["out"]:
-        args["out"] = os.path.join(cache_dir, "candidates.json")
-    if not args["pre_out"]:
-        args["pre_out"] = os.path.join(cache_dir, "pre_rx.json")
+    Args:
+        node_path: Path to graph node data file
+        edge_path: Path to graph edge data file
+        targets_path: Path to targets JSON file (output from edge selection)
+        drug_kb_path: Path to drug knowledge base file
+        output_path: Optional path to save main output JSON (candidates)
+        pre_output_path: Optional path to save treatment paths JSON
+        max_hops: Maximum hops for path finding
+        allow_plausible_seed: Whether to allow plausible seed edges without numeric estimates
+        top_drugs: Top N drugs to consider (deprecated, kept for compatibility)
+        max_combo_size: Maximum combination size
+        combo_pool_limit: Maximum number of drugs in combination pool
+        max_combos_per_size: Maximum combinations to generate per size
+        focus_nodes: Comma-separated node IDs to focus on for combo pool selection
+        focus_top_each: Top N drugs per focus node to include in combo pool
+        make_pairs: Whether to generate 2-drug combinations
+        make_triples: Whether to generate 3-drug combinations
 
-    for p in [args["node_file"], args["edge_file"], args["targets"], args["drug_kb"]]:
-        if not os.path.exists(p):
-            raise FileNotFoundError(f"File not found: {p}")
+    Returns:
+        Tuple[dict, dict]: (candidates_result, treatment_paths_result)
 
-    g = load_graph(
-        args["node_file"],
-        args["edge_file"],
-        allow_plausible_seed=args["allow_plausible_seed"],
-    )
-    tmeta = parse_targets(load_json(args["targets"]))
-    kb = read_drug_kb(load_json(args["drug_kb"]))
+    Raises:
+        FileNotFoundError: If any required input file does not exist
+    """
+    # Validate input files
+    for path in [node_path, edge_path, targets_path, drug_kb_path]:
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"File not found: {path}")
 
+    # Set default output paths if not provided
+    cache_dir = os.path.dirname(targets_path) or "."
+    if output_path is None:
+        output_path = os.path.join(cache_dir, "candidates.json")
+    if pre_output_path is None:
+        pre_output_path = os.path.join(cache_dir, "pre_rx.json")
+
+    # Load graph and targets
+    g = load_graph(node_path, edge_path, allow_plausible_seed=allow_plausible_seed)
+    tmeta = parse_targets(load_json(targets_path))
+    kb = read_drug_kb(load_json(drug_kb_path))
+
+    # Simulate single drugs
     singles: List[dict] = []
     pre_paths: List[dict] = []
     for name, dk in kb.items():
-        reg = simulate_single_drug(name, dk, tmeta, g, max_hops=args["max_hops"])
+        reg = simulate_single_drug(name, dk, tmeta, g, max_hops=max_hops)
         singles.append(reg)
         pre_paths.extend(reg.get("treatment_paths") or [])
 
@@ -691,15 +716,16 @@ def main():
         singles, key=lambda r: (-r["score"]["overall"], -r["score"]["efficacy"])
     )
 
-    combo_pool_limit = max(2, args["combo_pool_limit"])
+    # Build combination pool
+    combo_pool_limit = max(2, combo_pool_limit)
     combo_pool: List[dict] = []
 
-    focus_nodes_str = (args["focus_nodes"] or "").strip()
+    focus_nodes_str = (focus_nodes or "").strip()
     if focus_nodes_str:
-        focus_nodes = [x.strip() for x in focus_nodes_str.split(",") if x.strip()]
-        top_each = max(1, int(args["focus_top_each"]))
+        focus_nodes_list = [x.strip() for x in focus_nodes_str.split(",") if x.strip()]
+        top_each = max(1, int(focus_top_each))
         ranked: List[Tuple[float, dict]] = []
-        for node in focus_nodes:
+        for node in focus_nodes_list:
             scored: List[Tuple[float, dict]] = []
             for reg in singles_sorted:
                 pe = (reg.get("predicted_effects") or {}).get(node)
@@ -728,28 +754,28 @@ def main():
             if len(combo_pool) >= combo_pool_limit:
                 break
 
+    # Generate combinations
     combos: List[dict] = []
     combo_sizes = set()
-    max_combo = args["max_combo_size"] or 0
+    max_combo = max_combo_size or 0
     if max_combo >= 2:
         for s in range(2, max_combo + 1):
             combo_sizes.add(s)
-    if args["make_pairs"]:
+    if make_pairs:
         combo_sizes.add(2)
-    if args["make_triples"]:
+    if make_triples:
         combo_sizes.add(3)
     combo_sizes = sorted([s for s in combo_sizes if s >= 2])
 
     combo_cap = (
-        args["max_combos_per_size"]
-        if args["max_combos_per_size"] and args["max_combos_per_size"] > 0
-        else None
+        max_combos_per_size if max_combos_per_size and max_combos_per_size > 0 else None
     )
     for size in combo_sizes:
         combos += merge_regimens(
             combo_pool, size=size, tmeta=tmeta, max_combos=combo_cap
         )
 
+    # Combine and sort all regimens
     regimens = singles + combos
     regimens.sort(
         key=lambda r: (
@@ -759,17 +785,18 @@ def main():
         )
     )
 
-    out = {
+    # Prepare output
+    candidates_result = {
         "parameters": {
-            "max_hops": args["max_hops"],
-            "allow_plausible_seed": args["allow_plausible_seed"],
+            "max_hops": max_hops,
+            "allow_plausible_seed": allow_plausible_seed,
             "edge_cap_risk": DEFAULT_EDGE_CAP,
             "src_scaler": SRC_NODE_SCALER,
-            "max_combo_size": args["max_combo_size"],
+            "max_combo_size": max_combo_size,
             "combo_sizes_used": combo_sizes,
             "combo_pool_limit": combo_pool_limit,
             "combo_pool_size": len(combo_pool),
-            "max_combos_per_size": args["max_combos_per_size"],
+            "max_combos_per_size": max_combos_per_size,
         },
         "targets": [
             {
@@ -785,8 +812,41 @@ def main():
         "regimens": regimens[:120],
     }
 
-    save_json(out, args["out"])
-    save_json({"treatment_paths": pre_paths}, args["pre_out"])
+    treatment_paths_result = {"treatment_paths": pre_paths}
+
+    # Save to files if paths provided
+    if output_path:
+        save_json(candidates_result, output_path)
+        print(
+            f"[Info] Generated {len(regimens)} regimens ({len(singles)} singles, {len(combos)} combos)"
+        )
+        print(f"[Info] Wrote candidates to: {output_path}")
+
+    if pre_output_path:
+        save_json(treatment_paths_result, pre_output_path)
+        print(f"[Info] Wrote treatment paths to: {pre_output_path}")
+
+    return candidates_result, treatment_paths_result
+
+
+def main():
+    """Command-line entry point for treatment candidate generation."""
+    candidates, paths = run_treatment_candidate_generation(
+        node_path="hpp_data/node.json",
+        edge_path="hpp_data/edge.json",
+        targets_path="example/case1/edge_select.json",
+        drug_kb_path="hpp_data/drug.json",
+        output_path="example/case1/candidates.json",
+        pre_output_path="example/case1/pre_rx.json",
+        max_hops=2,
+        allow_plausible_seed=False,
+        max_combo_size=3,
+        combo_pool_limit=15,
+        max_combos_per_size=500,
+        make_pairs=True,
+        make_triples=False,
+    )
+    return candidates, paths
 
 
 if __name__ == "__main__":
